@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './styles.scss';
-import Home from './scenes/Home';
-class App extends Component {
+
+class Home extends Component {
   render() {
     return (
-      <Home />
+      <h1>Power Panel</h1>
     );
   }
 }
 
-export default App;
+export default Home
