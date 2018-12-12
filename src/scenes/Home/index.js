@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import Quote from './components/Quote';
 import './styles.scss';
 
 class Home extends Component {
   render() {
     return (
-      <h1>Power Panel</h1>
+      <div className="app">
+        <h1>Power Panel</h1>
+        <Quote />
+      </div>
     );
   }
 }
