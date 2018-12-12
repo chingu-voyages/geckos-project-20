@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './styles.scss';
+import Api from '../../services/api/Api'
+
 
 class Weather extends Component {
 
@@ -10,10 +12,10 @@ class Weather extends Component {
     return (
       
       <div className="app-container weather">
-      <p>weather placeholder</p>
+      
+      <Api />
 
       </div>
-      
 
     );
   }
