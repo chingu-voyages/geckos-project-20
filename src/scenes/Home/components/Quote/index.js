@@ -36,12 +36,14 @@ class Quote extends Component {
       return (
         <div className="bottom">
           <div className="app-quote">
-            <p className="app-quote-body">
-              <span className="app-quote-body__text">
-                <p>{quote.quote}</p>
-                <p>{quote.author}</p>
-              </span>
-            </p>
+            <div className="app-quote-body">
+              <div className="app-quote-body__text">
+              {quote.quote}
+              </div>
+              <div className="app-quote-body__source">
+                <span className="app-quote__text-source__author">{quote.author}</span>
+              </div>    
+            </div>
           </div>
         </div>
       );
