@@ -3,6 +3,7 @@ import './styles.scss';
 import { getWeather } from '../../../../services/api/api';
 
 
+
 class Weather extends Component {
 
   constructor(props) {
@@ -10,7 +11,7 @@ class Weather extends Component {
 
     this.state = {
       weather: {},
-      isLoading: true
+      isLoading: true,
     };
   }
 
@@ -18,16 +19,19 @@ class Weather extends Component {
     try {
       const response = await getWeather();
       const data = await response.json();
-      this.setState({ weather: data, isLoading: false });
+      this.setState({ 
+        weather: data, 
+        isLoading: false });
     } catch (error) {
       this.setState({ error: error });
     }  
   console.log("got results", this.state.weather, this.state.weather.main.temp);
   console.log(this.state.weather.weather);
   console.log(this.state.weather.weather[0].icon);
+  console.log(Math.round(this.state.weather.main.temp));
   }
 
-  /*
+/*
 initial weather should display icon, temp and location and be clickable to expand...
 Icon eg. For code 501 - moderate rain icon = "10d"
 URL is http://openweathermap.org/img/w/10d.png */
@@ -36,11 +40,7 @@ URL is http://openweathermap.org/img/w/10d.png */
 
     const { weather, error, isLoading } = this.state;
 
-    //let weatherIcon = weather.weather[0].icon;
-    //let weatherIconImage = `https://openweathermap.org/img/w/${weatherIcon}.png`;
-
-
-    if (error) {
+      if (error) {
       return <p>{error.message}</p>;
     }
 
@@ -52,8 +52,8 @@ URL is http://openweathermap.org/img/w/10d.png */
       
       <div className="weather-results">
       <div>
-     
-        <p>{weather.main.temp}&#8451;</p>
+        <img src={`https://openweathermap.org/img/w/${this.state.weather.weather[0].icon}.png`} alt='Icon showing weather' className='weather-icon'/>
+        <p>{Math.round(weather.main.temp)}&#8451;</p>
         <p>{weather.name}</p>
       </div>    
       </div>
