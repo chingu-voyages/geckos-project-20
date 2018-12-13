@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import './styles.scss';
 import { getQuote } from "../../../../services/api";
 import iconHeartEmpty from './../../../../images/icon-heart-empty.svg';
+import iconHeart from './../../../../images/icon-heart.svg';
 
 class Quote extends Component {
   constructor(props) {
@@ -18,10 +19,15 @@ class Quote extends Component {
       const response = await getQuote();
       const data = await response.json(); 
       this.setState({ quote: data, isLoading: false });
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       this.setState({ error: error });
     }
+  }
+
+  heart() {
+    const controlHeart = document.querySelector('.control-hearth');
+    controlHeart.classList.toggle('active');
   }
 
   render() {
@@ -43,8 +49,9 @@ class Quote extends Component {
               </div>
               <div className="app-quote-body__source">
                 <span className="app-quote-body__source__author">{quote.author}</span>
-                <span classname="control control-hearth">
+                <span className="control control-hearth" onClick={this.heart}>
                   <img src={iconHeartEmpty} alt="icon heart empty" className="icon icon-heart-empty"/>
+                  <img src={iconHeart} alt="icon heart" className="icon icon-heart"/>
                 </span>
               </div>    
             </div>

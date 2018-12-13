@@ -29,13 +29,31 @@
         line-height: 100%;
         opacity: 0.75;
         vertical-align: middle;
-      }
 
-      .icon {
-        height: 16px;
-        position: absolute;
-        margin-left: 10px;
-        margin-top: 1px;
+        .icon {
+          height: 16px;
+          position: absolute;
+          margin-left: 10px;
+          margin-top: 1px;
+
+          &.icon-heart-empty {
+            opacity: 1;
+          }
+
+          &.icon-heart {
+            opacity: 0;
+          }
+        }
+
+        &.active {
+          .icon-heart-empty {
+            opacity: 0;
+          }
+
+          .icon-heart {
+            opacity: 1;
+          }
+        }
       }
     }
   }
