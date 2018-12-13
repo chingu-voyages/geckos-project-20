@@ -19,6 +19,24 @@
       opacity: 0;
       transform: translateY(-22px);
       transition: all 0.35s ease;
+
+      .control {
+        height: 16px;
+        width: 16px;
+        padding: 6px 2px;
+        position: relative;
+        font-size: 110%;
+        line-height: 100%;
+        opacity: 0.75;
+        vertical-align: middle;
+      }
+
+      .icon {
+        height: 16px;
+        position: absolute;
+        margin-left: 10px;
+        margin-top: 1px;
+      }
     }
   }
 

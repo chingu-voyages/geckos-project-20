@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import './styles.scss';
 import { getQuote } from "../../../../services/api";
+import iconHeartEmpty from './../../../../images/icon-heart-empty.svg';
 
 class Quote extends Component {
   constructor(props) {
@@ -41,7 +42,10 @@ class Quote extends Component {
               {quote.quote}
               </div>
               <div className="app-quote-body__source">
-                <span className="app-quote__text-source__author">{quote.author}</span>
+                <span className="app-quote-body__source__author">{quote.author}</span>
+                <span classname="control control-hearth">
+                  <img src={iconHeartEmpty} alt="icon heart empty" className="icon icon-heart-empty"/>
+                </span>
               </div>    
             </div>
           </div>
