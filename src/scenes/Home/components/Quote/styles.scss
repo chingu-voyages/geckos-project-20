@@ -29,6 +29,7 @@
         line-height: 100%;
         opacity: 0.75;
         vertical-align: middle;
+        margin-right: 30px;
 
         .icon {
           height: 16px;
@@ -52,6 +53,13 @@
 
           .icon-heart {
             opacity: 1;
+          }
+        }
+
+        &.control-twitter {
+          a {
+            color: white;
+            text-decoration: none;
           }
         }
       }

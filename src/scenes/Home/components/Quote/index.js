@@ -30,6 +30,13 @@ class Quote extends Component {
     controlHeart.classList.toggle('active');
   }
 
+  shareOnTwitter(e) {
+    e.preventDefault();
+
+    const shareTwitter = document.querySelector('.control-twitter');
+
+  }
+
   render() {
     const { quote, error, isLoading } = this.state;
 
@@ -52,6 +59,15 @@ class Quote extends Component {
                 <span className="control control-hearth" onClick={this.heart}>
                   <img src={iconHeartEmpty} alt="icon heart empty" className="icon icon-heart-empty"/>
                   <img src={iconHeart} alt="icon heart" className="icon icon-heart"/>
+                </span>
+                <span className="control control-twitter">
+                  <a
+                    href={`https://twitter.com/intent/tweet?text=${quote.quote} - ${quote.author}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                  Twitter
+                  </a>
                 </span>
               </div>    
             </div>
