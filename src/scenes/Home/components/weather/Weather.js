@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './styles.scss';
 import { getWeather } from '../../../../services/api/api';
-
+//import { getAPIURL } from '../../../../services/api/api';
+//import LatLong from './LatLong';
 
 
 class Weather extends Component {
@@ -12,10 +13,14 @@ class Weather extends Component {
     this.state = {
       weather: {},
       isLoading: true,
+      error: '',
     };
-  }
+  
+  };
+  
 
   async componentDidMount() {
+
     try {
       const response = await getWeather();
       const data = await response.json();
@@ -25,16 +30,19 @@ class Weather extends Component {
     } catch (error) {
       this.setState({ error: error });
     }  
-  console.log("got results", this.state.weather, this.state.weather.main.temp);
+  console.log("got results");
+  console.log(this.state.weather);
   console.log(this.state.weather.weather);
-  console.log(this.state.weather.weather[0].icon);
-  console.log(Math.round(this.state.weather.main.temp));
   }
 
 /*
 initial weather should display icon, temp and location and be clickable to expand...
 Icon eg. For code 501 - moderate rain icon = "10d"
 URL is http://openweathermap.org/img/w/10d.png */
+
+
+/* TODOs Add City name when location works */
+
 
   render() {
 
@@ -59,7 +67,6 @@ URL is http://openweathermap.org/img/w/10d.png */
       </div>
 
    
-
     );
   }
 }
