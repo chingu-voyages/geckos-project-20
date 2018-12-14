@@ -33,10 +33,13 @@ function error(err) {
 navigator.geolocation.getCurrentPosition(success, error);
 */ 
 
-export async function getWeather() {
+export async function getCurrentWeather() {
 
   //let lat = position.coords.latitude;
   //let lon = position.coords.longitude;
+
+  //Example API call: http://api.openweathermap.org/data/2.5/weather?lat=51&lon=-1&units=metric&type=accurate&mode=json&APPID=YOUR_API_KEY
+
 
   let url = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
   console.log(url);

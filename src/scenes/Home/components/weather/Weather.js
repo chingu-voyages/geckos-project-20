@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './styles.scss';
-import { getWeather } from '../../../../services/api/api';
+import { getWeather } from '../../../../services/api/weather-api';
 //import { getAPIURL } from '../../../../services/api/api';
 //import LatLong from './LatLong';
 
@@ -22,7 +22,7 @@ class Weather extends Component {
   async componentDidMount() {
 
     try {
-      const response = await getWeather();
+      const response = await getCurrentWeather();
       const data = await response.json();
       this.setState({ 
         weather: data, 
