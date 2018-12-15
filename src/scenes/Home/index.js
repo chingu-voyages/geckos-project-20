@@ -9,7 +9,15 @@ class Home extends Component {
       <div className="top-bar">
       <h1>Power Panel</h1>
 
+      <div className="app-container weather">
+      
       <Weather />
+
+      </div>
+
+
+
+      
       
       </div>
     );
