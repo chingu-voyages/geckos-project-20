@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './styles.scss';
-import { getWeather } from '../../../../services/api/weather-api';
+import { getCurrentWeather } from '../../../../services/api/weather-api';
 //import { getAPIURL } from '../../../../services/api/api';
 //import LatLong from './LatLong';
 

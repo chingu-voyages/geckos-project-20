@@ -11,7 +11,7 @@ class Home extends Component {
 
       <div className="app-container weather">
       
-      <Weather />
+    {/* <Weather /> */}
 
       </div>
 

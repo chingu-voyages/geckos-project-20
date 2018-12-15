@@ -35,15 +35,15 @@ navigator.geolocation.getCurrentPosition(success, error);
 
 export async function getCurrentWeather() {
 
-  //let lat = position.coords.latitude;
-  //let lon = position.coords.longitude;
+  // let lat = position.coords.latitude;
+  // let lon = position.coords.longitude;
 
   //Example API call: http://api.openweathermap.org/data/2.5/weather?lat=51&lon=-1&units=metric&type=accurate&mode=json&APPID=YOUR_API_KEY
 
 
-  let url = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
-  console.log(url);
-  return await fetch(url);
+  // let url = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
+  // console.log(url);
+  // return await fetch(url);
 
   //return await fetch("http://api.openweathermap.org/data/2.5/weather?lat=" + coords.latitude + "&lon=" + coords.longitude + "&units=metric&type=accurate&mode=json&APPID="${API_KEY});
   
