@@ -3,6 +3,7 @@ import './styles.scss';
 import { getQuote } from "../../../../services/api";
 import iconHeartEmpty from './../../../../images/icon-heart-empty.svg';
 import iconHeart from './../../../../images/icon-heart.svg';
+import { FaTwitter } from 'react-icons/fa';
 
 class Quote extends Component {
   constructor(props) {
@@ -30,13 +31,6 @@ class Quote extends Component {
     controlHeart.classList.toggle('active');
   }
 
-  shareOnTwitter(e) {
-    e.preventDefault();
-
-    const shareTwitter = document.querySelector('.control-twitter');
-
-  }
-
   render() {
     const { quote, error, isLoading } = this.state;
 
@@ -55,7 +49,8 @@ class Quote extends Component {
               {quote.quote}
               </div>
               <div className="app-quote-body__source">
-                <span className="app-quote-body__source__author">{quote.author}</span>
+                <div className="app-quote-body__source-content">
+                <span className="app-quote-body__source-content__author">{quote.author}</span>
                 <span className="control control-hearth" onClick={this.heart}>
                   <img src={iconHeartEmpty} alt="icon heart empty" className="icon icon-heart-empty"/>
                   <img src={iconHeart} alt="icon heart" className="icon icon-heart"/>
@@ -66,9 +61,10 @@ class Quote extends Component {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                  Twitter
+                  <FaTwitter />
                   </a>
                 </span>
+                </div>
               </div>    
             </div>
           </div>

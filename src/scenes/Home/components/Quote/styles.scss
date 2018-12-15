@@ -19,47 +19,58 @@
       opacity: 0;
       transform: translateY(-22px);
       transition: all 0.35s ease;
+      text-align: center;
 
-      .control {
-        height: 16px;
-        width: 16px;
-        padding: 6px 2px;
-        position: relative;
-        font-size: 110%;
-        line-height: 100%;
-        opacity: 0.75;
-        vertical-align: middle;
-        margin-right: 30px;
+      &-content {
+        margin: 0 auto;
 
-        .icon {
+        .control {
           height: 16px;
-          position: absolute;
-          margin-left: 10px;
-          margin-top: 1px;
+          width: 16px;
+          padding: 6px 2px;
+          position: relative;
+          font-size: 110%;
+          line-height: 100%;
+          opacity: 0.75;
+          vertical-align: middle;
+          margin-right: 30px;
 
-          &.icon-heart-empty {
-            opacity: 1;
+          .icon {
+            height: 16px;
+            position: absolute;
+            margin-left: 10px;
+            margin-top: 1px;
+
+            &.icon-heart-empty {
+              opacity: 1;
+            }
+
+            &.icon-heart {
+              opacity: 0;
+            }
           }
 
-          &.icon-heart {
-            opacity: 0;
-          }
-        }
+          &.active {
+            .icon-heart-empty {
+              opacity: 0;
+            }
 
-        &.active {
-          .icon-heart-empty {
-            opacity: 0;
+            .icon-heart {
+              opacity: 1;
+            }
           }
 
-          .icon-heart {
-            opacity: 1;
-          }
-        }
+          &.control-twitter {
+            margin-top: 4px;
 
-        &.control-twitter {
-          a {
-            color: white;
-            text-decoration: none;
+            a {
+              color: white;
+              text-decoration: none;
+            }
+          }
+
+          &:last-child {
+            margin-right: 0;
           }
         }
       }
