@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Quote from './components/Quote';
 import './styles.scss';
+// import Weather from './components/Weather/Weather';
 
 class Home extends Component {
   render() {
