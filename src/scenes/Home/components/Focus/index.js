@@ -1,14 +1,18 @@
 import React, { Component } from "react";
+import { FaPlus } from "react-icons/fa";
+import "./styles.scss";
 
 class Focus extends Component {
   constructor(props) {
     super(props);
     this.state = {
       focus: "",
-      input: ""
+      input: "",
+      line: "none"
     };
     this.onChange = this.onChange.bind(this);
-    this.onClick = this.onClick.bind(this);
+    this.toggleLine = this.toggleLine.bind(this);
+    this.onCompleteClick = this.onCompleteClick.bind(this);
   }
 
   componentDidMount() {
@@ -24,7 +28,17 @@ class Focus extends Component {
     this.setState(e => ({ input: value }));
   };
 
-  onClick = () => {
+  toggleLine = e => {
+    if (this.state.line === "none") {
+      this.setState(() => ({
+        line: "line-through"
+      }));
+    } else {
+      this.setState(() => ({ line: "none" }));
+    }
+  };
+
+  onCompleteClick = () => {
     localStorage.removeItem("focus");
     this.setState(() => ({
       focus: ""
@@ -42,11 +56,19 @@ class Focus extends Component {
 
   render() {
     return (
-      <div>
+      <div className="focus__container">
         {this.state.focus ? (
           <React.Fragment>
             <p>TODAY</p>
-            <p onClick={() => this.onClick()}>{this.state.focus}</p>
+            <div className="focus__current">
+              <p
+                style={{ textDecoration: this.state.line }}
+                onClick={e => this.toggleLine(e)}
+              >
+                {this.state.focus}
+              </p>
+              <FaPlus onClick={this.onCompleteClick} />
+            </div>
           </React.Fragment>
         ) : (
           <React.Fragment>
