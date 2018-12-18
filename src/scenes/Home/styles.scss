@@ -6,6 +6,10 @@
   bottom: 0;
 }
 
+.app-container {
+  transition: opacity 0.5s ease;
+}
+
 .top-row {
   position: absolute;
   top: 0;
