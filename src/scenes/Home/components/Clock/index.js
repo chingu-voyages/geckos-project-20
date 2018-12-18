@@ -7,7 +7,8 @@ class Clock extends Component {
 
     this.state = {
       date: new Date(),
-      greeting: ""
+      greeting: "",
+      name: "name"
     };
   }
 
@@ -32,29 +33,29 @@ class Clock extends Component {
   }
 
   getGreeting(hours) {
-    switch(hours) {
-      case hours > 0:
-        this.setState({
-          greeting: "buon giorno"
-        })
-        break;
-      case hours <= 0:
+    if (hours > 0 && hours < 13) {
       this.setState({
-        greeting: "buona notte"
-      })
-        break;
-      default:
-        return null;
+        greeting: "Good morning"
+      });
+    } else if (hours >= 13 && hours < 18) {
+      this.setState({
+        greeting: "Good afternoon"
+      });
+    } else if (hours >= 18) {
+      this.setState({
+        greeting: "Good evening"
+      });
     }
   }
 
   render() {
-    // const { quote, error, isLoading } = this.state;
 
     return (
       <div className="center">
-        <h2>{this.state.date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</h2>
-        <p>{this.state.greeting}</p>
+        <div className="app-container clock">
+          <div className="clock-time">{this.state.date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
+          <div className="clock-greeting">{this.state.greeting}, {this.state.name}.</div>
+        </div>
       </div>
     );
   }
