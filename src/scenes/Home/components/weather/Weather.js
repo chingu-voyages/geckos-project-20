@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import './styles.scss';
-import { getWeather } from '../../../../services/api/weather-api';
-//import { getAPIURL } from '../../../../services/api/api';
-//import LatLong from './LatLong';
 
 
 class Weather extends Component {
@@ -14,34 +11,58 @@ class Weather extends Component {
       weather: {},
       isLoading: true,
       error: '',
+      lat: '',
+      lon: ''
     };
-  
   };
+
+  
+  getCurrentWeather () {
+
+    //Example API call: http://api.openweathermap.org/data/2.5/weather?lat=51&lon=-1&units=metric&type=accurate&mode=json&APPID=YOUR_API_KEY
+    const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
+    let url = `http://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lon}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
+    console.log(url);
+    return fetch(url)
+    .then(response => response.json())
+    .then(data => 
+      this.setState({ 
+        weather: data,
+        isLoading: false  
+      })
+      )
+    .catch(error => 
+      this.setState({ 
+        error, 
+        isLoading: false 
+      })
+      );
+  }
   
 
-  async componentDidMount() {
+componentDidMount() {
 
-    try {
-      const response = await getCurrentWeather();
-      const data = await response.json();
-      this.setState({ 
-        weather: data, 
-        isLoading: false });
-    } catch (error) {
-      this.setState({ error: error });
-    }  
-  console.log("got results");
-  console.log(this.state.weather);
-  console.log(this.state.weather.weather);
-  }
+// Get the current position of the user
+  navigator.geolocation.getCurrentPosition(
+  (position) => {
+
+      this.setState(
+      (prevState) => ({
+          lat: position.coords.latitude, 
+          lon: position.coords.longitude
+          }), () => { this.getCurrentWeather(); } //Passes geolocation to getCurrentWeather function
+      );
+  },
+      (error) => this.setState({ error: error }),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+  )
+}
+
 
 /*
 initial weather should display icon, temp and location and be clickable to expand...
 Icon eg. For code 501 - moderate rain icon = "10d"
 URL is http://openweathermap.org/img/w/10d.png */
-
-
-/* TODOs Add City name when location works */
 
 
   render() {
@@ -65,7 +86,6 @@ URL is http://openweathermap.org/img/w/10d.png */
         <p>{weather.name}</p>
       </div>    
       </div>
-
    
     );
   }
