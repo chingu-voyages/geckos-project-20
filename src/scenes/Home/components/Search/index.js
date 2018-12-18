@@ -18,7 +18,7 @@ getResults(e) {
 
   render() {
     return (
-      <div>
+      <div className="top-left">
         <form className="search">
           <FaSearch className="search-icon" />
           <input
