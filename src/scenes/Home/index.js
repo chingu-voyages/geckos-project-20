@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+import Search from './components/Search';
 import Quote from './components/Quote';
-import './styles.scss';
 import Weather from './components/Weather';
+import './styles.scss';
 
 class Home extends Component {
   render() {
     return (
       <div className="app">
-        <h1>Power Panel</h1>
+        <Search />
         <Weather />
         <Quote />
       </div>
@@ -15,4 +16,4 @@ class Home extends Component {
   }
 }
 
-export default Home
+export default Home;
