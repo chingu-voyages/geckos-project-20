@@ -81,9 +81,9 @@ URL is http://openweathermap.org/img/w/10d.png */
       
       <div className="weather-results">
       <div>
-        <img src={`https://openweathermap.org/img/w/${this.state.weather.weather[0].icon}.png`} alt='Icon showing weather' className='weather-icon'/>
+    {/* <img src={`https://openweathermap.org/img/w/${this.state.weather.weather[0].icon}.png`} alt='Icon showing weather' className='weather-icon'/> 
         <p>{Math.round(weather.main.temp)}&#8451;</p>
-        <p>{weather.name}</p>
+        <p>{weather.name}</p> */}
       </div>    
       </div>
    
