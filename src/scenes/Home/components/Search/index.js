@@ -18,15 +18,17 @@ getResults(e) {
 
   render() {
     return (
-      <div className="top-left">
-        <form className="search">
-          <FaSearch className="search-icon" />
-          <input
-            className="search-input"
-            type="search"
-            onKeyUp={this.getResults}
-          />
-        </form>
+      <div className="top-row">
+        <div className="top-left">
+          <form className="search">
+            <FaSearch className="search-icon" />
+            <input
+              className="search-input"
+              type="search"
+              onKeyUp={this.getResults}
+            />
+          </form>
+        </div>
       </div>
     );
   }
