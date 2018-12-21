@@ -14,7 +14,7 @@ class Weather extends Component {
       error: '',
       lat: '',
       lon: '',
-      time: 1,
+      timeOfDay: 1,
     };
   };
 
@@ -25,14 +25,14 @@ class Weather extends Component {
     const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
     let url = `http://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lon}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
     let date = new Date();
-    let time = date.getHours();
+    let timeOfDay = date.getHours();
     console.log(url);
-    console.log(time);
+    console.log(timeOfDay);
     return fetch(url)
     .then(response => response.json())
     .then((data) =>
       this.setState({ 
-        time: time,
+        timeOfDay: timeOfDay,
         weather: data,
         weatherID: data.weather[0].id,
         weatherDescription: data.weather[0].description,
@@ -71,18 +71,10 @@ Icon eg. For code 501 - moderate rain icon = "10d"
 URL is http://openweathermap.org/img/w/10d.png */
 
 
-/*
-<WeatherIcon
-        className={"weatherIcon"}
-        time={this.state.time}
-        weatherID={this.state.weatherID}
-        />
-        */
-
 
   render() {
 
-    const { weather, error, isLoading, weatherID, weatherDescription } = this.state;
+    const { weather, error, isLoading, weatherID, weatherDescription, timeOfDay } = this.state;
 
       if (error) {
       return <p>{error.message}</p>;
@@ -97,7 +89,7 @@ URL is http://openweathermap.org/img/w/10d.png */
       <div className="weather-results">
       <div>
         
-      <img src={weatherIcon(weatherID)} alt={weatherDescription}/>
+      <img src={weatherIcon(weatherID, timeOfDay)} alt={weatherDescription}/>
         <p>{Math.round(weather.main.temp)}&#8451;</p>
         <p>{weather.name}</p>
       </div>    
