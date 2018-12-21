@@ -8,8 +8,13 @@ class Home extends Component {
   render() {
     return (
       <div className="app">
+      <div className="top-row">
         <h1>Power Panel</h1>
-        <Weather />
+        <div className="top-right"></div>
+        <div className="app-container weather">
+          <Weather />
+        </div>
+        </div>
         <Quote />
         <Clock />
       </div>

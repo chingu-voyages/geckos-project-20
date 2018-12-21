@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './styles.scss';
-import { weatherIcon } from './WeatherIcon';
+import { weatherIcon } from './weatherIcon';
 
 
 class Weather extends Component {
@@ -86,14 +86,13 @@ URL is http://openweathermap.org/img/w/10d.png */
 
     return (
    
-      <div className="weather-results">
-      <div>
-        
+      
+      <div className="app-dash">
       <img src={weatherIcon(weatherID, timeOfDay)} alt={weatherDescription}/>
         <p>{Math.round(weather.main.temp)}&#8451;</p>
-        <p>{weather.name}</p> */}
-      </div>    
-      </div>
+        <p>{weather.name}</p>
+        </div>  
+     
    
     );
   }
