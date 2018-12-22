@@ -86,13 +86,17 @@ URL is http://openweathermap.org/img/w/10d.png */
 
     return (
    
-      
-      <div className="app-dash">
-      <img src={weatherIcon(weatherID, timeOfDay)} alt={weatherDescription}/>
-        <p>{Math.round(weather.main.temp)}&#8451;</p>
+      <div className="app-container weather">
+      <div className="weather-wrapper">
+      <div className="weather-stat">
+      <img className="weather-icon" src={weatherIcon(weatherID, timeOfDay)} alt={weatherDescription}/>
+        <p>{Math.round(weather.main.temp)}&deg;</p>
+      </div>
+      <div className="weather-location-label"> 
         <p>{weather.name}</p>
+        </div>
         </div>  
-     
+      </div>
    
     );
   }
