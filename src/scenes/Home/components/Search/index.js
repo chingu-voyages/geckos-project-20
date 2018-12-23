@@ -4,6 +4,20 @@ import { FaSearch } from "react-icons/fa";
 
 class Search extends Component {
 
+handleChange() {
+  console.log('irene');
+}
+
+handleFocus() {
+  const searchContainer = document.querySelector('.search');
+  searchContainer.classList.add('active');
+}
+
+handleBlur() {
+  const searchContainer = document.querySelector('.search');
+  searchContainer.classList.remove('active');
+}
+
 getResults(e) {
   e.preventDefault();
 
@@ -20,14 +34,19 @@ getResults(e) {
     return (
       <div className="top-row">
         <div className="top-left">
-          <form className="search">
+        <div className="search">
+          <form className="search-form">
             <FaSearch className="search-icon" />
             <input
               className="search-input"
-              type="search"
+              autocomplete="off"
+              onChange={this.handleChange}
               onKeyUp={this.getResults}
+              onFocus = {this.handleFocus}
+              onBlur = {this.handleBlur}
             />
           </form>
+        </div>
         </div>
       </div>
     );

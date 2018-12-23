@@ -1,6 +1,7 @@
 .search {
   position: relative;
   width: 230px;
+  transition: opacity 0.5s ease;
 
   &-icon {
     position: absolute;
@@ -9,6 +10,7 @@
     top: 0;
     line-height: 57px;
     opacity: 0.7;
+    transition: opacity 0.5s ease;
   }
 
   &-input {
@@ -26,8 +28,18 @@
     cursor: pointer;
 
     &:focus {
-      border-bottom: 1px solid #fff;
       outline: 0;
+      cursor: text;
+    }
+  }
+
+  &.active {
+    .search-icon {
+      opacity: 1;
+    }
+
+    .search-input {
+      border-bottom: 2px solid #fff;
     }
   }
 }
