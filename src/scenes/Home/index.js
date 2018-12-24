@@ -10,8 +10,7 @@ class Home extends Component {
       <div className="app">
       <div className="top-row">
         <h1>Power Panel</h1>
-        <div className="top-right"></div>
-        <div className="app-container weather">
+        <div className="top-right">
           <Weather />
         </div>
         </div>
