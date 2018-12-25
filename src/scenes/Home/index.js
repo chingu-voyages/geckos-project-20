@@ -1,27 +1,22 @@
 import React, { Component } from 'react';
 import './styles.scss';
-import Weather from './components/Weather/Weather';
+import Weather from './components/weather/Weather';
 
 class Home extends Component {
-  render() {
-    return (
+    render() {
+        return (
 
-      <div className="top-bar">
-      <h1>Power Panel</h1>
+            <div className="top-bar">
+                <h1>Power Panel</h1>
 
-      <div className="app-container weather">
-      
-      <Weather />
+                <div className="app-container weather">
 
-      </div>
+                    <Weather />
 
-
-
-      
-      
-      </div>
-    );
-  }
+                </div>
+            </div>
+        );
+    }
 }
 
 export default Home
