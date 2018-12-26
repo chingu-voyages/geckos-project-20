@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import './styles.scss';
-import { BrowserRouter, Route} from 'react-router-dom';
 import { FaSearch } from "react-icons/fa";
 
 class Search extends Component {
