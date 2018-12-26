@@ -3,19 +3,21 @@ import Quote from './components/Quote';
 import Clock from './components/Clock';
 import './styles.scss';
 import Weather from './components/Weather/Weather';
+import Todo from './components/Todo/Todo';
 
 class Home extends Component {
     render() {
         return (
             <div className="app">
-                <div className="top-row">
+                {/* <div className="top-row">
                     <h1>Power Panel</h1>
                     <div className="top-right">
                         <Weather />
                     </div>
                 </div>
                 <Quote />
-                <Clock />
+                <Clock /> */}
+                <Todo />
             </div>
         );
     }
