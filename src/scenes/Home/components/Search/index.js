@@ -1,11 +1,19 @@
 import React, { Component } from "react";
 import './styles.scss';
+import { BrowserRouter, Route} from 'react-router-dom';
 import { FaSearch } from "react-icons/fa";
 
 class Search extends Component {
 
+  constructor() {
+    super()
+
+    this.state = {
+      query: null
+    }
+  }
 handleChange() {
-  console.log('irene');
+  // do something
 }
 
 handleFocus() {
@@ -18,16 +26,19 @@ handleBlur() {
   searchContainer.classList.remove('active');
 }
 
-getResults(e) {
-  e.preventDefault();
-
-  let search = e.target.value;
-  const googleSearch = "https://www.google.com/search?q=";
-
-  if (e.which === 13 || e.keyCode === 13) {
-    let searched = `${googleSearch}${search}`;
-    window.location.href = searched;
+getResults = e => {
+  if (e.keyCode === 13) {
+    e.preventDefault();
+    let search = e.target.value;
+    console.log('ENTRR', search);
+    // const googleSearch = "https://www.google.com/search?q=";
+    // console.log(e.keyCode, search);
+    // let searched = `${googleSearch}${search}`;
+    // console.log('searched',searched);
+    // console.log('this',this);
+    // window.location.href = searched;
   }
+  
 }
 
   render() {
@@ -39,7 +50,7 @@ getResults(e) {
             <FaSearch className="search-icon" />
             <input
               className="search-input"
-              autocomplete="off"
+              autoComplete="off"
               onChange={this.handleChange}
               onKeyUp={this.getResults}
               onFocus = {this.handleFocus}
