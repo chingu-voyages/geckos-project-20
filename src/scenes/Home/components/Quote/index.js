@@ -19,8 +19,7 @@ class Quote extends Component {
     try {
       const response = await getQuote();
       const data = await response.json(); 
-      this.setState({ quote: data, isLoading: false });
-      // console.log(data);
+      this.setState({ quote: data.contents.quotes[0], isLoading: false });
     } catch (error) {
       this.setState({ error: error });
     }
