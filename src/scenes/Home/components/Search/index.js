@@ -11,8 +11,12 @@ class Search extends Component {
       query: null
     }
   }
-handleChange() {
-  // do something
+
+handleChange = e => {
+  let search = e.target.value;
+  this.setState({
+    query: search
+  });
 }
 
 handleFocus() {
@@ -26,18 +30,11 @@ handleBlur() {
 }
 
 getResults = e => {
-  if (e.keyCode === 13) {
-    e.preventDefault();
-    let search = e.target.value;
-    console.log('ENTRR', search);
-    // const googleSearch = "https://www.google.com/search?q=";
-    // console.log(e.keyCode, search);
-    // let searched = `${googleSearch}${search}`;
-    // console.log('searched',searched);
-    // console.log('this',this);
-    // window.location.href = searched;
-  }
-  
+  e.preventDefault();
+  const searched = this.state.query;
+  const googleQuery = "https://www.google.com/search?q=";
+  let googleSearch = `${googleQuery}${searched}`;
+  window.location.href = googleSearch;
 }
 
   render() {
@@ -45,13 +42,12 @@ getResults = e => {
       <div className="top-row">
         <div className="top-left">
         <div className="search">
-          <form className="search-form">
+          <form className="search-form" onSubmit={this.getResults}>
             <FaSearch className="search-icon" />
             <input
               className="search-input"
               autoComplete="off"
               onChange={this.handleChange}
-              onKeyUp={this.getResults}
               onFocus = {this.handleFocus}
               onBlur = {this.handleBlur}
             />
