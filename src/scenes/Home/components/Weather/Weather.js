@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './styles.scss';
 import { weatherIcon } from './weatherIcon';
+import WeatherExpanded from './WeatherExpanded';
 
 
 class Weather extends Component {
@@ -15,6 +16,7 @@ class Weather extends Component {
       lat: '',
       lon: '',
       timeOfDay: 1,
+      isShowing: false
     };
   };
 
@@ -71,6 +73,14 @@ Icon eg. For code 501 - moderate rain icon = "10d"
 URL is http://openweathermap.org/img/w/10d.png */
 
 
+//Function for opening/closing modal for expanded view
+onToggleOpen = (e) => {
+  this.setState((prevState) =>
+  ({
+   isShowing: !prevState.isShowing
+ })
+)
+}
 
   render() {
 
@@ -86,7 +96,8 @@ URL is http://openweathermap.org/img/w/10d.png */
 
     return (
    
-      <div className="app-container weather">
+      <div className="weather-app-container weather" onClick={this.onToggleOpen}>
+
       <div className="weather-wrapper">
       <div className="weather-stat">
       <img className="weather-icon" src={weatherIcon(weatherID, timeOfDay)} alt={weatherDescription}/>
@@ -95,7 +106,16 @@ URL is http://openweathermap.org/img/w/10d.png */
       </div>
       <div className="weather-location-label"> 
         <p>{weather.name}</p>
-        </div>  
+        </div> 
+      <div>
+      
+      {this.state.isShowing &&
+              <WeatherExpanded
+              onToggleOpen={this.onToggleOpen}
+          />
+            }
+            
+        </div>
       </div>
    
     );

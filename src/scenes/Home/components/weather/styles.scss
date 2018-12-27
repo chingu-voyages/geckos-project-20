@@ -43,4 +43,35 @@
       transition: opacity .5s ease;
       display: block;
     }
+
+    &-nipple-top-right {
+
+    }
+
+    &-app-wrapper {
+      margin-top: 5px;
+      transition: all .15s ease;
+      position: relative;
+      display: block;
+      right: 325px;
+    }
+
+    &-app {
+      background: white;
+      height: 215px;
+      width: 380px;
+      padding-bottom: calc(var(--app-padding) - 3px);
+      right: 7px;
+      box-sizing: border-box;
+      border-radius: var(--border-radius);
+      overflow-x: hidden;
+      overflow-y: auto;
+      text-align: left;
+      text-shadow: none;
+    }
+
+    &-current-header {
+      color: black;
+    }
+
   }
