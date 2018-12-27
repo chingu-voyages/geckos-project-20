@@ -92,9 +92,9 @@ URL is http://openweathermap.org/img/w/10d.png */
       <img className="weather-icon" src={weatherIcon(weatherID, timeOfDay)} alt={weatherDescription}/>
         <p>{Math.round(weather.main.temp)}&deg;</p>
       </div>
+      </div>
       <div className="weather-location-label"> 
         <p>{weather.name}</p>
-        </div>
         </div>  
       </div>
    

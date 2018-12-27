@@ -2,12 +2,10 @@
     margin: 14px 0 10px 10px;
     padding-right: 20px;
     cursor: pointer;
-    display: flex;
-    cursor: pointer;
 
     &-wrapper {
-        flex-direction: column nowrap;
-        justify-content: right;
+        display: flex;
+        justify-content: flex-end;
     }
   
     &-stat {
@@ -15,23 +13,20 @@
       letter-spacing: 1px;
       font-weight: 500;
       user-select: none;
-      text-align: right;
       line-height: 100%;
       white-space: nowrap;
       display: flex;
       flex-flow: row nowrap;
-      justify-content: right;
+      justify-content: flex-start;
       vertical-align: top;
     }
   
     &-icon {
       width: 20px;
       height: 20px;
-      margin-right: 6px;
-      line-height: 50%;
-      display: inline-block;
-      display: flex;
       
+      margin-right: 6px;
+      line-height: 50%;    
     }
 
     &-location-label {
