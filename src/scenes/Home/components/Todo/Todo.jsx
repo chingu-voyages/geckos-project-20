@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import './todo.styles.scss';
-import { ListOptions, NewTodo, TodoList } from './components';
-// import NewTodo from './components';
-// import TodoList from './components';
-
+import { ListOptions, TodoList } from './components';
 
 class Todo extends Component {
     constructor(props) {
@@ -67,7 +64,7 @@ class Todo extends Component {
     }
 
     filterTodos = () => {
-        console.log('i am begin called');
+        // console.log('i am begin called');
         this.setState(prevState => ({
             filteredTodos: [...prevState.allTodos].filter((todo) => todo.list === prevState.activeList),
         }))
@@ -78,15 +75,15 @@ class Todo extends Component {
         event.preventDefault(); // Let's stop this event.
 
         let newTodo = event.target[0].value;
-        this.setState( prevState => ({
-            allTodos: [...prevState.allTodos,{
+        this.setState(prevState => ({
+            allTodos: [...prevState.allTodos, {
                 id: prevState.lastId + 1,
                 list: prevState.activeList,
                 done: false,
                 task: newTodo
             }],
-            lastId : ++prevState.lastId
-        
+            lastId: ++prevState.lastId
+
         }));
 
         this.filterTodos();
@@ -95,31 +92,48 @@ class Todo extends Component {
 
     changeActiveList = (newList) => {
 
-            // If nothing is changed don't change state / don't rerender
-            if (this.state.activeList !== newList){
-                this.setState({
-                    activeList: newList 
-                })
+        // If nothing is changed don't change state / don't rerender
+        if (this.state.activeList !== newList) {
+            this.setState({
+                activeList: newList
+            })
             this.filterTodos();
         }
-      
+
     }
 
-    updateTask = (object) =>{
+    updateTask = (object, optional) => {
+        if (optional) {
 
-        let prevStateAllTodos = [...this.state.allTodos];
-        let index =  [...this.state.allTodos].findIndex((element)=>{
-                    return element.id === object.id;
+
+            // let index = this.state.allTodos.findIndex((element) => {
+            //     return element.id === object.id;
+            // })
+
+            // console.log("Ovoj treba da se izbrise", this.object.id)
+
+            this.setState(prevState => ({
+                allTodos: [...prevState.allTodos].filter((todo) => {
+                    return todo.id !== object.id
                 })
-        prevStateAllTodos[index] = object;       
-        console.log('index za menjanje e ', index)
+            }))
+        } else {
 
+            let prevStateAllTodos = [...this.state.allTodos];
+            let index = this.state.allTodos.findIndex((element) => {
+                return element.id === object.id;
+            })
 
+            console.log('Star Object e ', prevStateAllTodos[index])
+            prevStateAllTodos[index] = object;
+            console.log('index za menjanje e ', index)
+            console.log('Nov object e ', prevStateAllTodos[index]);
 
-
-        this.setState({
-            allTodos: prevStateAllTodos
-        })
+            this.setState({
+                allTodos: prevStateAllTodos
+            });
+        }
+        this.filterTodos();
         console.log('I should update this object : ', object)
     }
 
@@ -131,8 +145,8 @@ class Todo extends Component {
 
         return (
             <div>
-                <ListOptions changeList={this.changeActiveList} lists={this.state.lists} activeList={this.state.activeList}/>
-                <TodoList filteredTodos={this.state.filteredTodos} update={this.updateTask} />
+                <ListOptions changeList={this.changeActiveList} lists={this.state.lists} activeList={this.state.activeList} />
+                <TodoList filteredTodos={this.state.filteredTodos} update={this.updateTask} lists={this.state.lists} />
 
                 <form onSubmit={this.newTodoHandler}>
                     <input type="text" name="newTodo" id="newTodo" />
