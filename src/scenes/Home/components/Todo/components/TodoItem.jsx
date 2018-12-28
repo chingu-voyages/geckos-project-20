@@ -29,59 +29,26 @@ class TodoItem extends Component {
         }
     }
 
-    editHandler = (event) => {
 
-        console.log('State Task Value Before SS: ', this.state.task)
-        console.log('Event target Value before', event.target.value)
-
-        if (this.state.task !== event.target.value) {
-
-            this.setState({
-                task: event.target.value
-            })
-
-            this.updateTask();
-
-            console.log('State Task Value After SS: ', this.state.task);
-
-        }
-    }
     changeEditMode = () => {
         this.setState(prevState => ({
             editMode: !prevState.editMode,
         }))
     }
 
-    changeList = (listOption) => {
-        this.setState({
-            list: listOption
-        })
-        console.log('This is the list option', listOption);
-        this.updateTask()
-    }
+
 
     listOptions = () => {
         return this.props.lists.filter((listOption) => {
             return listOption !== this.state.list
         }).map((listOption, index) => {
-            return <li key={index} onClick={() => this.changeList(listOption)}> {listOption} </li>
+            return <li key={index} onClick={() => this.props.update({
+                id: this.state.id,
+                list: listOption,
+                done: this.state.done,
+                task: this.state.task
+            })}> {listOption} </li>
         })
-    }
-
-    keyUpHandler = event => {
-        if (event.key === 'Enter') {
-            this.editHandler(event);
-            this.changeEditMode();
-        }
-    }
-
-    deleteHandler = () => {
-        this.updateTask('delete');
-    }
-
-    blureHandler = (event) => {
-        this.editHandler(event);
-        this.changeEditMode();
     }
     render() {
 
@@ -92,7 +59,34 @@ class TodoItem extends Component {
                 <span>
                     <input type="checkbox" defaultChecked={this.state.done} name={`input_${this.props.id}`} id={`checkbox_${this.props.id}`} />
                 </span>
-                {this.state.editMode ? <input type="text" defaultValue={this.state.task} onKeyUp={this.keyUpHandler} onBlur={this.blureHandler} /> : <span> {this.state.task} </span>}
+                {this.state.editMode ? <input type="text" defaultValue={this.state.task} onKeyUp={(event)=>{
+                    if (event.key === 'Enter') {
+                        
+                        if(event.target.value !== this.state.task){
+                            this.props.update({
+                                id: this.state.id,
+                                list: this.state.list,
+                                done: this.state.done,
+                                task: event.target.value
+                            });
+                            this.setState({ task : event.target.value})
+                        }
+                        
+                        this.changeEditMode();
+                    }
+                }} onBlur={(event) => {
+                    if(event.target.value !== this.state.task){
+                        this.props.update({
+                            id: this.state.id,
+                            list: this.state.list,
+                            done: this.state.done,
+                            task: event.target.value
+                        });
+
+                        this.setState({ task : event.target.value})
+                    }
+                    this.changeEditMode();
+                }} /> : <span> {this.state.task} </span>}
 
 
                 <span >
@@ -101,7 +95,14 @@ class TodoItem extends Component {
                     <span>
                         {listOptions}
                     </span>
-                    <span onClick={this.deleteHandler}> Delete </span>
+                    <span onClick={() => {
+                        this.props.update({
+                            id: this.state.id,
+                            list: this.state.list,
+                            done: this.state.done,
+                            task: this.state.task
+                        }, true)
+                    }}> Delete </span>
                 </span>
             </div>
         );
