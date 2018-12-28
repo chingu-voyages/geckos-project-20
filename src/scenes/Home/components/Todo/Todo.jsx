@@ -9,26 +9,68 @@ class Todo extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            lists: [],
+            lists: ['test1', 'test2'],
             activeList: 'today',
-            allTodos: [],
+            allTodos: [
+                {
+                    list: 'main',
+                    done: false,
+                    task: 'get stuff'
+                },
+                {
+                    list: 'today',
+                    done: false,
+                    task: 'get stuff'
+                },
+                {
+                    list: 'today',
+                    done: false,
+                    task: 'get stuff'
+                },
+                {
+                    list: 'main',
+                    done: false,
+                    task: 'get stuff'
+                },
+            ],
             filteredTodos: []
         };
     }
 
     filterTodos = () => {
 
+        this.setState({
+            filteredTodos: () => {
+
+
+                return [...this.state.allTodos].filter((todo) => {
+                    if (todo.list === this.state.activeList) {
+                        return todo;
+                    }
+                })
+            }
+        });
 
 
         return [];
     }
 
+    newTodoHandler = (event) => {
+        event.preventDefault(); // Let's stop this event.
+
+    }
     render() {
+
+
         return (
             <div>
                 <ListOptions />
                 <TodoList filteredTodos={this.state.filteredTodos} />
-                <NewTodo />
+                {/* <NewTodo /> */}
+
+                <form onSubmit={this.newTodoHandler}>
+                    <input type="text" ref="newTodo" name="newTodo" id="newTodo" />
+                </form>
             </div>
         );
     }
