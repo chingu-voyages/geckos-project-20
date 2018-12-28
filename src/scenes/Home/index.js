@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Quote from './components/Quote';
 import Clock from './components/Clock';
 import './styles.scss';
-import Weather from './components/Weather/Weather';
+import Weather from './components/Weather';
 
 class Home extends Component {
     render() {

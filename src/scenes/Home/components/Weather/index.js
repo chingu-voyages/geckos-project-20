@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './styles.scss';
-import { weatherIcon } from './weatherIcon';
+import { weatherIcon } from './WeatherIcon';
 
 
 class Weather extends Component {
