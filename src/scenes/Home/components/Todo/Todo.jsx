@@ -145,7 +145,7 @@ class Todo extends Component {
 
         return (
             <div>
-                <ListOptions changeList={this.changeActiveList} lists={this.state.lists} activeList={this.state.activeList} />
+                <ListOptions changeList={this.changeActiveList} lists={this.state.lists} activeList={this.state.activeList} allTodos={this.state.allTodos} />
                 <TodoList filteredTodos={this.state.filteredTodos} update={this.updateTask} lists={this.state.lists} />
 
                 <form onSubmit={this.newTodoHandler}>

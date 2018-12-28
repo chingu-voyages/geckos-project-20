@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../todo.styles.scss'
 
 class TodoItem extends Component {
 
@@ -8,7 +9,9 @@ class TodoItem extends Component {
             ...props.todo,
             editMode: false,
         }
+        
     }
+
 
     changeEditMode = () => {
         this.setState(prevState => ({
@@ -46,7 +49,7 @@ class TodoItem extends Component {
         
         if (event.key === 'Enter') {
                         
-            if(event.target.value !== this.state.task){
+            if(event.target.value !== this.state.task && event.target.value !== ''){
                 this.props.update({
                     id: this.state.id,
                     list: this.state.list,
@@ -60,7 +63,7 @@ class TodoItem extends Component {
 }
 
     outsideClickHandler = (event) => {
-        if(event.target.value !== this.state.task){
+        if(event.target.value !== this.state.task && event.target.value !== ''){
             this.props.update({
                 id: this.state.id,
                 list: this.state.list,
@@ -73,17 +76,32 @@ class TodoItem extends Component {
         this.changeEditMode();
     }
 
+    checkTask = () => {
+        
+        this.props.update({
+            id: this.state.id,
+            list: this.state.list,
+            done: !this.state.done,
+            task: this.state.task
+        });
+        this.setState( prevState => ({
+            done: !prevState.done,
+        }));
+    }
+
     render() {
     
-
         const listOptions = this.listOptions();
 
         return (
             <div key={this.props.id}>
                 <span>
-                    <input type="checkbox" defaultChecked={this.state.done} name={`input_${this.props.id}`} id={`checkbox_${this.props.id}`} />
+                    <input type="checkbox" defaultChecked={this.state.done} onChange={this.checkTask} name={`input_${this.props.id}`} id={`checkbox_${this.props.id}`} />
                 </span>
+                <span className={ this.state.done ? 'done' : ''}>
+
                 {this.state.editMode ? <input type="text" defaultValue={this.state.task} onKeyUp={this.enterKeyHandler} onBlur={this.outsideClickHandler} /> : <span> {this.state.task} </span>}
+                </span>
 
                 <span >
                     <span onClick={this.changeEditMode}> Edit </span>

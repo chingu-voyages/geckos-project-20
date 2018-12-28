@@ -3,11 +3,17 @@ import React from 'react';
 // is this function being recrated when the component is rerendered
 
 const listOptions = (props) => {
+
+
     return props.lists.map((listOption, index) => {
+
+        
+        const todoCount = [...props.allTodos].filter((todo)=> todo.list === listOption ).length;
+        
         return <li key={index} onClick={() => {
             props.changeList(listOption);
             // console.log('listOption',listOption)
-        }}> {listOption} </li>
+        }}> {listOption} {todoCount} </li>
     })
 }
 
