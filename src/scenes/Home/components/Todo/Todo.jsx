@@ -11,27 +11,56 @@ class Todo extends Component {
         this.state = {
             lists: ['test1', 'test2', 'main', 'today'],
             activeList: 'today',
+            lastId: 7,
             allTodos: [
                 {
+                    id: 0,
+                    list: 'today',
+                    done: true,
+                    task: '0'
+                },
+                {
+                    id: 1,
                     list: 'main',
                     done: false,
                     task: '1'
                 },
                 {
+                    id: 2,
                     list: 'today',
                     done: false,
                     task: '2'
                 },
                 {
-                    list: 'today',
+                    id: 3,
+                    list: 'test1',
                     done: false,
                     task: '3'
                 },
                 {
-                    list: 'main',
-                    done: false,
+                    id: 4,
+                    list: 'test2',
+                    done: true,
                     task: '4'
                 },
+                {
+                    id: 5,
+                    list: 'test1',
+                    done: true,
+                    task: '5'
+                },
+                {
+                    id: 6,
+                    list: 'main',
+                    done: true,
+                    task: '6'
+                },
+                {
+                    id: 7,
+                    list: 'today',
+                    done: true,
+                    task: '7'
+                }
             ],
             filteredTodos: []
         };
@@ -48,6 +77,25 @@ class Todo extends Component {
     newTodoHandler = (event) => {
         event.preventDefault(); // Let's stop this event.
 
+        let newTodo = event.target[0].value;
+        this.setState( prevState => ({
+            allTodos: [...prevState.allTodos,{
+                id: prevState.lastId + 1,
+                list: 'today',
+                done: false,
+                task: newTodo
+            }],
+            lastId : ++prevState.lastId
+        
+        }));
+
+        this.filterTodos();
+
+    }
+
+    changeActiveList = () => {
+        this.setState({activeList: 'main'})
+        this.filterTodos();
     }
 
     componentDidMount() {
@@ -59,11 +107,12 @@ class Todo extends Component {
         return (
             <div>
                 <ListOptions />
+                <button onClick={this.changeActiveList}>Change List </button>
                 <TodoList filteredTodos={this.state.filteredTodos} />
                 {/* <NewTodo /> */}
 
                 <form onSubmit={this.newTodoHandler}>
-                    <input type="text" ref="newTodo" name="newTodo" id="newTodo" />
+                    <input type="text" name="newTodo" id="newTodo" />
                 </form>
             </div>
         );

@@ -1,14 +1,20 @@
 import React from 'react';
-import Todo from './Todo';
+import TodoItem from './TodoItem';
 
-const TodoList = () => {
+const todoFilteredList = (props) => {
+    return props.filteredTodos.map((todo)=>{
+        return <TodoItem key={todo.id} todo={todo} ></TodoItem>
+    })
+}
+
+
+const TodoList = (props) => {
+
+    const selectedListTodos = todoFilteredList(props);
+    console.log('TodoList props: ', props);
     return (
         <div>
-            I am a todo List
-
-            <Todo ></Todo>
-            <Todo ></Todo>
-            <Todo ></Todo>
+           {selectedListTodos}
         </div>
     );
 }
