@@ -81,7 +81,7 @@ class Todo extends Component {
         this.setState( prevState => ({
             allTodos: [...prevState.allTodos,{
                 id: prevState.lastId + 1,
-                list: 'today',
+                list: prevState.activeList,
                 done: false,
                 task: newTodo
             }],
@@ -93,9 +93,34 @@ class Todo extends Component {
 
     }
 
-    changeActiveList = () => {
-        this.setState({activeList: 'main'})
-        this.filterTodos();
+    changeActiveList = (newList) => {
+
+            // If nothing is changed don't change state / don't rerender
+            if (this.state.activeList !== newList){
+                this.setState({
+                    activeList: newList 
+                })
+            this.filterTodos();
+        }
+      
+    }
+
+    updateTask = (object) =>{
+
+        let prevStateAllTodos = [...this.state.allTodos];
+        let index =  [...this.state.allTodos].findIndex((element)=>{
+                    return element.id === object.id;
+                })
+        prevStateAllTodos[index] = object;       
+        console.log('index za menjanje e ', index)
+
+
+
+
+        this.setState({
+            allTodos: prevStateAllTodos
+        })
+        console.log('I should update this object : ', object)
     }
 
     componentDidMount() {
@@ -106,10 +131,8 @@ class Todo extends Component {
 
         return (
             <div>
-                <ListOptions />
-                <button onClick={this.changeActiveList}>Change List </button>
-                <TodoList filteredTodos={this.state.filteredTodos} />
-                {/* <NewTodo /> */}
+                <ListOptions changeList={this.changeActiveList} lists={this.state.lists} activeList={this.state.activeList}/>
+                <TodoList filteredTodos={this.state.filteredTodos} update={this.updateTask} />
 
                 <form onSubmit={this.newTodoHandler}>
                     <input type="text" name="newTodo" id="newTodo" />

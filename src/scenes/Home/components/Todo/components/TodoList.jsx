@@ -3,7 +3,7 @@ import TodoItem from './TodoItem';
 
 const todoFilteredList = (props) => {
     return props.filteredTodos.map((todo)=>{
-        return <TodoItem key={todo.id} todo={todo} ></TodoItem>
+        return <TodoItem key={todo.id} todo={todo} update={props.update} ></TodoItem>
     })
 }
 
