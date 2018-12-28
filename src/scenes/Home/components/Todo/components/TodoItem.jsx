@@ -80,7 +80,7 @@ class TodoItem extends Component {
         
         this.props.update({
             id: this.state.id,
-            list: this.state.list,
+            list: 'done',
             done: !this.state.done,
             task: this.state.task
         });
