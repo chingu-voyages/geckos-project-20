@@ -9,28 +9,28 @@ class Todo extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            lists: ['test1', 'test2'],
+            lists: ['test1', 'test2', 'main', 'today'],
             activeList: 'today',
             allTodos: [
                 {
                     list: 'main',
                     done: false,
-                    task: 'get stuff'
+                    task: '1'
                 },
                 {
                     list: 'today',
                     done: false,
-                    task: 'get stuff'
+                    task: '2'
                 },
                 {
                     list: 'today',
                     done: false,
-                    task: 'get stuff'
+                    task: '3'
                 },
                 {
                     list: 'main',
                     done: false,
-                    task: 'get stuff'
+                    task: '4'
                 },
             ],
             filteredTodos: []
@@ -38,26 +38,20 @@ class Todo extends Component {
     }
 
     filterTodos = () => {
+        console.log('i am begin called');
+        this.setState(prevState => ({
+            filteredTodos: [...prevState.allTodos].filter((todo) => todo.list === prevState.activeList),
+        }))
 
-        this.setState({
-            filteredTodos: () => {
-
-
-                return [...this.state.allTodos].filter((todo) => {
-                    if (todo.list === this.state.activeList) {
-                        return todo;
-                    }
-                })
-            }
-        });
-
-
-        return [];
     }
 
     newTodoHandler = (event) => {
         event.preventDefault(); // Let's stop this event.
 
+    }
+
+    componentDidMount() {
+        this.filterTodos();
     }
     render() {
 
