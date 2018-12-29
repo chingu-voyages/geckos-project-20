@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './styles.scss';
-import { weatherIcon } from './weatherIcon';
+import { weatherIcon } from './WeatherIcon';
 import WeatherExpanded from './WeatherExpanded';
 
 
@@ -112,10 +112,15 @@ onToggleOpen = (e) => {
       {this.state.isShowing &&
               <WeatherExpanded
               onToggleOpen={this.onToggleOpen}
+              weather={this.state.weather}
+              weatherID={this.state.weatherID}
+              timeOfDay={this.state.timeOfDay}
+              weatherDescription={this.state.weatherDescription}
           />
             }
             
         </div>
+        <p>test</p>
       </div>
    
     );
