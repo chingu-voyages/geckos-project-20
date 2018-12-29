@@ -16,14 +16,12 @@ const WeatherExpanded = (props) => {
                             </span>
                             <p>...</p>
                     </header>
+                        <div className="weather-current-temp-wrapper"> 
                         <div className="weather--current-temp-row">
-                        <div className="weather--stat">
                             <img className="weather--icon-exapnded-main" src={weatherIcon(props.weatherID, props.timeOfDay)} alt={props.weatherDescription}/>
-                                <p className="weather--current-temp">{Math.round(props.weather.main.temp)}&deg;</p>
+                            <p className="weather--current-temp">{Math.round(props.weather.main.temp)}&deg;</p>
                         </div>
                         </div>
-                
-                
                         
                     
                 </section>
