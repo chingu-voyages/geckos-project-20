@@ -95,6 +95,7 @@
     &--current-temp-row {
       margin-bottom: 8px;
       display: flex;
+      /*flex-direction: column;*/
       cursor: pointer;
   }
 
