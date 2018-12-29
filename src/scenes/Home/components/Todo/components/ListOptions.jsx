@@ -18,7 +18,15 @@ const listOptions = (props) => {
 }
 
 
+
 const ListOptions = (props) => {
+
+    const newListHandler = (event) => {
+        event.preventDefault();
+        props.changeList(newListInput.value);
+    }
+
+    let newListInput = null;
 
     const options = listOptions(props);
     // console.log('Test');
@@ -31,6 +39,12 @@ const ListOptions = (props) => {
             <ul id="activeList">
                 {options}
             </ul>
+            <div>
+            <span> + New List </span>
+            <form autoComplete="off" onSubmit={newListHandler}>
+                <input type="text" name="newList" id="newList" ref={node => newListInput = node} />
+            </form>
+            </div>
         </div>
     );
 }

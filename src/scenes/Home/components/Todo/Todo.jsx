@@ -23,7 +23,7 @@ class Todo extends Component {
                 <ListOptions changeList={this.changeActiveList} lists={this.state.lists} activeList={this.state.activeList} allTodos={this.state.allTodos} />
                 <TodoList filteredTodos={this.state.filteredTodos} update={this.updateTask} lists={this.state.lists} />
 
-                <form autocomplete="off" onSubmit={this.newTodoHandler}>
+                <form autoComplete="off" onSubmit={this.newTodoHandler}>
                     <input type="text" name="newTodo" id="newTodo" ref={node => this.newTodoInput = node} />
                 </form>
             </div>
@@ -64,8 +64,20 @@ class Todo extends Component {
 
     changeActiveList = (newList) => {
 
+
         // If nothing is changed don't change state / don't rerender
         if (this.state.activeList !== newList) {
+
+            
+            let listExists = [...this.state.lists].includes(newList);
+            
+            if(!listExists){
+                console.log('This is a new list', newList);
+                this.setState( prevState => ({
+                    lists: [...prevState.lists, newList]
+                }))
+            }
+
             this.setState({
                 activeList: newList
             })
