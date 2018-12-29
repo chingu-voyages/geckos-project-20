@@ -112,6 +112,10 @@ onToggleOpen = (e) => {
       {this.state.isShowing &&
               <WeatherExpanded
               onToggleOpen={this.onToggleOpen}
+              weather={this.state.weather}
+              weatherID={this.state.weatherID}
+              timeOfDay={this.state.timeOfDay}
+              weatherDescription={this.state.weatherDescription}
           />
             }
             

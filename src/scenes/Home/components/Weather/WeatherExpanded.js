@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.scss';
-//import { weatherIcon } from './weatherIcon';
+import { weatherIcon } from './WeatherIcon';
 
 
 const WeatherExpanded = (props) => {
@@ -9,19 +9,23 @@ const WeatherExpanded = (props) => {
             <div className="weather-app-wrapper weather-nipple-top-right">
                 <div className="app weather-app">
                 <section className="weather-current">
-
-                <div className="weather-current-header">
-                    <h3>Current Weather</h3>
-                </div>
-                <div className="weather-current-body">
-                    
-                        
-                        <div>test</div>
-                    
-                </div>
+                    <header className="weather-current-header">
+                        <span className="weather-current-location" title="">
+                            <span className="weather-location-name">{props.weather.name}</span>
+                            <span className="weather--current-conditions">{props.weatherDescription}</span>
+                            </span>
+                            <p>...</p>
+                    </header>
+                        <div className="weather--current-temp-row">
+                        <div className="weather--stat">
+                            <img className="weather--icon-exapnded-main" src={weatherIcon(props.weatherID, props.timeOfDay)} alt={props.weatherDescription}/>
+                                <p className="weather--current-temp">{Math.round(props.weather.main.temp)}&deg;</p>
+                        </div>
+                        </div>
                 
-        
-
+                
+                        
+                    
                 </section>
             </div>
         </div>
