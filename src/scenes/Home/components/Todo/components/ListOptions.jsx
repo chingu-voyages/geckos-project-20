@@ -8,7 +8,13 @@ const listOptions = (props) => {
     return props.lists.map((listOption, index) => {
 
         
-        const todoCount = [...props.allTodos].filter((todo)=> todo.list === listOption ).length;
+        let todoCount;
+
+        if (listOption === 'done'){
+            todoCount = [...props.allTodos].filter((todo)=> todo.done ).length;
+        } else {
+            todoCount = [...props.allTodos].filter((todo)=> todo.list === listOption ).length;
+        }
         
         return <li key={index} onClick={() => {
             props.changeList(listOption);

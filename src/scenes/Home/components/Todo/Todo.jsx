@@ -11,7 +11,8 @@ class Todo extends Component {
             activeList: 'today',
             lastId: 7,
             allTodos: [],
-            filteredTodos: []
+            filteredTodos: [],
+            todoChanged: true,
         };
         this.newTodoInput = null;
     }
@@ -20,7 +21,7 @@ class Todo extends Component {
 
         return (
             <div>
-                <ListOptions changeList={this.changeActiveList} lists={this.state.lists} activeList={this.state.activeList} allTodos={this.state.allTodos} />
+                <ListOptions changeList={this.changeActiveList} lists={this.state.lists} activeList={this.state.activeList} allTodos={this.state.allTodos} needsToUpdate={this.state.todoChanged}/>
                 <TodoList filteredTodos={this.state.filteredTodos} update={this.updateTask} lists={this.state.lists} />
 
                 <form autoComplete="off" onSubmit={this.newTodoHandler}>
@@ -34,62 +35,77 @@ class Todo extends Component {
         this.filterTodos();
     }
 
-    filterTodos = () => {
+    filterTodos = (option) => {
         // console.log('i am begin called');
-        this.setState(prevState => ({
-            filteredTodos: [...prevState.allTodos].filter((todo) => todo.list === prevState.activeList),
-        }))
+
+        if (option === 'done'){
+            this.setState(prevState => ({
+                filteredTodos: [...prevState.allTodos].filter((todo) => todo.done),
+            }))
+        } else {
+
+            this.setState(prevState => ({
+                filteredTodos: [...prevState.allTodos].filter((todo) => todo.list === prevState.activeList),
+            }))
+        }
 
     }
 
     newTodoHandler = (event) => {
         event.preventDefault(); // Let's stop this event.
 
-        let newTodo = event.target[0].value;
-        this.setState(prevState => ({
-            allTodos: [...prevState.allTodos, {
-                id: prevState.lastId + 1,
-                list: prevState.activeList,
-                done: false,
-                task: newTodo
-            }],
-            lastId: ++prevState.lastId
+        let newTodo = this.newTodoInput.value;
+        
+        if (newTodo !== ''){
+            
+            this.setState(prevState => ({
+                allTodos: [...prevState.allTodos, {
+                    id: prevState.lastId + 1,
+                    list: prevState.activeList,
+                    done: false,
+                    task: newTodo
+                }],
+                lastId: ++prevState.lastId
 
-        }));
+            }));
 
-        this.filterTodos();
-        this.newTodoInput.value = "";
+            this.filterTodos();
+            this.newTodoInput.value = "";
+            }
 
     }
 
     changeActiveList = (newList) => {
 
-
+        if (newList ==='done'){
+            this.filterTodos('done');
+        }else{
         // If nothing is changed don't change state / don't rerender
-        if (this.state.activeList !== newList) {
+
+            if (this.state.activeList !== newList) {
 
             
-            let listExists = [...this.state.lists].includes(newList);
-            
-            if(!listExists){
-                console.log('This is a new list', newList);
-                this.setState( prevState => ({
-                    lists: [...prevState.lists, newList]
-                }))
+                let listExists = [...this.state.lists].includes(newList);
+                
+                if(!listExists){
+                    console.log('This is a new list', newList);
+                    this.setState( prevState => ({
+                        lists: [...prevState.lists, newList]
+                    }))
+                }
+    
+                this.setState({
+                    activeList: newList
+                })
+                this.filterTodos();
             }
-
-            this.setState({
-                activeList: newList
-            })
-            this.filterTodos();
         }
+        
 
     }
 
     updateTask = (object, optional) => {
         if (optional) {
-
-
             // let index = this.state.allTodos.findIndex((element) => {
             //     return element.id === object.id;
             // })
@@ -114,11 +130,14 @@ class Todo extends Component {
             console.log('Nov object e ', prevStateAllTodos[index]);
 
             this.setState({
-                allTodos: prevStateAllTodos
+                allTodos: prevStateAllTodos,
+                needsToUpdate: !this.state.needsToUpdate
             });
         }
+        
         this.filterTodos();
-        console.log('I should update this object : ', object)
+
+        // console.log('I should update this object : ', object)
     }
 
    

@@ -8,7 +8,7 @@ class TodoItem extends Component {
         this.state = {
             ...props.todo,
             editMode: false,
-        }
+        };
         
     }
 
@@ -61,17 +61,16 @@ class TodoItem extends Component {
         this.changeEditMode();
     }
 
-    checkTask = () => {
-        
+    checkTask = () => {     
+
+        console.log(this.refs.isDone.checked);
+
         this.props.update({
             id: this.state.id,
-            list: 'done',
-            done: !this.state.done,
+            list: this.state.list,
+            done: this.refs.isDone.checked,
             task: this.state.task
         });
-        this.setState( prevState => ({
-            done: !prevState.done,
-        }));
     }
 
     render() {
@@ -79,9 +78,9 @@ class TodoItem extends Component {
         const listOptions = this.listOptions();
 
         return (
-            <div key={this.props.id}>
+            <div key={this.state.id}>
                 <span>
-                    <input type="checkbox" defaultChecked={this.state.done} onChange={this.checkTask} name={`input_${this.props.id}`} id={`checkbox_${this.props.id}`} />
+                    <input type="checkbox" ref="isDone" defaultChecked={this.state.done} onChange={() => this.checkTask()} name={`input_${this.props.id}`} id={`checkbox_${this.props.id}`} />
                 </span>
                 <span className={ this.state.done ? 'done' : ''}>
 
