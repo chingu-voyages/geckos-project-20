@@ -91,6 +91,8 @@ class TodoItem extends Component {
                         this.inputHandler(event);
                     }
                 }} 
+
+              
                 onBlur={this.inputHandler} /> : <span> {this.state.task} </span>}
                 </span>
 

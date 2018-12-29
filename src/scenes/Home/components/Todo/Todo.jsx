@@ -148,7 +148,7 @@ class Todo extends Component {
                 <ListOptions changeList={this.changeActiveList} lists={this.state.lists} activeList={this.state.activeList} allTodos={this.state.allTodos} />
                 <TodoList filteredTodos={this.state.filteredTodos} update={this.updateTask} lists={this.state.lists} />
 
-                <form onSubmit={this.newTodoHandler}>
+                <form autocomplete="off" onSubmit={this.newTodoHandler}>
                     <input type="text" name="newTodo" id="newTodo" />
                 </form>
             </div>
