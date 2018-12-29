@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './todo.styles.scss';
 import { ListOptions, TodoList } from './components';
+import { initializeTodos }  from './repository/todos'
 
 class Todo extends Component {
     constructor(props) {
@@ -9,58 +10,28 @@ class Todo extends Component {
             lists: ['test1', 'test2', 'main', 'today','done'],
             activeList: 'today',
             lastId: 7,
-            allTodos: [
-                {
-                    id: 0,
-                    list: 'today',
-                    done: true,
-                    task: '0'
-                },
-                {
-                    id: 1,
-                    list: 'main',
-                    done: false,
-                    task: '1'
-                },
-                {
-                    id: 2,
-                    list: 'today',
-                    done: false,
-                    task: '2'
-                },
-                {
-                    id: 3,
-                    list: 'test1',
-                    done: false,
-                    task: '3'
-                },
-                {
-                    id: 4,
-                    list: 'test2',
-                    done: true,
-                    task: '4'
-                },
-                {
-                    id: 5,
-                    list: 'test1',
-                    done: true,
-                    task: '5'
-                },
-                {
-                    id: 6,
-                    list: 'main',
-                    done: true,
-                    task: '6'
-                },
-                {
-                    id: 7,
-                    list: 'today',
-                    done: true,
-                    task: '7'
-                }
-            ],
+            allTodos: [],
             filteredTodos: []
         };
+        this.newTodoInput = null;
+    }
+    render() {
+
+
+        return (
+            <div>
+                <ListOptions changeList={this.changeActiveList} lists={this.state.lists} activeList={this.state.activeList} allTodos={this.state.allTodos} />
+                <TodoList filteredTodos={this.state.filteredTodos} update={this.updateTask} lists={this.state.lists} />
+
+                <form autocomplete="off" onSubmit={this.newTodoHandler}>
+                    <input type="text" name="newTodo" id="newTodo" ref={node => this.newTodoInput = node} />
+                </form>
+            </div>
+        );
+    }
+    componentDidMount() {
+        this.setState({ allTodos: initializeTodos()})
+        this.filterTodos();
     }
 
     filterTodos = () => {
@@ -87,6 +58,7 @@ class Todo extends Component {
         }));
 
         this.filterTodos();
+        this.newTodoInput.value = "";
 
     }
 
@@ -137,23 +109,8 @@ class Todo extends Component {
         console.log('I should update this object : ', object)
     }
 
-    componentDidMount() {
-        this.filterTodos();
-    }
-    render() {
-
-
-        return (
-            <div>
-                <ListOptions changeList={this.changeActiveList} lists={this.state.lists} activeList={this.state.activeList} allTodos={this.state.allTodos} />
-                <TodoList filteredTodos={this.state.filteredTodos} update={this.updateTask} lists={this.state.lists} />
-
-                <form autocomplete="off" onSubmit={this.newTodoHandler}>
-                    <input type="text" name="newTodo" id="newTodo" />
-                </form>
-            </div>
-        );
-    }
+   
+  
 }
 
 export default Todo;
