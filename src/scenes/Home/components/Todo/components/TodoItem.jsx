@@ -14,6 +14,10 @@ class TodoItem extends Component {
 
 
     changeEditMode = () => {
+        if (!this.state.editMode){
+            // console.log('EditInput' , this.editInput);
+            // this.editInput.focus();
+        }
         this.setState(prevState => ({
             editMode: !prevState.editMode,
         }))
@@ -72,6 +76,7 @@ class TodoItem extends Component {
             task: this.state.task
         });
     }
+    
 
     render() {
     
@@ -84,7 +89,7 @@ class TodoItem extends Component {
                 </span>
                 <span className={ this.state.done ? 'done' : ''}>
 
-                {this.state.editMode ? <input type="text" defaultValue={this.state.task} 
+                {this.state.editMode ? <input type="text"  ref={(input) => input ? input.focus() : void 0 } defaultValue={this.state.task} 
                 onKeyUp={(event) => {
                     if (event.key === 'Enter') {
                         this.inputHandler(event);
