@@ -120,7 +120,6 @@ onToggleOpen = (e) => {
             }
             
         </div>
-        <p>test</p>
       </div>
    
     );
