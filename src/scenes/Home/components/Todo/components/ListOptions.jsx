@@ -11,9 +11,11 @@ const listOptions = (props) => {
         let todoCount;
 
         if (listOption === 'done'){
-            todoCount = [...props.allTodos].filter((todo)=> todo.done ).length;
+            todoCount = [...props.allTodos].filter((todo)=> todo.done).length;
         } else {
-            todoCount = [...props.allTodos].filter((todo)=> todo.list === listOption ).length;
+            todoCount = [...props.allTodos]
+            .filter((todo)=> todo.list === listOption)
+            .filter((listTodo) => !listTodo.done).length;
         }
         
         return <li key={index} onClick={() => {
