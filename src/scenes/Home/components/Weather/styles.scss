@@ -1,0 +1,118 @@
+.weather {
+    margin: 14px 0 10px 10px;
+    padding-right: 20px;
+    cursor: pointer;
+
+    &-wrapper {
+        display: flex;
+        justify-content: flex-end;
+    }
+  
+    &-stat {
+      font-size: 140%;
+      letter-spacing: 1px;
+      font-weight: 500;
+      user-select: none;
+      line-height: 100%;
+      white-space: nowrap;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-start;
+      vertical-align: top;
+    }
+  
+    &-icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 6px;
+      line-height: 50%;    
+    }
+
+    &-location-label {
+      max-width: 110px;
+      margin: 0;
+      padding: 3px 0;
+      display: inline-block;
+      font-size: 80%;
+      font-weight: 500;
+      opacity: .7;
+      text-transform: uppercase;
+      vertical-align: top;
+      overflow-wrap: break-word;
+      transition: opacity .5s ease;
+      display: block;
+    }
+
+    &-nipple-top-right {
+
+    }
+
+    &-app-wrapper {
+      margin-top: 5px;
+      transition: all .15s ease;
+      position: relative;
+      display: block;
+      right: 325px;
+    }
+
+    &-app {
+      background: #404040;
+      color: #fff;
+      height: 215px;
+      width: 380px;
+      padding-bottom: calc(var(--app-padding) - 3px);
+      right: 7px;
+      box-sizing: border-box;
+      border-radius: 3px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      text-align: left;
+      text-shadow: none;
+      padding: 19px;
+    }
+
+    &-current-header {
+      margin-top: -3px;
+      font-size: 19px;
+      outline: 0;
+      min-width: 32px;
+      min-height: 24px;
+      color: #fff;
+      display: flex;
+    }
+
+    &-current-location {
+      flex: 1 0 auto;
+    }
+
+    &--current-conditions {
+      margin: 0 0 12px;
+      display: block;
+      line-height: 125%;
+      opacity: .7;
+    }
+
+    &-current-temp-wrapper {
+      padding-right: 22px;
+      position: relative;
+      flex: 1 1 50%;
+      box-sizing: border-box;
+      white-space: nowrap;
+    }
+
+    &--current-temp-row {
+      margin-bottom: 8px;
+      display: flex;
+      cursor: pointer;
+  }
+
+    &--icon-exapnded-main {
+      width: 70px;
+      height: 70px;
+    }
+
+    &--current-temp {
+      font-size: 60px;
+    }
+
+  }

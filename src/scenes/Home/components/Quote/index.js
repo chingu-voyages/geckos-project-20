@@ -3,7 +3,7 @@ import './styles.scss';
 import { getQuote } from "../../../../services/api";
 import iconHeartEmpty from './../../../../images/icon-heart-empty.svg';
 import iconHeart from './../../../../images/icon-heart.svg';
-// import { FaTwitter } from 'react-icons/fa';
+import { FaTwitter } from 'react-icons/fa';
 
 class Quote extends Component {
     constructor(props) {
@@ -15,18 +15,16 @@ class Quote extends Component {
         };
     }
 
-    async componentDidMount() {
-        try {
-            const response = await getQuote();
-            const data = await response.json();
-            this.setState({ quote: data, isLoading: false });
-            // console.log(data);
-        } catch (error) {
-            this.setState({ error: error });
-        }
+  async componentDidMount() {
+    try {
+      const response = await getQuote();
+      const data = await response.json(); 
+      this.setState({ quote: data.contents.quotes[0], isLoading: false });
+    } catch (error) {
+      this.setState({ error: error });
     }
-
-    heart() {
+    }
+    heart = () => {
         const controlHeart = document.querySelector('.control-hearth');
         controlHeart.classList.toggle('active');
     }
@@ -61,7 +59,7 @@ class Quote extends Component {
                                             target="_blank"
                                             rel="noopener noreferrer"
                                         >
-                                            {/* <FaTwitter /> */}
+                                            <FaTwitter />
                                         </a>
                                     </span>
                                 </div>
