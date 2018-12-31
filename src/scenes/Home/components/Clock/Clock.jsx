@@ -58,6 +58,9 @@ class Clock extends Component {
             <div className="introduction-content__question">
               {this.state.question}
             </div>
+            <div className="introduction-content__input">
+              <input id="introduction-input" type="text"/>
+            </div>
           </div>
         </div>
       {/*   <div className="center">

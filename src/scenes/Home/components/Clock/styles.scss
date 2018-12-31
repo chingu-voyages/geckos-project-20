@@ -10,6 +10,32 @@
     left: 0;
     transform: translateY(-50%);
     font-size: 337.5%;
+
+    &__input {
+      min-width: 40%;
+      max-width: 90%;
+      margin: 0 auto;
+      padding-top: 15px;
+      display: inline-block !important;
+      border-bottom: 3px solid #fff;
+      line-height: normal;
+      overflow: hidden;
+
+      #introduction-input {
+        background-color: transparent;
+        border: 0;
+        width: 20px;
+        min-width: 567px;
+        color: #fff;
+        text-align: center;
+        font-weight: 500;
+        font-size: 100%;
+
+        &:focus {
+          outline: 0;
+        }
+      }
+    }
   }
 }
 
