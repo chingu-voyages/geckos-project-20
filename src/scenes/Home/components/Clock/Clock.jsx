@@ -9,7 +9,7 @@ class Clock extends Component {
       question: `Hello, what's your name?`,
       date: new Date(),
       greeting: "",
-      name: "name"
+      name: ""
     };
   }
 
@@ -49,6 +49,20 @@ class Clock extends Component {
     }
   }
 
+  handleChange = (e) => {
+    let name = e.target.value;
+    this.setState({
+      name: name
+    });
+  }
+
+  handleKeyUp = (e) => {
+    
+    if(e.keyCode === 13) {
+      console.log('irene');
+    }
+  }
+
   render() {
 
     return (
@@ -59,7 +73,7 @@ class Clock extends Component {
               {this.state.question}
             </div>
             <div className="introduction-content__input">
-              <input id="introduction-input" type="text"/>
+              <input id="introduction-input" type="text" onChange={this.handleChange} onKeyUp={this.handleKeyUp}/>
             </div>
           </div>
         </div>
