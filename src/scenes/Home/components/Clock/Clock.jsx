@@ -1,6 +1,39 @@
 import React, { Component } from "react";
 import './styles.scss';
 
+function Greeting(props) {
+  const isLoggedIn = props.isLoggedIn;
+  if (isLoggedIn) {
+    return <UserGreeting />;
+  }
+  return <Introduction />;
+}
+
+function Introduction(props) {
+  return (
+    <div className="introduction">
+      <div className="introduction-content">
+        <div className="introduction-content__question">
+          {this.state.question}
+        </div>
+        <div className="introduction-content__input">
+          <input id="introduction-input" type="text" onChange={this.handleChange} onKeyUp={this.handleKeyUp}/>
+        </div>
+      </div>
+    </div>
+  );
+} 
+
+function UserGreeting(props) {
+  return (
+    <div className="center">
+      <div className="app-container clock">
+        <div className="clock-time">{this.state.date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
+        <div className="clock-greeting">{this.state.greeting}, {this.state.name}.</div>
+      </div>
+    </div>
+  );
+}
 class Clock extends Component {
   constructor(props) {
     super(props);
@@ -9,7 +42,7 @@ class Clock extends Component {
       question: `Hello, what's your name?`,
       date: new Date(),
       greeting: "",
-      name: ""
+      name: null
     };
   }
 
@@ -57,17 +90,20 @@ class Clock extends Component {
   }
 
   handleKeyUp = (e) => {
-    
-    if(e.keyCode === 13) {
-      console.log('irene');
+    let name = this.state.name;
+    if(name && e.keyCode === 13) {
+      this.setState({
+        name: name
+      });
     }
   }
 
   render() {
-
     return (
       <div>
-        <div className="introduction">
+      <Greeting />
+
+       <div className="introduction">
           <div className="introduction-content">
             <div className="introduction-content__question">
               {this.state.question}
@@ -77,12 +113,12 @@ class Clock extends Component {
             </div>
           </div>
         </div>
-      {/*   <div className="center">
-          <div className="app-container clock">
-            <div className="clock-time">{this.state.date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
-            <div className="clock-greeting">{this.state.greeting}, {this.state.name}.</div>
+          <div className="center">
+            <div className="app-container clock">
+              <div className="clock-time">{this.state.date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
+              <div className="clock-greeting">{this.state.greeting}, {this.state.name}.</div>
+            </div>
           </div>
-        </div> */}
       </div>
     );
   }
