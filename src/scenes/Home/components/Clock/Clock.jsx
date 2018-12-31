@@ -6,6 +6,7 @@ class Clock extends Component {
     super(props);
 
     this.state = {
+      question: `Hello, what's your name?`,
       date: new Date(),
       greeting: "",
       name: "name"
@@ -51,11 +52,20 @@ class Clock extends Component {
   render() {
 
     return (
-      <div className="center">
-        <div className="app-container clock">
-          <div className="clock-time">{this.state.date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
-          <div className="clock-greeting">{this.state.greeting}, {this.state.name}.</div>
+      <div>
+        <div className="introduction">
+          <div className="introduction-content">
+            <div className="introduction-content__question">
+              {this.state.question}
+            </div>
+          </div>
         </div>
+      {/*   <div className="center">
+          <div className="app-container clock">
+            <div className="clock-time">{this.state.date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
+            <div className="clock-greeting">{this.state.greeting}, {this.state.name}.</div>
+          </div>
+        </div> */}
       </div>
     );
   }
