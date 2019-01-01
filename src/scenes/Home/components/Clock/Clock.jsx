@@ -101,9 +101,19 @@ class GreetingControl extends Component {
   }
 
   render() {
+    const setName = this.state.setName;
+
+    if(setName) {
+      
+    } else {
+      
+    }
+
     return (
       <div>
-      <Greeting />
+      
+      
+      {/* <Greeting />
 
        <div className="introduction">
           <div className="introduction-content">
@@ -121,6 +131,7 @@ class GreetingControl extends Component {
               <div className="clock-greeting">{this.state.greeting}, {this.state.name}.</div>
             </div>
           </div>
+      */}
       </div>
     );
   }
