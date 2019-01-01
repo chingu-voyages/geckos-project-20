@@ -34,11 +34,12 @@ function UserGreeting(props) {
     </div>
   );
 }
-class Clock extends Component {
+class GreetingControl extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      setName: false,
       question: `Hello, what's your name?`,
       date: new Date(),
       greeting: "",
@@ -85,6 +86,7 @@ class Clock extends Component {
   handleChange = (e) => {
     let name = e.target.value;
     this.setState({
+      setName: true,
       name: name
     });
   }
@@ -124,4 +126,4 @@ class Clock extends Component {
   }
 }
 
-export default Clock;
+export default GreetingControl;
