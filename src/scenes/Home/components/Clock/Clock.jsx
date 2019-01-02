@@ -10,7 +10,7 @@ class Introduction extends React.Component {
           {this.props.question}
         </div>
         <div className="introduction-content__input">
-          <input id="introduction-input" type="text" onChange={this.handleChange} onKeyUp={this.handleKeyUp}/>
+          <input id="introduction-input" type="text" onChange={this.props.handleChange} onKeyUp={this.props.handleKeyUp}/>
         </div>
       </div>
     </div>
@@ -83,7 +83,6 @@ class GreetingControl extends Component {
   handleChange = (e) => {
     let name = e.target.value;
     this.setState({
-      setName: true,
       name: name
     });
   }
@@ -92,8 +91,10 @@ class GreetingControl extends Component {
     let name = this.state.name;
     if(name && e.keyCode === 13) {
       this.setState({
+        setName: true,
         name: name
       });
+      console.log('ciaooooo');
     }
   }
 
@@ -102,9 +103,9 @@ class GreetingControl extends Component {
     let greetingContent;
 
     if(setName) {
-      greetingContent = <UserGreeting date={this.state.date} name={this.state.name} />;
+      greetingContent = <UserGreeting date={this.state.date} greeting={this.state.greeting} name={this.state.name} />;
     } else {
-      greetingContent = <Introduction question={this.state.question} />;
+      greetingContent = <Introduction question={this.state.question} onChange={this.handleChange} onKeyUp={this.handleKeyUp} />;
     }
 
     return (
