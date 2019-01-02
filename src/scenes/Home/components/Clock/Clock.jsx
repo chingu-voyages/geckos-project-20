@@ -1,46 +1,43 @@
 import React, { Component } from "react";
 import './styles.scss';
 
-function Greeting(props) {
-  const isLoggedIn = props.isLoggedIn;
-  if (isLoggedIn) {
-    return <UserGreeting />;
-  }
-  return <Introduction />;
-}
-
-function Introduction(props) {
-  return (
-    <div className="introduction">
+class Introduction extends React.Component {
+  render() {
+    return (
+      <div className="introduction">
       <div className="introduction-content">
         <div className="introduction-content__question">
-          {this.state.question}
+          {this.props.question}
         </div>
         <div className="introduction-content__input">
           <input id="introduction-input" type="text" onChange={this.handleChange} onKeyUp={this.handleKeyUp}/>
         </div>
       </div>
     </div>
-  );
+    );
+  }
 } 
 
-function UserGreeting(props) {
-  return (
-    <div className="center">
+class UserGreeting extends React.Component {
+  render() {
+    return (
+      <div className="center">
       <div className="app-container clock">
-        <div className="clock-time">{this.state.date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
-        <div className="clock-greeting">{this.state.greeting}, {this.state.name}.</div>
+        <div className="clock-time">{this.props.date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
+        <div className="clock-greeting">{this.props.greeting}, {this.props.name}.</div>
       </div>
     </div>
-  );
+    );
+  }
 }
+
 class GreetingControl extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       setName: false,
-      question: `Hello, what's your name?`,
+      question: `Hello, what is your name?`,
       date: new Date(),
       greeting: "",
       name: null
@@ -48,20 +45,20 @@ class GreetingControl extends Component {
   }
 
   componentDidMount() {
-   this.timer = setInterval(
-     () => {
-       this.getDate();
-       let hours = this.state.date.getHours();
-       this.getGreeting(hours);
-      }, 1000
-    );
-  }
+    this.timer = setInterval(
+      () => {
+        this.getDate();
+        let hours = this.state.date.getHours();
+        this.getGreeting(hours);
+       }, 1000
+     );
+   }
+ 
+   componentWillUnmount() {
+     clearInterval(this.timer);
+   }
 
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
-
-  getDate() {
+   getDate() {
     this.setState({
       date: new Date()
     });
@@ -102,36 +99,17 @@ class GreetingControl extends Component {
 
   render() {
     const setName = this.state.setName;
+    let greetingContent;
 
     if(setName) {
-      
+      greetingContent = <UserGreeting date={this.state.date} name={this.state.name} />;
     } else {
-      
+      greetingContent = <Introduction question={this.state.question} />;
     }
 
     return (
       <div>
-      
-      
-      {/* <Greeting />
-
-       <div className="introduction">
-          <div className="introduction-content">
-            <div className="introduction-content__question">
-              {this.state.question}
-            </div>
-            <div className="introduction-content__input">
-              <input id="introduction-input" type="text" onChange={this.handleChange} onKeyUp={this.handleKeyUp}/>
-            </div>
-          </div>
-        </div>
-          <div className="center">
-            <div className="app-container clock">
-              <div className="clock-time">{this.state.date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
-              <div className="clock-greeting">{this.state.greeting}, {this.state.name}.</div>
-            </div>
-          </div>
-      */}
+        {greetingContent}
       </div>
     );
   }
