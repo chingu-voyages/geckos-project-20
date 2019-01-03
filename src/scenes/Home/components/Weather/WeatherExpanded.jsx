@@ -6,7 +6,9 @@ import { weatherIcon } from './WeatherIcon';
 const WeatherExpanded = (props) => {
     return (
         <div>
-            <div className="weather-app-wrapper weather-nipple-top-right">
+            <div className="weather-nipple-top-right"></div>
+            <div className="weather-app-wrapper"> 
+                
                 <div className="app weather-app">
                 <section className="weather-current">
                     <header className="weather-current-header">

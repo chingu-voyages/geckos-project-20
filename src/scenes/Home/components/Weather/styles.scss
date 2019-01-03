@@ -44,7 +44,14 @@
     }
 
     &-nipple-top-right {
-
+      position: relative;
+      top: 7px;
+      left: 17px;
+      width: 0; 
+      height: 0; 
+      border-left: 10px solid transparent; 
+      border-right: 10px solid transparent; 
+      border-bottom: 12px solid #282828; 
     }
 
     &-app-wrapper {
