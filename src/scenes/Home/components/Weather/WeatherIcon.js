@@ -43,3 +43,32 @@ export function weatherIcon(weatherId, timeOfDay) {
 
 };
   
+export function weatherForecastIcon(weatherForecastId, timeOfDay) {
+
+    
+    if (weatherForecastId <= 232) {
+        return ThunderStormIcon;
+    } else if (weatherForecastId >= 300 && weatherForecastId <= 399) {
+        return ShowerIcon;
+    } else if (weatherForecastId >= 500 && weatherForecastId <= 599) {
+        return RainIcon;
+    } else if (weatherForecastId >= 600 && weatherForecastId <= 622) {
+        return SnowIcon;
+    } else if (weatherForecastId >= 700 && weatherForecastId <= 799) {
+        return MistIcon;    
+    } else if ((weatherForecastId === 800) && (timeOfDay >= 6 && timeOfDay <= 18)) {
+        return ClearDayIcon;
+    } else if ((weatherForecastId === 800) && (timeOfDay <= 5 || timeOfDay >= 19)) {
+        return ClearNightIcon;    
+    } else if ((weatherForecastId === 801) && (timeOfDay >= 6 && timeOfDay <= 18)) {
+        return CloudsDayIcon;
+    } else if ((weatherForecastId === 801) && (timeOfDay <= 5 || timeOfDay >= 19)) {
+        return CloudsNightIcon; 
+    } else if (weatherForecastId === 802) {
+        return DrizzleIcon;
+    } else if (weatherForecastId >= 803 && weatherForecastId <= 804) {
+        return OvercastIcon;
+        
+    }
+
+};

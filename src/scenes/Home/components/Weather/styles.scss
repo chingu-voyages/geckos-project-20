@@ -92,7 +92,7 @@
       flex: 1 0 auto;
     }
 
-    &--current-conditions {
+    &-current-conditions {
       margin: 0 0 12px;
       display: block;
       line-height: 125%;
@@ -107,25 +107,25 @@
       white-space: nowrap;
     }
 
-    &--current-temp-row {
+    &-current-temp-row {
       margin-bottom: 8px;
       display: flex;
       cursor: pointer;
   }
 
-    &--icon-expanded-main {
-      width: 70px;
-      height: 70px;
+    &-icon-current-main {
+      width: 65px;
+      height: 65px;
       margin-right: 10px;
       font-size: 58px;
     }
 
-    &--current-temp {
+    &-current-temp {
       font-size: 60px;
     }
 
     &-row {
-      border-top: 1px solid rgba(255,255,255,.15);
+      border-top: 1px solid rgba(255,255,255,.15);;
     }
 
     &-forecast {
@@ -135,9 +135,8 @@
     }
 
     &-forecast-daily {
-      padding-top: 8px!important;
+      padding-top: 8px;
       clear: both;
-      opacity: 0;
       transition: opacity .2s ease;
     }
 
@@ -154,25 +153,29 @@
 
     &-forecast-label {
       margin: 6px 0 3px;
+      opacity: .6;
+      text-transform: uppercase;
+      font-weight: 500;
     }
 
     &-forecast-icon {
-      margin-bottom: 3px;
-      display: block;
-      font-size: 20px;
-      line-height: 90%!important;
+      margin-right: 2px;
       opacity: .85;
-      vertical-align: -20%;
+      vertical-align: -55%;
+      width: 22px;
+      height: 22px;
     }
 
     &-forecast-high {
       padding-right: 0;
       opacity: .85;
+      font-weight: 500;
     }
 
     &-forecast-low {
       padding-left: 4px;
       opacity: .4;
+      font-weight: 500;
     }
 
 
