@@ -51,12 +51,10 @@ class Clock extends Component {
   render() {
 
     return (
-      <div className="center">
         <div className="app-container clock">
           <div className="clock-time">{this.state.date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
           <div className="clock-greeting">{this.state.greeting}, {this.state.name}.</div>
         </div>
-      </div>
     );
   }
 }

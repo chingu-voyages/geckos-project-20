@@ -1,7 +1,10 @@
 .weather {
     margin: 14px 0 10px 10px;
     padding-right: 20px;
-    cursor: pointer;
+
+    &-container-small {
+      cursor: pointer;
+    }
 
     &-wrapper {
         display: flex;
@@ -43,23 +46,27 @@
       display: block;
     }
 
+    &-expanded-transition {
+      animation-name: modalFade;
+      animation-duration: .3s;
+    }
+
     &-nipple-top-right {
       position: relative;
-      top: 7px;
+      top: 5px;
       left: 20px;
       width: 0; 
       height: 0; 
       border-left: 10px solid transparent; 
       border-right: 10px solid transparent; 
-      border-bottom: 12px solid #282828; 
+      border-bottom: 10px solid #282828; 
     }
 
     &-app-wrapper {
       margin-top: 5px;
-      transition: all .15s ease;
       position: relative;
       display: block;
-      right: 310px;
+      right: 315px;
     }
 
     &-app {
@@ -72,7 +79,7 @@
       box-sizing: border-box;
       border-radius: 3px;
       overflow-x: hidden;
-      overflow-y: auto;
+      overflow-y: hidden;
       text-align: left;
       text-shadow: none;
       padding: 19px;
@@ -110,7 +117,6 @@
     &-current-temp-row {
       margin-bottom: 8px;
       display: flex;
-      cursor: pointer;
   }
 
     &-icon-current-main {
@@ -137,7 +143,7 @@
     &-forecast-daily {
       padding-top: 8px;
       clear: both;
-      transition: opacity .2s ease;
+      //transition: opacity .2s ease;
     }
 
     &-forecast-item {
@@ -148,7 +154,6 @@
     &-forecast-day {
       margin: 0 1.5px;
       border-radius: 2px;
-      cursor: pointer;
     }
 
     &-forecast-label {
@@ -178,7 +183,10 @@
       font-weight: 500;
     }
 
-
-
-
   }
+
+  @keyframes modalFade {
+    from {transform: translateY(-50%);opacity: 0;}
+    to {transform: translateY(0);opacity: 1;}
+  }
+  

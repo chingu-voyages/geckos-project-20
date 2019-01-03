@@ -16,7 +16,7 @@ class Weather extends Component {
       lat: '',
       lon: '',
       timeOfDay: 1,
-      isShowing: false,
+      isShowingWeather: false,
       weatherForecast: {},
     };
   };
@@ -96,10 +96,10 @@ URL is http://openweathermap.org/img/w/10d.png */
 
 
 //Function for opening/closing modal for expanded view
-onToggleOpen = (e) => {
+onToggleOpenWeather = (e) => {
   this.setState((prevState) =>
   ({
-   isShowing: !prevState.isShowing
+   isShowingWeather: !prevState.isShowingWeather
  })
 )
 }
@@ -118,8 +118,8 @@ onToggleOpen = (e) => {
 
     return (
    
-      <div className="weather-app-container weather" onClick={this.onToggleOpen}>
-
+      <div className="weather-app-container weather">
+      <div className="weather-container-small" onClick={this.onToggleOpenWeather}>
       <div className="weather-wrapper">
       <div className="weather-stat">
       <img className="weather-icon" src={weatherIcon(weatherID, timeOfDay)} alt={weatherDescription}/>
@@ -129,11 +129,11 @@ onToggleOpen = (e) => {
       <div className="weather-location-label"> 
         <p>{weather.name}</p>
         </div> 
+        </div>
       <div>
       
-      {this.state.isShowing &&
+      {this.state.isShowingWeather &&
               <WeatherExpanded
-              onToggleOpen={this.onToggleOpen}
               weather={this.state.weather}
               weatherID={this.state.weatherID}
               timeOfDay={this.state.timeOfDay}

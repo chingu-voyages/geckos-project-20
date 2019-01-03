@@ -6,7 +6,9 @@ import Search from './components/Search/Search';
 import './styles.scss';
 
 class Home extends Component {
+
   render() {
+
     return (
       <div className="app">
         <div className="top-row">
@@ -17,8 +19,12 @@ class Home extends Component {
           <Weather />
           </div>
         </div>
+        <div className="center">
           <Clock />
+          </div>
+        <div className="bottom">
           <Quote />
+        </div>
       </div>
     );
   }

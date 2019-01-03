@@ -47,9 +47,9 @@ const WeatherExpanded = (props) => {
 
 
     return (
-        <div>
+        <div className="weather-expanded-transition">
             <div className="weather-nipple-top-right"></div>
-            <div className="weather-app-wrapper"> 
+            <div className="weather-app-wrapper">
                 
                 <div className="app weather-app">
                 <section className="weather-current">
@@ -104,7 +104,6 @@ const WeatherExpanded = (props) => {
         </div>
         </div>
         </div>
-        
 
     )
 }
