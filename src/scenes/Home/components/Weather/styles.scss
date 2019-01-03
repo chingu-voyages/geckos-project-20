@@ -44,7 +44,14 @@
     }
 
     &-nipple-top-right {
-
+      position: relative;
+      top: 7px;
+      left: 17px;
+      width: 0; 
+      height: 0; 
+      border-left: 10px solid transparent; 
+      border-right: 10px solid transparent; 
+      border-bottom: 12px solid #282828; 
     }
 
     &-app-wrapper {
@@ -56,7 +63,7 @@
     }
 
     &-app {
-      background: #404040;
+      background: #282828;
       color: #fff;
       height: 215px;
       width: 380px;
@@ -106,13 +113,69 @@
       cursor: pointer;
   }
 
-    &--icon-exapnded-main {
+    &--icon-expanded-main {
       width: 70px;
       height: 70px;
+      margin-right: 10px;
+      font-size: 58px;
     }
 
     &--current-temp {
       font-size: 60px;
     }
+
+    &-row {
+      border-top: 1px solid rgba(255,255,255,.15);
+    }
+
+    &-forecast {
+      margin: 0;
+      display: flex;
+      font-size: 11px;
+    }
+
+    &-forecast-daily {
+      padding-top: 8px!important;
+      clear: both;
+      opacity: 0;
+      transition: opacity .2s ease;
+    }
+
+    &-forecast-item {
+      flex: 1 1 11.111%;
+      text-align: center;
+    }
+
+    &-forecast-day {
+      margin: 0 1.5px;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+
+    &-forecast-label {
+      margin: 6px 0 3px;
+    }
+
+    &-forecast-icon {
+      margin-bottom: 3px;
+      display: block;
+      font-size: 20px;
+      line-height: 90%!important;
+      opacity: .85;
+      vertical-align: -20%;
+    }
+
+    &-forecast-high {
+      padding-right: 0;
+      opacity: .85;
+    }
+
+    &-forecast-low {
+      padding-left: 4px;
+      opacity: .4;
+    }
+
+
+
 
   }
