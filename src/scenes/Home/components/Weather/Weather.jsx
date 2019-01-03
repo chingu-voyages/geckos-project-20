@@ -61,10 +61,6 @@ class Weather extends Component {
     .then((data) =>
       this.setState({ 
         weatherForecast: data,
-        weatherForecastID: data.list[0].weather[0].id,
-        weatherForecastMinTemp: data.list[0].main.temp_min,
-        weatherForecastMaxTemp: data.list[0].main.temp_max,
-        weatherForecastDescription: data.list[0].weather[0].description,
       })
       )
     .catch(error => 
@@ -143,10 +139,6 @@ onToggleOpen = (e) => {
               timeOfDay={this.state.timeOfDay}
               weatherDescription={this.state.weatherDescription}
               weatherForecast={this.state.weatherForecast}
-              weatherForecastID={this.state.weatherForecastID}
-              weatherForecastMinTemp={this.state.weatherForecastMinTemp}
-              weatherForecastMaxTemp={this.state.weatherForecastMaxTemp}
-              weatherForecastDescription={this.state.weatherForecastDescription}
           />
             }
             
