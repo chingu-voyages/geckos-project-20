@@ -10,7 +10,7 @@ class Introduction extends React.Component {
           {this.props.question}
         </div>
         <div className="introduction-content__input">
-          <input id="introduction-input" type="text" onChange={this.props.handleChange} onKeyUp={this.props.handleKeyUp}/>
+          <input id="introduction-input" type="text" autoComplete="off" onChange={this.props.handleChange} onKeyUp={this.props.handleKeyUp}/>
         </div>
       </div>
     </div>
@@ -36,7 +36,7 @@ class GreetingControl extends Component {
     super(props);
 
     this.state = {
-      setName: false,
+      setName: false  ,
       question: `Hello, what is your name?`,
       date: new Date(),
       greeting: "",
@@ -94,7 +94,6 @@ class GreetingControl extends Component {
         setName: true,
         name: name
       });
-      console.log('ciaooooo');
     }
   }
 
@@ -105,7 +104,7 @@ class GreetingControl extends Component {
     if(setName) {
       greetingContent = <UserGreeting date={this.state.date} greeting={this.state.greeting} name={this.state.name} />;
     } else {
-      greetingContent = <Introduction question={this.state.question} onChange={this.handleChange} onKeyUp={this.handleKeyUp} />;
+      greetingContent = <Introduction question={this.state.question} handleChange={this.handleChange} handleKeyUp={this.handleKeyUp} />;
     }
 
     return (
