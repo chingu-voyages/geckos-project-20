@@ -19,12 +19,17 @@ class Introduction extends React.Component {
 } 
 
 class UserGreeting extends React.Component {
+  showMore = () => {
+    console.log('open dropdown here');
+  }
+
   render() {
     return (
       <div className="center">
       <div className="app-container clock">
         <div className="clock-time">{this.props.date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
         <div className="clock-greeting">{this.props.greeting}, {this.props.name}.</div>
+        <span className="clock-greeting-more" onClick={this.showMore}>icon</span>
       </div>
     </div>
     );
