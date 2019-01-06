@@ -1,9 +1,13 @@
 import React from 'react';
+import '../todo.styles.scss'
 
 // is this function being recrated when the component is rerendered
 
+console.log("This is a log outside the functions that should theoreticall be only run once");
+
 const listOptions = (props) => {
 
+    console.log("This should be run once on init only , THE OUTSIDE FUNCTION");
 
     return props.lists.map((listOption, index) => {
 
@@ -20,7 +24,6 @@ const listOptions = (props) => {
         
         return <li key={index} onClick={() => {
             props.changeList(listOption);
-            // console.log('listOption',listOption)
         }}> {listOption} {todoCount} </li>
     })
 }
@@ -28,6 +31,7 @@ const listOptions = (props) => {
 
 
 const ListOptions = (props) => {
+    console.log("ListOptions is rerendering because list is changed for each click");
 
     const newListHandler = (event) => {
         event.preventDefault();
@@ -37,11 +41,8 @@ const ListOptions = (props) => {
     let newListInput = null;
 
     const options = listOptions(props);
-    // console.log('Test');
-    // console.error('I am being rerendered');
+
     return (
-
-
         <div>
             <h5>{props.activeList}</h5>
             <ul id="activeList">

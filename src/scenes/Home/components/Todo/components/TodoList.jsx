@@ -1,5 +1,6 @@
 import React from 'react';
 import TodoItem from './TodoItem';
+import '../todo.styles.scss'
 
 const todoFilteredList = (props) => {
     return props.filteredTodos.map((todo) => {

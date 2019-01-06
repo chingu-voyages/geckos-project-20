@@ -12,6 +12,41 @@ class TodoItem extends Component {
         
     }
 
+    
+    render() {
+    
+        const listOptions = this.listOptions();
+
+        return (
+            <div key={this.state.id}>
+                <span>
+                    <input type="checkbox" ref="isDone" defaultChecked={this.state.done} onChange={() => this.checkTask()} name={`input_${this.props.id}`} id={`checkbox_${this.props.id}`} />
+                </span>
+                <span className={ this.state.done ? 'todo--done' : ''}   >
+
+                {this.state.editMode ? <input type="text" ref={(input) => input ? input.focus() : void 0 } defaultValue={this.state.task} 
+                onKeyUp={(event) => {
+                    if (event.key === 'Enter') {
+                        this.inputHandler(event);
+                    }
+                }} 
+
+              
+                onBlur={this.inputHandler} /> : <span  > {this.state.task} </span>}
+                </span>
+
+                <span >
+                    <span onClick={this.changeEditMode}> Edit </span>
+                    <span> Move to </span>
+                    <span>
+                        {listOptions}
+                    </span>
+                    <span onClick={this.deleteTask}> Delete </span>
+                </span>
+            </div>
+        );
+    }
+
 
     changeEditMode = () => {
         if (!this.state.editMode){
@@ -67,7 +102,9 @@ class TodoItem extends Component {
 
     checkTask = () => {     
 
-        console.log(this.refs.isDone.checked);
+        console.log('Menjam ga state',this.refs.isDone.checked);
+
+        this.setState({done: this.refs.isDone.checked});
 
         this.props.update({
             id: this.state.id,
@@ -78,39 +115,6 @@ class TodoItem extends Component {
     }
     
 
-    render() {
-    
-        const listOptions = this.listOptions();
-
-        return (
-            <div key={this.state.id}>
-                <span>
-                    <input type="checkbox" ref="isDone" defaultChecked={this.state.done} onChange={() => this.checkTask()} name={`input_${this.props.id}`} id={`checkbox_${this.props.id}`} />
-                </span>
-                <span className={ this.state.done ? 'done' : ''}>
-
-                {this.state.editMode ? <input type="text"  ref={(input) => input ? input.focus() : void 0 } defaultValue={this.state.task} 
-                onKeyUp={(event) => {
-                    if (event.key === 'Enter') {
-                        this.inputHandler(event);
-                    }
-                }} 
-
-              
-                onBlur={this.inputHandler} /> : <span> {this.state.task} </span>}
-                </span>
-
-                <span >
-                    <span onClick={this.changeEditMode}> Edit </span>
-                    <span> Move to </span>
-                    <span>
-                        {listOptions}
-                    </span>
-                    <span onClick={this.deleteTask}> Delete </span>
-                </span>
-            </div>
-        );
-    }
     }
 
 export default TodoItem;

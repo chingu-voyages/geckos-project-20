@@ -20,12 +20,12 @@ class Todo extends Component {
 
 
         return (
-            <div>
+            <div className="todoFeature">
                 <ListOptions changeList={this.changeActiveList} lists={this.state.lists} activeList={this.state.activeList} allTodos={this.state.allTodos} needsToUpdate={this.state.todoChanged}/>
                 <TodoList filteredTodos={this.state.filteredTodos} update={this.updateTask} lists={this.state.lists} />
 
                 <form autoComplete="off" onSubmit={this.newTodoHandler}>
-                    <input type="text" name="newTodo" id="newTodo" ref={node => this.newTodoInput = node} />
+                    <input className="todoFeature__input" placeholder="New Todo"  type="text" name="newTodo" id="newTodo" ref={node => this.newTodoInput = node} />
                 </form>
             </div>
         );

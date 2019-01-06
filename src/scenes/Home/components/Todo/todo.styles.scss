@@ -1,4 +1,4 @@
-.done{
+.todo--done{
     color: #bababa;
     text-decoration: line-through;
 
@@ -6,4 +6,22 @@
         color : #bababa;
         text-decoration: line-through;
     }
+}
+
+.todoFeature{
+    border: 1px solid pink;
+    width: 320px;
+    max-width: 320px;
+    background-color: rgba($color: #151515, $alpha: 0.87);
+}
+.todoFeature__input{
+    width: 99%;
+    background: transparent;
+    color: rgb(128, 128, 128);
+    font-size: 18px;
+    padding-left: 13px;
+    outline: none;
+    border : none;
+    height: 40px;
+    min-height: 40px;
 }
