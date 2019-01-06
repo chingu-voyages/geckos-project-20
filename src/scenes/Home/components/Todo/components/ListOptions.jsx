@@ -4,6 +4,9 @@ import '../todo.styles.scss'
 // is this function being recrated when the component is rerendered
 
 console.log("This is a log outside the functions that should theoreticall be only run once");
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
 
 const listOptions = (props) => {
 
@@ -43,16 +46,23 @@ const ListOptions = (props) => {
     const options = listOptions(props);
 
     return (
-        <div>
-            <h5>{props.activeList}</h5>
-            <ul id="activeList">
+        <div className="todoFeature__lists">
+            <span className="todoFeature__lists__activeList">{props.activeList.capitalize()}</span>
+            {/* <ul id="activeList">
                 {options}
-            </ul>
+            </ul> */}
+            <span  className="todoFeature__lists__otherLists"> 
+            <i class="fa fa-chevron-down"></i>
+            </span>
+
+
+            <span className="todoFeature__lists__options">
+            <i class="fa fa-ellipsis-h"></i>
+            </span>
             <div>
-            <span> + New List </span>
-            <form autoComplete="off" onSubmit={newListHandler}>
+            {/* <form autoComplete="off" onSubmit={newListHandler}>
                 <input type="text" name="newList" id="newList" ref={node => newListInput = node} />
-            </form>
+            </form> */}
             </div>
         </div>
     );
