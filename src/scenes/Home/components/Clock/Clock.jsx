@@ -19,6 +19,16 @@ class Introduction extends React.Component {
 } 
 
 class UserGreeting extends React.Component {
+  componentDidMount() {
+    const name = this.props.name;
+    localStorage.setItem('name', JSON.stringify(name));
+  }
+
+  componentDidUpdate() {
+    const name = this.props.name;
+    window.localStorage.setItem('name', JSON.stringify(name));
+  }
+
   showMore = () => {
     console.log('open dropdown here');
   }
