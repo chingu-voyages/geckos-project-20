@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import '../todo.styles.scss'
 
 // is this function being recrated when the component is rerendered
@@ -33,39 +33,62 @@ const listOptions = (props) => {
 
 
 
-const ListOptions = (props) => {
-    console.log("ListOptions is rerendering because list is changed for each click");
+class ListOptions extends Component{
 
-    const newListHandler = (event) => {
-        event.preventDefault();
-        props.changeList(newListInput.value);
+    constructor(props){
+        super(props);
+        this.state={
+            openLists: false,
+        };
+        this.newListInput = null;
+        this.options = listOptions(this.props);
     }
 
-    let newListInput = null;
 
-    const options = listOptions(props);
+    newListHandler = (event) => {
+        event.preventDefault();
+        this.props.changeList(this.newListInput.value);
+    }
 
-    return (
-        <div className="todoFeature__lists">
-            <span className="todoFeature__lists__activeList">{props.activeList.capitalize()}</span>
-            {/* <ul id="activeList">
-                {options}
-            </ul> */}
-            <span  className="todoFeature__lists__otherLists"> 
-            <i class="fa fa-chevron-down"></i>
-            </span>
-
-
-            <span className="todoFeature__lists__options">
-            <i class="fa fa-ellipsis-h"></i>
-            </span>
-            <div>
-            {/* <form autoComplete="off" onSubmit={newListHandler}>
-                <input type="text" name="newList" id="newList" ref={node => newListInput = node} />
-            </form> */}
+    toggleOpenLists = () =>{
+        this.setState( prevState => ({
+            openLists: !prevState.openLists,
+        }))
+    }
+   
+    render(){
+        return (
+            <div className="todoFeature__lists">
+                <span className="todoFeature__lists__activeList">{this.props.activeList.capitalize()}</span>
+               
+                <span  className="todoFeature__lists__otherLists" onClick={this.toggleOpenLists}> 
+                <i class="fa fa-chevron-down"></i>
+    
+                {
+                    this.state.openLists ?
+                     <div style={{position:'absolute', left: '5px',  zIndex: 5, backgroundColor : 'red'}}>
+                        <ul  id="activeList">
+                            {this.options}
+                        </ul>
+                        <form autoComplete="off" onSubmit={this.newListHandler}>
+                            <input type="text" name="newList" id="newList" ref={node => this.newListInput = node} />
+                        </form>
+                    </div> : null
+                }
+    
+                </span>
+    
+    
+                <span className="todoFeature__lists__options">
+                <i class="fa fa-ellipsis-h"></i>
+                </span>
+                
+                
+                
             </div>
-        </div>
-    );
-}
+        );
+    }
+
+    }
 
 export default ListOptions;
