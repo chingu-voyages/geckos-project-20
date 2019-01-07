@@ -9,17 +9,19 @@ import './styles.scss';
 class Home extends Component {
   render() {
     return (
-      <div className="app">
-        <div className="top-row">
-        <div className="top-left">
-          <Search />
+      <div className="main-view">
+        <div className="app">
+          <div className="top-row">
+          <div className="top-left">
+            <Search />
+            </div>
+          <div className="top-right">
+            <Weather />
+            </div>
           </div>
-        <div className="top-right">
-          <Weather />
-          </div>
+            <Clock />
+            <Quote />
         </div>
-          <Clock />
-          <Quote />
       </div>
     );
   }
