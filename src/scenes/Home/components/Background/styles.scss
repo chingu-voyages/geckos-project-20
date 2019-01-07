@@ -1,0 +1,27 @@
+.background {
+  &-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparent;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: 0;
+  }
+
+  &-overlay {
+    background: url('/images/overlay-vignette.png');
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    background-size: 100% 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+  }
+}
