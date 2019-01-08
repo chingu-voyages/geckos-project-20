@@ -1,51 +1,120 @@
-import React , { Component } from 'react';
+import React, { Component } from 'react';
+import '../todo.styles.scss'
 
 class TodoItem extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             ...props.todo,
-            editMode:false,
-        }
+            editMode: false,
+        };
+        
     }
 
-    updateTask = () => {
-        this.props.update({
-            id:this.state.id,
-            list: this.state.list,
+    
+    render() {
+    
+        const listOptions = this.listOptions();
+
+        return (
+            <div key={this.state.id}>
+                <span>
+                    <input type="checkbox" ref="isDone" defaultChecked={this.state.done} onChange={() => this.checkTask()} name={`input_${this.props.id}`} id={`checkbox_${this.props.id}`} />
+                </span>
+                <span className={ this.state.done ? 'todo--done' : ''}   >
+
+                {this.state.editMode ? <input type="text" ref={(input) => input ? input.focus() : void 0 } defaultValue={this.state.task} 
+                onKeyUp={(event) => {
+                    if (event.key === 'Enter') {
+                        this.inputHandler(event);
+                    }
+                }} 
+
+              
+                onBlur={this.inputHandler} /> : <span  > {this.state.task} </span>}
+                </span>
+
+                <span >
+                    <span onClick={this.changeEditMode}> Edit </span>
+                    <span> Move to </span>
+                    <span>
+                        {listOptions}
+                    </span>
+                    <span onClick={this.deleteTask}> Delete </span>
+                </span>
+            </div>
+        );
+    }
+
+
+    changeEditMode = () => {
+        if (!this.state.editMode){
+            // console.log('EditInput' , this.editInput);
+            // this.editInput.focus();
+        }
+        this.setState(prevState => ({
+            editMode: !prevState.editMode,
+        }))
+    }
+
+    listOptions = () => {
+        return this.props.lists.filter((listOption) => {
+            return listOption !== this.state.list
+        }).map((listOption, index) => {
+            return <li key={index} onClick={() => this.changeList(listOption)}> {listOption} </li>
+        })
+    }
+    
+    changeList = (newList) => {
+        
+         this.props.update({
+            id: this.state.id,
+            list: newList,
             done: this.state.done,
             task: this.state.task
         })
     }
-
-    editHandler = (event) => {
-
-        console.log('task value changesd', event.target.value)
-        this.setState({
-            task: event.target.value
-        })
-
-        this.updateTask();
+    deleteTask = () => {
+            this.props.update({
+                id: this.state.id,
+                list: this.state.list,
+                done: this.state.done,
+                task: this.state.task
+            }, true)       
     }
-    changeEditMode = () => {
-        this.setState( prevState => ({
-            editMode: !prevState.editMode,
-        }))
+
+
+
+    inputHandler = (event) => {
+        if(event.target.value !== this.state.task && event.target.value !== ''){
+            this.props.update({
+                id: this.state.id,
+                list: this.state.list,
+                done: this.state.done,
+                task: event.target.value
+            });
+
+            this.setState({ task : event.target.value})
+        }
+        this.changeEditMode();
     }
-    render(){
-        return (
-            <div key={this.props.key}>
-               <span> 
-                   <input type="checkbox"  defaultChecked={this.state.done}  name={`input_${this.state.id}`} id={`checkbox_${this.state.id}`}/> 
-                </span> 
-                { this.state.editMode ?  <input type="text" value={this.state.task} onBlur={this.changeEditMode} onChange={this.editHandler}/> : <span> {this.state.task} </span>  }
-                          
-                 
-                   <span onClick={this.changeEditMode}> ... </span>
-            </div>
-        );
+
+    checkTask = () => {     
+
+        console.log('Menjam ga state',this.refs.isDone.checked);
+
+        this.setState({done: this.refs.isDone.checked});
+
+        this.props.update({
+            id: this.state.id,
+            list: this.state.list,
+            done: this.refs.isDone.checked,
+            task: this.state.task
+        });
     }
-}
+    
+
+    }
 
 export default TodoItem;
