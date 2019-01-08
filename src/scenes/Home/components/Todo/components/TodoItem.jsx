@@ -20,6 +20,8 @@ class TodoItem extends Component {
     }
 
     editHandler = (event) => {
+
+        console.log('task value changesd', event.target.value)
         this.setState({
             task: event.target.value
         })
@@ -33,7 +35,7 @@ class TodoItem extends Component {
     }
     render(){
         return (
-            <div>
+            <div key={this.props.key}>
                <span> 
                    <input type="checkbox"  defaultChecked={this.state.done}  name={`input_${this.state.id}`} id={`checkbox_${this.state.id}`}/> 
                 </span> 
