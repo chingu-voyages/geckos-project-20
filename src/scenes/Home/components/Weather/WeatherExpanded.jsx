@@ -5,6 +5,7 @@ import { weatherForecastIcon } from './WeatherIcon';
 
 const WeatherExpanded = (props) => {
 
+
 	let firstDayMinTemp = props.weatherForecast.list[0].main.temp_min;
 	let secondDayMinTemp = props.weatherForecast.list[8].main.temp_min;
 	let thirdDayMinTemp = props.weatherForecast.list[16].main.temp_min;
@@ -31,15 +32,19 @@ const WeatherExpanded = (props) => {
 	let firstDateString = props.weatherForecast.list[0].dt;
 	let firstDate = new Date(firstDateString*1000);
 	let firstDayName = firstDate.toString().split(' ')[0];
+
 	let secondDateString = props.weatherForecast.list[8].dt;
 	let secondDate = new Date(secondDateString*1000);
 	let secondDayName = secondDate.toString().split(' ')[0];
+
 	let thirdDateString = props.weatherForecast.list[16].dt;
 	let thirdDate = new Date(thirdDateString*1000);
 	let thirdDayName = thirdDate.toString().split(' ')[0];
+
 	let fourthDateString = props.weatherForecast.list[24].dt;
 	let fourthDate = new Date(fourthDateString*1000);
 	let fourthDayName = fourthDate.toString().split(' ')[0];
+	
 	let fifthDateString = props.weatherForecast.list[32].dt;
 	let fifthDate = new Date(fifthDateString*1000);
 	let fifthDayName = fifthDate.toString().split(' ')[0];

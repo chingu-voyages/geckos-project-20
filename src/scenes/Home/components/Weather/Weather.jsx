@@ -104,6 +104,7 @@ onToggleOpenWeather = (e) => {
 )
 }
 
+
   render() {
 
     const { weather, error, isLoading, weatherID, weatherDescription, timeOfDay } = this.state;
