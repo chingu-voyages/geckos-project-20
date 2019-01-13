@@ -5,7 +5,6 @@ import { weatherForecastIcon } from './WeatherIcon';
 
 const WeatherExpanded = (props) => {
 
-
 	let firstDayMinTemp = props.weatherForecast.list[0].main.temp_min;
 	let secondDayMinTemp = props.weatherForecast.list[8].main.temp_min;
 	let thirdDayMinTemp = props.weatherForecast.list[16].main.temp_min;
@@ -63,7 +62,8 @@ const WeatherExpanded = (props) => {
                             <span className="weather-location-name">{props.weather.name}</span>
                             <span className="weather-current-conditions">{props.weatherDescription}</span>
                             </span>
-                            <p>...</p>
+                            {/* TODO settings icon and options could be added later
+							<p>...</p>*/}
                     </header>
                         <div className="weather-current-temp-wrapper"> 
                         <div className="weather-current-temp-row">

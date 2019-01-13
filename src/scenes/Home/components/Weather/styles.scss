@@ -59,21 +59,21 @@
       height: 0; 
       border-left: 10px solid transparent; 
       border-right: 10px solid transparent; 
-      border-bottom: 10px solid #282828; 
+      border-bottom: 10px solid rgba(15,15,15,.925); 
     }
 
     &-app-wrapper {
       margin-top: 5px;
       position: relative;
       display: block;
-      right: 315px;
+      right: 345px;
     }
 
     &-app {
-      background: #282828;
+      background: rgba(15,15,15,.925);
       color: #fff;
-      height: 215px;
-      width: 380px;
+      height: 225px;
+      width: 410px;
       padding-bottom: calc(var(--app-padding) - 3px);
       right: 7px;
       box-sizing: border-box;
@@ -141,7 +141,7 @@
     }
 
     &-forecast-daily {
-      padding-top: 8px;
+      padding-top: 6px;
       clear: both;
       //transition: opacity .2s ease;
     }
@@ -149,6 +149,12 @@
     &-forecast-item {
       flex: 1 1 11.111%;
       text-align: center;
+      cursor: pointer;
+      padding: 4px 2px;
+    }
+
+    &-forecast-item:hover {
+      background: #282828;
     }
 
     &-forecast-day {
@@ -157,7 +163,7 @@
     }
 
     &-forecast-label {
-      margin: 6px 0 3px;
+      margin: 4px 0 3px;
       opacity: .6;
       text-transform: uppercase;
       font-weight: 500;
