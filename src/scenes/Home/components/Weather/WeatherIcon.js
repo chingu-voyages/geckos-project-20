@@ -29,7 +29,7 @@ let weatherIdIconCodes = {
         "800": ClearDayIcon, 
         "801": CloudsDayIcon,
         "802": DrizzleIcon,
-        "803": OvercastIcon,
+        "803-804": OvercastIcon,
     },
     night: {
         "0-232": ThunderStormIcon,
@@ -40,7 +40,7 @@ let weatherIdIconCodes = {
         "800": ClearNightIcon, 
         "801": CloudsNightIcon, 
         "802": DrizzleIcon,
-        "803": OvercastIcon,
+        "803-804": OvercastIcon,
     }
 };
 

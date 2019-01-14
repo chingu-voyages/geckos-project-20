@@ -23,8 +23,6 @@ class Home extends Component {
             <Weather />
             </div>
           </div>
-            <Clock />
-            <Quote />
         </div>
         <div className="center">
           <Clock />
