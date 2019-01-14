@@ -1,0 +1,90 @@
+.app-quote {
+    text-align: center;
+  
+    &-body {
+      width: 100%;
+      display: block;
+      position: relative;
+      transition: all 0.35s ease;
+  
+      &__source {
+        color: rgba(255, 255, 255, 0.9);
+        opacity: 0.75;
+        margin-right: 4px;
+        position: absolute;
+        right: 0;
+        bottom: -27px;
+        left: 0;
+        font-size: 87.5%;
+        opacity: 0;
+        transform: translateY(-22px);
+        transition: all 0.35s ease;
+        text-align: center;
+  
+        &-content {
+          margin: 0 auto;
+  
+          .control {
+            height: 16px;
+            width: 16px;
+            padding: 6px 2px;
+            position: relative;
+            font-size: 110%;
+            line-height: 100%;
+            opacity: 0.75;
+            vertical-align: middle;
+            margin-right: 30px;
+  
+            .icon {
+              height: 16px;
+              position: absolute;
+              margin-left: 10px;
+              margin-top: 1px;
+  
+              &.icon-heart-empty {
+                opacity: 1;
+              }
+  
+              &.icon-heart {
+                opacity: 0;
+              }
+            }
+  
+            &.active {
+              .icon-heart-empty {
+                opacity: 0;
+              }
+  
+              .icon-heart {
+                opacity: 1;
+              }
+            }
+  
+            &.control-twitter {
+              margin-top: 4px;
+  
+              a {
+                color: white;
+                text-decoration: none;
+              }
+            }
+  
+            &:last-child {
+              margin-right: 0;
+            }
+          }
+        }
+      }
+    }
+  
+    &:hover {
+      .app-quote-body {
+        transform: translateY(-50%);
+  
+        &__source {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    }
+  }
