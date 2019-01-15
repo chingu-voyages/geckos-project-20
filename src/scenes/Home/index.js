@@ -5,11 +5,13 @@ import Clock from './components/Clock/Clock';
 import './styles.scss';
 import Weather from './components/Weather/Weather';
 import Search from './components/Search/Search';
+import Focus from './components/Focus/index';
 import './styles.scss';
 
 class Home extends Component {
   render() {
     return (
+     
       <div className="main-view">
       <Background />
         <div className="app">
@@ -22,7 +24,12 @@ class Home extends Component {
             </div>
           </div>
             <Clock />
+             {/* TODO put all positioning classes in this file */}
+             <div className="center-below">
+            <Focus />
+            </div>
             <Quote />
+           
         </div>
       </div>
     );
