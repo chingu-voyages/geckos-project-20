@@ -18,6 +18,7 @@
   right: 0;
   z-index: 2;
   display: flex;
+}
 
   .top-left {
     position: relative;
@@ -35,7 +36,6 @@
     justify-content: flex-start;
     text-align: right;
   }
-}
 
 .center {
   position: absolute;
@@ -50,16 +50,17 @@
 .center-below {
   position: absolute;
   display: block;
+  top: 75%;
   left: 50%;
-  top: 70.5%;
-  transform: none;
+  width: 100%;
+  transform: translate(-50%, -50%);
   text-align: center;
 }
 
 .bottom {
   position: absolute;
   width: 50%;
-  bottom: 2rem;
+  bottom: 1rem;
   left: 50%;
   transform: translateX(-50%);
 }

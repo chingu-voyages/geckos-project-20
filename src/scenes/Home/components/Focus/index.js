@@ -58,42 +58,57 @@ class Focus extends Component {
 
     return (
 
-    <div className="app-container has-dash-icon focuses shadow">
-      <div className="focus-wrapper">
-      <div class="prompt">
+    <div >
+      <div className="focus-wrapper focuses">
+
         {this.state.focus ? (
           <React.Fragment>
-            <p>TODAY</p>
-            <div className="focus__current">
-              <p
-                style={{ textDecoration: this.state.line }}
-                onClick={e => this.toggleLine(e)}
-              >
-                {this.state.focus}
-              </p>
-              <FaPlus onClick={this.onCompleteClick} />
-            </div>
+            <div className="focus-complete">
+              <h3 className="focus-title">TODAY</h3>
+                <div className="focus-row">
+		              <span className="control checkbox">
+                    {/*<i className="icon icon-checkbox-empty focus-open"></i>
+                    <i className="icon icon-checkbox focus-done"></i>*/}
+                    </span>
+                  <h3 className="focus-todays-focus" 
+                        data-test="focus-active"
+                        style={{ textDecoration: this.state.line }}
+                        onClick={e => this.toggleLine(e)}>
+                  {this.state.focus}
+                    </h3>
+
+	                <span className="control delete">
+                  <span className="icon-wrapper dash-icon">
+                    {/*<i class="icon icon-delete">✕</i>*/}
+                  </span>
+                  </span>
+                  <FaPlus onClick={this.onCompleteClick} />
+                  </div>
+                </div>
           </React.Fragment>
         ) : (
           <React.Fragment>
+            <div>
             <h3>What is your main focus for today?</h3>
             <form onSubmit={e => this.onSubmit(e)}>
-              <input type="text" onChange={e => this.onChange(e)} />
+              <input className="focus-prompt" type="text" onChange={e => this.onChange(e)} />
             </form>
+            </div>
           </React.Fragment>
         )}
-        {/*
-        <div class="team-focus-wrapper"></div>
 
-<div class="focus-message-wrapper">
-	<div class="message focus-message" data-test="focus-message">
+        {/* To be added 
+        <div className="team-focus-wrapper"></div>
+
+<div className="focus-message-wrapper">
+	<div className="message focus-message">
 
 	</div>
 </div>
         */}
       </div>
       </div>
-      </div>
+      
     );
   }
 }

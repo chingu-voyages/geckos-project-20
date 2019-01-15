@@ -1,9 +1,43 @@
 .focus {
 
-  &__current {
+  &-wrapper {
     display: flex;
+    justify-content: center;
   }
 
+  &-prompt {
+    width: 13.7em;
+    margin: 0 auto;
+    padding-top: 15px;
+    display: block;
+    background: 0;
+    border: 0;
+    border-bottom: 2px solid #fff;
+    color: #fff;
+    font-weight: 500;
+    outline: 0;
+    text-align: center;
+    transition: border-color .2s ease;
+    font-size: 20px;
+  }
 
-  
+  &-focuses .focus-todays-focus {
+    max-width: 100%;
+    margin: 3px 0;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &-todays-focus {
+    font-size: 20px;
+    font-size: 120%;
+    line-height: 120%;
+  }
+
+  &-complete {
+    width: 100%;
+  }
+
 }
