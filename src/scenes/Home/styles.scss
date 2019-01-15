@@ -47,6 +47,15 @@
   transform: translate(-50%, -50%);
 }
 
+.center-below {
+  position: absolute;
+  display: block;
+  left: 50%;
+  top: 70.5%;
+  transform: none;
+  text-align: center;
+}
+
 .bottom {
   position: absolute;
   width: 50%;

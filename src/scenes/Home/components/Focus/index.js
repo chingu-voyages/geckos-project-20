@@ -55,8 +55,12 @@ class Focus extends Component {
   };
 
   render() {
+
     return (
-      <div className="focus__container">
+
+    <div className="app-container has-dash-icon focuses shadow">
+      <div className="focus-wrapper">
+      <div class="prompt">
         {this.state.focus ? (
           <React.Fragment>
             <p>TODAY</p>
@@ -72,12 +76,23 @@ class Focus extends Component {
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <p>What is your main focus for today?</p>
+            <h3>What is your main focus for today?</h3>
             <form onSubmit={e => this.onSubmit(e)}>
               <input type="text" onChange={e => this.onChange(e)} />
             </form>
           </React.Fragment>
         )}
+        {/*
+        <div class="team-focus-wrapper"></div>
+
+<div class="focus-message-wrapper">
+	<div class="message focus-message" data-test="focus-message">
+
+	</div>
+</div>
+        */}
+      </div>
+      </div>
       </div>
     );
   }
