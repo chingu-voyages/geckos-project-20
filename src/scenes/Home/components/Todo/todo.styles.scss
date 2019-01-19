@@ -40,18 +40,20 @@
 .todoFeature__lists__otherLists{
     margin-left: 10px;
     margin-right: 5px;
+
     i {
         width: 15px;
+        border-radius: 50%;
         height: 15px;
         padding: 6px 4px 4px 6px;
         font-size: 12px;
         color: rgb(128, 128, 128);
+
     }
 
     &:hover{
         cursor: pointer;
         i {
-            border-radius: 50%;
             color: rgb(202, 202, 202);
             background-color: rgb(104, 104, 104);
         }
