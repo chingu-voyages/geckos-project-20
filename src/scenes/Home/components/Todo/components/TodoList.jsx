@@ -18,7 +18,7 @@ const TodoList = (props) => {
     const selectedListTodos = todoFilteredList(props);
     // console.log('TodoList props: ', props);
     return (
-        <div>
+        <div className="todoFeature__todoList">
             {selectedListTodos}
         </div>
     );
