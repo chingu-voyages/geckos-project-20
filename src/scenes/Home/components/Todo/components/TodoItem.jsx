@@ -9,14 +9,10 @@ class TodoItem extends Component {
             ...props.todo,
             editMode: false,
         };
-        
     }
 
-    
     render() {
-    
         const listOptions = this.listOptions();
-
         return (
             <div key={this.state.id}>
                 <span>
@@ -24,15 +20,17 @@ class TodoItem extends Component {
                 </span>
                 <span className={ this.state.done ? 'todo--done' : ''}   >
 
-                {this.state.editMode ? <input type="text" ref={(input) => input ? input.focus() : void 0 } defaultValue={this.state.task} 
-                onKeyUp={(event) => {
-                    if (event.key === 'Enter') {
-                        this.inputHandler(event);
-                    }
-                }} 
-
-              
-                onBlur={this.inputHandler} /> : <span  > {this.state.task} </span>}
+                { this.state.editMode ? 
+                    <input type="text" 
+                        ref={(input) => input ? input.focus() : void 0 } 
+                        defaultValue={this.state.task} 
+                        onKeyUp={(event) => {
+                            if (event.key === 'Enter') {
+                                this.inputHandler(event);
+                            }
+                        }} 
+                        onBlur={this.inputHandler} /> : <span> {this.state.task} </span>
+                }
                 </span>
 
                 <span >
@@ -46,7 +44,6 @@ class TodoItem extends Component {
             </div>
         );
     }
-
 
     changeEditMode = () => {
         if (!this.state.editMode){
@@ -67,7 +64,6 @@ class TodoItem extends Component {
     }
     
     changeList = (newList) => {
-        
          this.props.update({
             id: this.state.id,
             list: newList,

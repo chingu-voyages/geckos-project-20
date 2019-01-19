@@ -17,8 +17,6 @@ class Todo extends Component {
         this.newTodoInput = null;
     }
     render() {
-
-
         return (
             <div className="todoFeature">
                 <ListOptions changeList={this.changeActiveList} lists={this.state.lists} activeList={this.state.activeList} allTodos={this.state.allTodos} needsToUpdate={this.state.todoChanged}/>
@@ -37,27 +35,22 @@ class Todo extends Component {
 
     filterTodos = (option) => {
         // console.log('i am begin called');
-
         if (option === 'done'){
             this.setState(prevState => ({
                 filteredTodos: [...prevState.allTodos].filter((todo) => todo.done),
             }))
         } else {
-
             this.setState(prevState => ({
                 filteredTodos: [...prevState.allTodos].filter((todo) => todo.list === prevState.activeList),
             }))
         }
-
     }
 
     newTodoHandler = (event) => {
         event.preventDefault(); // Let's stop this event.
 
         let newTodo = this.newTodoInput.value;
-        
         if (newTodo !== ''){
-            
             this.setState(prevState => ({
                 allTodos: [...prevState.allTodos, {
                     id: prevState.lastId + 1,
@@ -66,13 +59,11 @@ class Todo extends Component {
                     task: newTodo
                 }],
                 lastId: ++prevState.lastId
-
             }));
 
             this.filterTodos();
             this.newTodoInput.value = "";
             }
-
     }
 
     changeActiveList = (newList) => {
@@ -81,10 +72,7 @@ class Todo extends Component {
             this.filterTodos('done');
         }else{
         // If nothing is changed don't change state / don't rerender
-
             if (this.state.activeList !== newList) {
-
-            
                 let listExists = [...this.state.lists].includes(newList);
                 
                 if(!listExists){
@@ -100,8 +88,6 @@ class Todo extends Component {
                 this.filterTodos();
             }
         }
-        
-
     }
 
     updateTask = (object, optional) => {
@@ -136,12 +122,7 @@ class Todo extends Component {
         }
         
         this.filterTodos();
-
-        // console.log('I should update this object : ', object)
     }
-
-   
-  
 }
 
 export default Todo;
