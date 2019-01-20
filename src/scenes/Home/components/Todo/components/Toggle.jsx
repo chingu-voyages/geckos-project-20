@@ -22,7 +22,7 @@ class Toggle extends Component {
             isOpen: !prevState.isOpen,
         }));
     }
-
+  
     handleOutsideClick = (e) => {
         // ignore clicks on the component itself
         if (this.node.contains(e.target)) {
@@ -30,14 +30,17 @@ class Toggle extends Component {
         }
         this.clickHandler();
       }
+    iterratorFunction = child => {
+        console.log('Dete',child);
+        return React.cloneElement(child,{
+            onClick: this.clickHandler,
+        })
+    }
 
     render() {
-        const iterratorFunction = child => {
-            return React.cloneElement(child,{
-                onClick: this.clickHandler,
-            })
-        }
-        let children = React.Children.map(this.props.children, iterratorFunction);
+      
+        let children = React.Children.map(this.props.children, this.iterratorFunction);
+
         const {isOpen} = this.state;
         return (
             <ToggleWrapper ref={node => this.node = node }>

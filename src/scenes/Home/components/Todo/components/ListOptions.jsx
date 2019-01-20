@@ -67,6 +67,7 @@ class ListOptions extends Component {
                                 <form autoComplete="off" onSubmit={this.newListHandler}>
                                 <input 
                                     placeholder=" + New List"
+                                    autofocus="true"
                                     type="text" name="newList" id="newList" 
                                     ref={node => this.newListInput = node} />
                                 </form>
