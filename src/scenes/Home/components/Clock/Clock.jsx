@@ -19,15 +19,6 @@ class Introduction extends React.Component {
 } 
 
 class UserGreeting extends React.Component {
-  componentDidMount() {
-    const name = this.props.name;
-    localStorage.setItem('name', JSON.stringify(name));
-  }
-
-  componentDidUpdate() {
-    const name = this.props.name;
-    window.localStorage.setItem('name', JSON.stringify(name));
-  }
 
   showMore = () => {
     console.log('open dropdown here');
@@ -60,6 +51,11 @@ class GreetingControl extends Component {
   }
 
   componentDidMount() {
+    const name = JSON.parse(localStorage.getItem( "name" ));
+    if (name) {
+      this.setState( { name, setName: true } );
+    }
+  
     this.timer = setInterval(
       () => {
         this.getDate();
@@ -109,6 +105,9 @@ class GreetingControl extends Component {
         setName: true,
         name: name
       });
+
+      localStorage.setItem('name', JSON.stringify(name));
+      localStorage.setItem('setName', true);
     }
   }
 
