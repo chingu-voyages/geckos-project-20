@@ -2,129 +2,96 @@ import React, { Component } from 'react';
 import './styles.scss';
 import { weatherIcon } from './WeatherIcon';
 import WeatherExpanded from './WeatherExpanded';
+import WeatherToday from './WeatherToday';
 
 
 class Weather extends Component {
 
-  constructor(props) {
-    super(props);
+	constructor(props) {
+		super(props);
 
-    this.state = {
-      weather: {},
-      isLoading: true,
-      error: '',
-      lat: '',
-      lon: '',
-      timeOfDay: 1,
-      isShowing: false
-    };
-  };
+		this.state = {
+			weather: {},
+			isLoading: true,
+			lat: '',
+			lon: '',
+			timeOfDay: 1,
+			isShowing: false
+		};
+	};
 
-  componentDidMount() {
-    navigator.geolocation.getCurrentPosition(
-      position => {this.setState({
-        lat: position.coords.latitude,
-        lon: position.coords.longitude
-      });
-      console.log(this.state.lat , this.state.lon);
-      this.getCurrentWeather();
-    },
-      error => console.error(error));
-    }
+	componentDidMount() {
+		navigator.geolocation.getCurrentPosition(
+			position => {
+				this.setState({
+					lat: position.coords.latitude,
+					lon: position.coords.longitude
+				});
+				console.log(this.state.lat, this.state.lon);
+				this.getCurrentWeather();
+			},
+			error => console.error(error));
+	}
 
-  render() {
+	render() {
 
-    const { weather, error, isLoading, weatherID, weatherDescription, timeOfDay } = this.state;
+		const { weather, isLoading, weatherID, weatherDescription, timeOfDay } = this.state;
 
-    return (
-      <div>
-        {
-          isLoading ? <p>Loading ... </p> 
-        :
-        
-          <div className="weather-app-container weather" onClick={this.onToggleOpen}>
-        <div className="weather-wrapper">
-        <div className="weather-stat">
-        <img className="weather-icon" src={weatherIcon(weatherID, timeOfDay)} alt={weatherDescription}/>
-          <p>{Math.round(weather.main.temp)}&deg;</p>
-        </div>
-        </div>
-        <div className="weather-location-label"> 
-          <p>{weather.name}</p>
-          </div> 
-        <div>
-        
-        {this.state.isShowing &&
-                <WeatherExpanded
-                onToggleOpen={this.onToggleOpen}
-                weather={this.state.weather}
-                weatherID={this.state.weatherID}
-                timeOfDay={this.state.timeOfDay}
-                weatherDescription={this.state.weatherDescription}
-                />
-              }
-          </div>
-        </div>
+		return (
+			<div>
+				{
+					isLoading ? <p>Loading ... </p>
+						:
+						<WeatherToday
+							toggleOpen={this.onToggleOpen}
+							imgSrc={weatherIcon(weatherID, timeOfDay)}
+							imgAlt={weatherDescription}
+							weather={weather}
+						/>
+				}
 
-            }
-      </div>
-        
-    );
-  }
+				{this.state.isShowing &&
+					<WeatherExpanded
+						onToggleOpen={this.onToggleOpen}
+						weather={this.state.weather}
+						weatherID={weatherID}
+						timeOfDay={this.state.timeOfDay}
+						weatherDescription={weatherDescription}
+					/>
+				}
+			</div>
 
-  
-  async getCurrentWeather () {
+		);
+	}
 
-    
-    // const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
-    const API_KEY = '9c77935cf1f7d3fae12ebf15913a8b2d';
-    let url = `http://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lon}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
+	async getCurrentWeather() {
 
-    let date = new Date();
-    let timeOfDay = date.getHours();
+		// const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
+		const API_KEY = '9c77935cf1f7d3fae12ebf15913a8b2d';
+		let url = `http://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lon}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
 
-    // console.log(url);
-    // console.log(timeOfDay);
+		let date = new Date();
+		let timeOfDay = date.getHours();
 
-    const response = await fetch(url);
-    const weatherData = await response.json();
+		const response = await fetch(url);
+		const weatherData = await response.json();
 
-    console.log('DATA',weatherData);
-    this.setState({ 
-          timeOfDay: timeOfDay,
-          weather: weatherData,
-          weatherID: weatherData.weather[0].id,
-          weatherDescription: weatherData.weather[0].description,
-          isLoading: false  
-        });
+		console.log('DATA', weatherData);
+		this.setState({
+			timeOfDay: timeOfDay,
+			weather: weatherData,
+			weatherID: weatherData.weather[0].id,
+			weatherDescription: weatherData.weather[0].description,
+			isLoading: false
+		});
+	}
 
-    // .then(response => response.json())
-    // .then((data) =>{
-
-    // console.log('DATA',data);
-    //   this.setState({ 
-    //     timeOfDay: timeOfDay,
-    //     weather: data,
-    //     weatherID: data.weather[0].id,
-    //     weatherDescription: data.weather[0].description,
-    //     isLoading: false  
-    //   })}
-    //   )
-    // .catch(error => 
-    //   this.setState({ 
-    //     error, 
-    //     isLoading: false 
-    //   })
-    //   );
-  }
-  
-  onToggleOpen = (e) => {
-      this.setState((prevState) =>
-      ({
-      isShowing: !prevState.isShowing
-    })
-    )
-  }
+	onToggleOpen = (e) => {
+		this.setState((prevState) => ({
+			isShowing: !prevState.isShowing
+		})
+		)
+	}
 }
 
 export default Weather
