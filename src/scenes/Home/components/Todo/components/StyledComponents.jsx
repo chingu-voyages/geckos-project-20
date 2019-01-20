@@ -3,14 +3,15 @@ import styled from 'styled-components';
 export const ToggleActivator = styled.div`
     margin-left: 10px;
     margin-right: 5px;
-   
+
     i {
-         width: 15px;
-         border-radius: 50%;
-         height: 15px;
-         padding: 6px 4px 4px 6px;
-         font-size: 12px;
-         color: rgb(128, 128, 128);
+        /* display: none; */
+        width: 15px;
+        border-radius: 50%;
+        height: 15px;
+        padding: 6px 4px 4px 6px;
+        font-size: 12px;
+        color: rgb(128, 128, 128);
      }
 
      &:hover{
@@ -23,8 +24,17 @@ export const ToggleActivator = styled.div`
 `;
 
 export const ToggleContent = styled.ul`
+
+    ${ (props) => {
+         if(props.side === 'left'){
+             return 'right:35px;  top: 5px;'
+         } else if (props.side === 'bottom'){
+             return 'top: 40px; left: 5px;'
+         }
+    }}
+    position: absolute;
     padding: 2px 0;
-    width: 240px;
+    width: ${ props => props.width ? props.width : 'max-content'};
     border-radius: 5px;
     list-style-type: none;
     margin: 0;
@@ -68,3 +78,28 @@ export const Divider = styled.hr`
     border: 0.5px solid #777;
     margin: 2.5px 0;
 `;
+
+export const ToggleWrapper = styled.div`
+    z-index: 200;
+    position: relative;
+`
+export const Todo = styled.div`
+    height: 18px;
+    display: grid;
+    grid-template-columns: max-content auto max-content;
+    z-index: 5;
+    
+    .fa{
+        display: none;
+    }
+    &:hover{
+        .fa{
+            display: block;
+        }
+    }
+
+   .done{
+    color : #bababa;
+    text-decoration: line-through;
+   }
+`

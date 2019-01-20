@@ -60,15 +60,15 @@ class ListOptions extends Component {
                     <ToggleActivator>
                         <i className="fa fa-chevron-down"></i>
                     </ToggleActivator>
-                    <ToggleContent id="activeList">
+                    <ToggleContent id="activeList" width="220px" side='bottom'>
                             {this.options}
                             <Divider/>
                             <Element>
                                 <form autoComplete="off" onSubmit={this.newListHandler}>
                                 <input 
-                                placeholder=" + New List"
-                                type="text" name="newList" id="newList" 
-                                ref={node => this.newListInput = node} />
+                                    placeholder=" + New List"
+                                    type="text" name="newList" id="newList" 
+                                    ref={node => this.newListInput = node} />
                                 </form>
                             </Element>
                     </ToggleContent>

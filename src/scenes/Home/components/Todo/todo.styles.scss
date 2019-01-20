@@ -19,49 +19,10 @@
     font-size: 20px;
     max-width: 100px;
 }
-// .todoFeature__lists__otherLists{
-//     margin-left: 10px;
-//     margin-right: 5px;
-
-//     i {
-//         width: 15px;
-//         border-radius: 50%;
-//         height: 15px;
-//         padding: 6px 4px 4px 6px;
-//         font-size: 12px;
-//         color: rgb(128, 128, 128);
-
-//     }
-
-//     &:hover{
-//         cursor: pointer;
-//         i {
-//             color: rgb(202, 202, 202);
-//             background-color: rgb(104, 104, 104);
-//         }
-//     }
-// }
-
-// .todoFeature__lists__options{
-//     i{
-//         color: rgb(128, 128, 128);
-//         width: 20px;
-//         height: 20px;
-//     }
-
-//     i:hover{
-//         padding: 4px 0px 0px 6px;
-//         cursor: pointer;
-//         border-radius: 50%;
-//         color: rgb(200, 200, 200);
-//         background-color: rgba($color: white, $alpha:0.3);
-//     }
-// }
 
 .todoFeature__todoList{
-    // background-color: rgb(240, 102, 125);
-    // max-height: 400px;
-    height: 300px;
+    min-height: 148px;
+    position: relative;
     overflow: scroll;
     overflow-x: hidden;
 
@@ -72,7 +33,6 @@
     background: transparent; 
     }
     
-    /* Handle */
     &::-webkit-scrollbar-thumb {
     background: rgb(128, 128, 128);
     border-radius: 15px;
@@ -85,7 +45,7 @@
     z-index: 5;
     
     &:hover{
-        .todoFeature__todoList__todoItem__options{
+        i{
             visibility: visible;
         }
     }
@@ -100,7 +60,7 @@
 }
 .todoFeature__todoList__todoItem__input{
     // this is a span tag, not an input actually
-    max-width: 270px ;
+    max-width: 250px ;
     text-overflow: ellipsis;
     overflow: hidden;
     display: block; // we need display block for the item to has width
