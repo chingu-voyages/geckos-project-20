@@ -32,20 +32,24 @@ class Toggle extends Component {
       }
 
     iterratorFunction = (child, cchildren) => {
-        console.log('dete ' ,child);
+
+        console.log('Props: ',child.props);
+        // console.log('dete ' ,child);
         return React.cloneElement(child,{
-            ...child.props,
             ...cchildren
         })
     }
 
     iterratorFunction2 = (child) => {
-        console.log('dete ' ,child);
+        console.log('Props2: ',child.props);
+        // console.log('dete ' ,child);
        if(child.props.ignore){
            return React.cloneElement(child, {
+               ...child.props
            })
        } else {
            return React.cloneElement(child, {
+            ...child.prop,
                onClick: this.clickHandler
            })
        }
@@ -60,7 +64,7 @@ class Toggle extends Component {
 
           }
 
-          var childProps = {};
+          var childProps = {...child.props};
           childProps.children = React.Children.map(child.props.children, this.iterratorFunction2);
           return this.iterratorFunction(child, childProps);
         })
@@ -68,8 +72,8 @@ class Toggle extends Component {
 
     render() {
       
-        let children = React.Children.map(this.props.children, this.iterratorFunction2);
-        // let children = this.recursiveCloneChildren(this.props.children);
+        // let children = React.Children.map(this.props.children, this.iterratorFunction2);
+        let children = this.recursiveCloneChildren(this.props.children);
         const {isOpen} = this.state;
         return (
             <ToggleWrapper ref={node => this.node = node }>

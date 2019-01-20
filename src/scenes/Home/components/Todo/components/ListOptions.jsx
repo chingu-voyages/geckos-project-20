@@ -23,7 +23,7 @@ const listOptions = (props) => {
                 .filter((listTodo) => !listTodo.done).length;
         }
 
-        return <Element key={index} onClick={() => {
+        return <Element key={index} onMouseDown={() => {
             props.changeList(listOption);
         }}> {listOption} {todoCount} </Element>
     })

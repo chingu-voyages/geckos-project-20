@@ -39,7 +39,7 @@ class TodoItem extends Component {
                 }
                 </span>
 
-                <Toggle>
+                {/* <Toggle>
                     <ToggleActivator>
                         <i className="fa fa-ellipsis-h"></i>
                     </ToggleActivator>
@@ -51,7 +51,7 @@ class TodoItem extends Component {
                         <Divider/>
                         <Element ignore onClick={this.deleteTask}>Delete</Element>
                     </ToggleContent> 
-                </Toggle>
+                </Toggle> */}
             </Todo>
         );
     }
