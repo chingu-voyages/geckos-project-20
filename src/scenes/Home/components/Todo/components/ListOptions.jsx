@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Toggle from './Toggle';
-import '../todo.styles.scss'
+import '../todo.styles.scss';
+import { ToggleActivator, ToggleContent, Divider, Element} from './StyledComponents'
 
 // is this function being recrated when the component is rerendered
+
 
 String.prototype.capitalize = function () {
     return this.charAt(0).toUpperCase() + this.slice(1);
@@ -21,9 +23,9 @@ const listOptions = (props) => {
                 .filter((listTodo) => !listTodo.done).length;
         }
 
-        return <li key={index} onClick={() => {
+        return <Element key={index} onClick={() => {
             props.changeList(listOption);
-        }}> {listOption} {todoCount} </li>
+        }}> {listOption} {todoCount} </Element>
     })
 }
 
@@ -54,36 +56,28 @@ class ListOptions extends Component {
             <div className="todoFeature__lists">
                 <span className="todoFeature__lists__activeList">{this.props.activeList.capitalize()}</span>
 
-                <Toggle name="chevron">
-                    <div>
-                        <ul id="activeList">
+                <Toggle>
+                    <ToggleActivator>
+                        <i className="fa fa-chevron-down"></i>
+                    </ToggleActivator>
+                    <ToggleContent id="activeList">
                             {this.options}
-                        </ul>
-                        <form autoComplete="off" onSubmit={this.newListHandler}>
-                            <input type="text" name="newList" id="newList" ref={node => this.newListInput = node} />
-                        </form>
-                    </div>
+                            <Divider/>
+                            <Element>
+                                <form autoComplete="off" onSubmit={this.newListHandler}>
+                                <input 
+                                placeholder=" + New List"
+                                type="text" name="newList" id="newList" 
+                                ref={node => this.newListInput = node} />
+                                </form>
+                            </Element>
+                    </ToggleContent>
                 </Toggle>
-
-                {/* <span className="todoFeature__lists__otherLists" onClick={this.toggleOpenLists}>
-                    <i className="fa fa-chevron-down"></i>
-                    {
-                        this.state.openLists ?
-                        <div style={{ position: 'absolute', left: '5px', zIndex: 5, backgroundColor: 'red' }}>
-                            <ul id="activeList">
-                                {this.options}
-                            </ul>
-                            <form autoComplete="off" onSubmit={this.newListHandler}>
-                                <input type="text" name="newList" id="newList" ref={node => this.newListInput = node} />
-                            </form>
-                        </div> : null
-                    }
-
-                </span> */}
 
                 <span className="todoFeature__lists__options">
                     <i className="fa fa-ellipsis-h"></i>
                 </span>
+            
             </div>
         );
     }

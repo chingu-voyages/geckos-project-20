@@ -4,35 +4,33 @@ class Toggle extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            open: true
-         };
+            isOpen: false,
+            ref : null
+        };
+         
     }
     clickHandler = () => {
         this.setState(prevState => ({
-            open: !prevState.open
+            isOpen: !prevState.isOpen,
         }))
+        
     }
     render() {
+        const iterratorFunction = child => {
+            return React.cloneElement(child,{
+                onClick: this.clickHandler,
+            })
+        }
+        let children = React.Children.map(this.props.children, iterratorFunction);
+        const {isOpen} = this.state;
         return (
-            <div style={{ position: 'absolute', right: '-250px', zIndex: 5, backgroundColor: 'red' }}>
+           <div style={{zIndex:50}} >
+
+                { children[0] }
                 
-                { this.props.name==='chevron' ?
+                { isOpen ? children[1] : null }
 
-                    <i className="fa fa-chevron-down" 
-                    style={{width:'100%',display:'block'}}
-                    onClick={this.clickHandler}></i>
-                    :
-                    <div onClick={this.clickHandler}>
-                        {this.props.name}
-                    </div> 
-                }
-
-            { this.state.open ? 
-                 this.props.children : null
-            }
-           
-            {console.log(this.props.children)}
-            </div>
+           </div>
         );
     }
 }

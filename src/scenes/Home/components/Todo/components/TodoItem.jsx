@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Toggle from './Toggle';
+import { ToggleActivator, ToggleContent, Divider, Element} from './StyledComponents'
 import '../todo.styles.scss'
 
 class TodoItem extends Component {
@@ -37,11 +39,11 @@ class TodoItem extends Component {
                 }
                 </span>
 
-                { true ?
-                    <span className="todoFeature__todoList__todoItem__options">
+                
+                    {/* <span className="todoFeature__todoList__todoItem__options">
                         <i className="fa fa-ellipsis-h"></i>
                     </span>
-                    :
+                    
                     <span >
                         <span onClick={this.changeEditMode}> Edit </span>
                         <span> Move to </span>
@@ -49,8 +51,20 @@ class TodoItem extends Component {
                             {listOptions}
                         </span>
                         <span onClick={this.deleteTask}> Delete </span>
-                    </span>
-                }
+                    </span> */}
+                    <Toggle>
+                    <ToggleActivator>
+                    {/* <span className="todoFeature__todoList__todoItem__options"> */}
+                            <i className="fa fa-ellipsis-h"></i>
+                    {/* </span> */}
+                    </ToggleActivator>
+                    <ToggleContent id="activeList">
+                            <Element onClick={this.changeEditMode}> Edit</Element>
+                            <Element>Move to </Element>
+                            {listOptions}
+                            <Element onClick={this.deleteTask}>Delete</Element>
+                    </ToggleContent> 
+                </Toggle>
             </div>
         );
     }
@@ -69,7 +83,7 @@ class TodoItem extends Component {
         return this.props.lists.filter((listOption) => {
             return listOption !== this.state.list
         }).map((listOption, index) => {
-            return <li key={index} onClick={() => this.changeList(listOption)}> {listOption} </li>
+            return <Element key={index} onClick={() => this.changeList(listOption)}> {listOption} </Element>
         })
     }
     
