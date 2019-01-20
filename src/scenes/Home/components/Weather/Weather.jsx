@@ -86,8 +86,8 @@ class Weather extends Component {
     // console.log(url);
     // console.log(timeOfDay);
 
-    const data = await fetch(url);
-    const weatherData = await data.json();
+    const response = await fetch(url);
+    const weatherData = await response.json();
 
     console.log('DATA',weatherData);
     this.setState({ 
