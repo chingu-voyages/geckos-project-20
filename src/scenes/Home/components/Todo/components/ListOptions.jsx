@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Toggle from './Toggle';
 import '../todo.styles.scss'
 
 // is this function being recrated when the component is rerendered
@@ -53,24 +54,35 @@ class ListOptions extends Component {
             <div className="todoFeature__lists">
                 <span className="todoFeature__lists__activeList">{this.props.activeList.capitalize()}</span>
 
-                <span className="todoFeature__lists__otherLists" onClick={this.toggleOpenLists}>
-                    <i class="fa fa-chevron-down"></i>
+                <Toggle name="chevron">
+                    <div>
+                        <ul id="activeList">
+                            {this.options}
+                        </ul>
+                        <form autoComplete="off" onSubmit={this.newListHandler}>
+                            <input type="text" name="newList" id="newList" ref={node => this.newListInput = node} />
+                        </form>
+                    </div>
+                </Toggle>
+
+                {/* <span className="todoFeature__lists__otherLists" onClick={this.toggleOpenLists}>
+                    <i className="fa fa-chevron-down"></i>
                     {
                         this.state.openLists ?
-                            <div style={{ position: 'absolute', left: '5px', zIndex: 5, backgroundColor: 'red' }}>
-                                <ul id="activeList">
-                                    {this.options}
-                                </ul>
-                                <form autoComplete="off" onSubmit={this.newListHandler}>
-                                    <input type="text" name="newList" id="newList" ref={node => this.newListInput = node} />
-                                </form>
-                            </div> : null
+                        <div style={{ position: 'absolute', left: '5px', zIndex: 5, backgroundColor: 'red' }}>
+                            <ul id="activeList">
+                                {this.options}
+                            </ul>
+                            <form autoComplete="off" onSubmit={this.newListHandler}>
+                                <input type="text" name="newList" id="newList" ref={node => this.newListInput = node} />
+                            </form>
+                        </div> : null
                     }
 
-                </span>
+                </span> */}
 
                 <span className="todoFeature__lists__options">
-                    <i class="fa fa-ellipsis-h"></i>
+                    <i className="fa fa-ellipsis-h"></i>
                 </span>
             </div>
         );

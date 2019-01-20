@@ -39,7 +39,7 @@ class TodoItem extends Component {
 
                 { true ?
                     <span className="todoFeature__todoList__todoItem__options">
-                        <i class="fa fa-ellipsis-h"></i>
+                        <i className="fa fa-ellipsis-h"></i>
                     </span>
                     :
                     <span >
