@@ -14,14 +14,15 @@ class TodoItem extends Component {
     render() {
         const listOptions = this.listOptions();
         return (
-            <div key={this.state.id}>
-                <span>
+            <div key={this.state.id} className="todoFeature__todoList__todoItem">
+                <span className="todoFeature__todoList__todoItem__checkbox">
                     <input type="checkbox" ref="isDone" defaultChecked={this.state.done} onChange={() => this.checkTask()} name={`input_${this.props.id}`} id={`checkbox_${this.props.id}`} />
                 </span>
-                <span className={ this.state.done ? 'todo--done' : ''}   >
+                <span    >
 
                 { this.state.editMode ? 
                     <input type="text" 
+                    className={ this.state.done ? 'todoFeature__todoList__todoItem__input--editMode done' : 'todoFeature__todoList__todoItem__input--editMode'}
                         ref={(input) => input ? input.focus() : void 0 } 
                         defaultValue={this.state.task} 
                         onKeyUp={(event) => {
@@ -29,18 +30,27 @@ class TodoItem extends Component {
                                 this.inputHandler(event);
                             }
                         }} 
-                        onBlur={this.inputHandler} /> : <span> {this.state.task} </span>
+                        onBlur={this.inputHandler} /> : <span
+                        onDoubleClick={this.changeEditMode}
+                        className={ this.state.done ? 'todoFeature__todoList__todoItem__input done' : 'todoFeature__todoList__todoItem__input'}> 
+                         {this.state.task} </span>
                 }
                 </span>
 
-                <span >
-                    <span onClick={this.changeEditMode}> Edit </span>
-                    <span> Move to </span>
-                    <span>
-                        {listOptions}
+                { true ?
+                    <span className="todoFeature__todoList__todoItem__options">
+                        <i class="fa fa-ellipsis-h"></i>
                     </span>
-                    <span onClick={this.deleteTask}> Delete </span>
-                </span>
+                    :
+                    <span >
+                        <span onClick={this.changeEditMode}> Edit </span>
+                        <span> Move to </span>
+                        <span>
+                            {listOptions}
+                        </span>
+                        <span onClick={this.deleteTask}> Delete </span>
+                    </span>
+                }
             </div>
         );
     }

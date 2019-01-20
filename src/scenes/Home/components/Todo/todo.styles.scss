@@ -1,12 +1,3 @@
-.todo--done{
-    color: #bababa;
-    text-decoration: line-through;
-
-    input{
-        color : #bababa;
-        text-decoration: line-through;
-    }
-}
 
 .todoFeature{
     position: relative;
@@ -62,15 +53,14 @@
         padding: 4px 0px 0px 6px;
         cursor: pointer;
         border-radius: 50%;
-        color: rgb(184, 184, 184);
-        background-color: rgb(90, 90, 90);
+        color: rgb(200, 200, 200);
+        background-color: rgba($color: white, $alpha:0.3);
     }
 }
 
 .todoFeature__todoList{
-    background-color: rgb(240, 102, 125);
+    // background-color: rgb(240, 102, 125);
     max-height: 400px;
-    min-height: 150px;
     overflow: scroll;
     overflow-x: hidden;
 
@@ -86,10 +76,77 @@
     background: rgb(128, 128, 128);
     border-radius: 15px;
     }
-    
-    /* Handle on hover */
-   
 }
+.todoFeature__todoList__todoItem{
+    height: 18px;
+    display: grid;
+    grid-template-columns: max-content auto max-content;
+    z-index: 5;
+    
+    &:hover{
+        .todoFeature__todoList__todoItem__options{
+            visibility: visible;
+        }
+    }
+
+   .done{
+    color : #bababa;
+    text-decoration: line-through;
+   }
+}
+.todoFeature__todoList__todoItem__checkbox{
+    margin-right: 7px;
+}
+.todoFeature__todoList__todoItem__input{
+    // this is a span tag, not an input actually
+    max-width: 270px ;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block; // we need display block for the item to has width
+}
+.todoFeature__todoList__todoItem__input--editMode{
+    // edit mode is a input field in our case
+    width:100%;
+    overflow: hidden;
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+.todoFeature__todoList__todoItem__options{
+    visibility: hidden;
+    margin-left: 7px;
+    i{
+        color: rgb(128, 128, 128);
+        width: 15px;
+        height: 15px;
+        z-index: 6;
+    }
+    
+    i::after{
+        content: "";
+        display: inline-block;
+        position: absolute;
+        right: 12px;
+        z-index: 100;
+        height: 20px;
+        width: 20px;
+        line-height: 15px;
+        box-sizing: border-box;
+        cursor: pointer;
+        border-radius: 50%;
+        background-color:rgba(224, 224, 224, 0.001);
+    }
+
+    i:hover{
+        color: rgb(221, 221, 221);
+
+        &::after{
+            background-color: rgba($color: white, $alpha:0.3);
+        }
+    }
+
+}
+
 .todoFeature__input{
     width: 99%;
     background: transparent;
