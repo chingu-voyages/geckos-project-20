@@ -4,6 +4,7 @@
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 3;
 }
 
 .app-container {
@@ -21,6 +22,8 @@
   .top-left {
     position: relative;
     flex: 1 0 auto;
+    padding-right: 38px;
+    padding-top: 20px;
   }
 
   .top-right {
@@ -42,6 +45,15 @@
   width: 100%;
   text-align: center;
   transform: translate(-50%, -50%);
+}
+
+.center-below {
+  position: absolute;
+  display: block;
+  left: 50%;
+  top: 70.5%;
+  transform: none;
+  text-align: center;
 }
 
 .bottom {
