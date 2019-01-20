@@ -30,17 +30,46 @@ class Toggle extends Component {
         }
         this.clickHandler();
       }
-    iterratorFunction = child => {
-        console.log('Dete',child);
+
+    iterratorFunction = (child, cchildren) => {
+        console.log('dete ' ,child);
         return React.cloneElement(child,{
-            onClick: this.clickHandler,
+            ...child.props,
+            ...cchildren
         })
     }
 
+    iterratorFunction2 = (child) => {
+        console.log('dete ' ,child);
+       if(child.props.ignore){
+           return React.cloneElement(child, {
+           })
+       } else {
+           return React.cloneElement(child, {
+               onClick: this.clickHandler
+           })
+       }
+    }
+
+    recursiveCloneChildren(children) {
+        return React.Children.map(children, child => {
+
+          if(!React.isValidElement(child)) {
+              console.count('It Got here');
+              return child;
+
+          }
+
+          var childProps = {};
+          childProps.children = React.Children.map(child.props.children, this.iterratorFunction2);
+          return this.iterratorFunction(child, childProps);
+        })
+      }
+
     render() {
       
-        let children = React.Children.map(this.props.children, this.iterratorFunction);
-
+        let children = React.Children.map(this.props.children, this.iterratorFunction2);
+        // let children = this.recursiveCloneChildren(this.props.children);
         const {isOpen} = this.state;
         return (
             <ToggleWrapper ref={node => this.node = node }>
