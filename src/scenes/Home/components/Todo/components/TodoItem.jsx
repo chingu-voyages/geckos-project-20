@@ -46,10 +46,10 @@ class TodoItem extends Component {
                     <ToggleContent id="activeList" side="left">
                         <Element onClick={this.changeEditMode}> Edit</Element>
                         <Divider/>
-                        <Element>Move to ...</Element>
+                        <Element ignore>Move to ...</Element>
                         {listOptions}
                         <Divider/>
-                        <Element onClick={this.deleteTask}>Delete</Element>
+                        <Element ignore onClick={this.deleteTask}>Delete</Element>
                     </ToggleContent> 
                 </Toggle>
             </Todo>
