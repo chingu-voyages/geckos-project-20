@@ -16,7 +16,8 @@ class Weather extends Component {
       lat: '',
       lon: '',
       timeOfDay: 1,
-      isShowing: false
+      isShowingWeather: false,
+      weatherForecast: {},
     };
   };
 
@@ -25,12 +26,12 @@ class Weather extends Component {
 
     //Example API call: http://api.openweathermap.org/data/2.5/weather?lat=51&lon=-1&units=metric&type=accurate&mode=json&APPID=YOUR_API_KEY
     const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
-    let url = `http://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lon}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
+    let currentURL = `http://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lon}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
     let date = new Date();
     let timeOfDay = date.getHours();
-    console.log(url);
+    console.log(currentURL);
     console.log(timeOfDay);
-    return fetch(url)
+    return fetch(currentURL)
     .then(response => response.json())
     .then((data) =>
       this.setState({ 
@@ -48,7 +49,27 @@ class Weather extends Component {
       })
       );
   }
-  
+
+  getForecastWeather () {
+    //Forecast API call...
+    //http://api.openweathermap.org/data/2.5/forecast?lat=51&lon=-1&units=metric&type=accurate&mode=json&APPID=${API_KEY}
+    const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
+    let forecastURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${this.state.lat}&lon=${this.state.lon}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
+    console.log(forecastURL);
+    return fetch(forecastURL)
+    .then(response => response.json())
+    .then((data) =>
+      this.setState({ 
+        weatherForecast: data,
+      })
+      )
+    .catch(error => 
+      this.setState({ 
+        error, 
+        isLoading: false 
+      })
+      );
+  }
 
 componentDidMount() {
 
@@ -59,7 +80,8 @@ componentDidMount() {
       (prevState) => ({
         lat: position.coords.latitude, 
         lon: position.coords.longitude
-        }), () => { this.getCurrentWeather(); } //Passes geolocation to getCurrentWeather function
+        }), () => { this.getCurrentWeather();
+                    this.getForecastWeather(); } //Passes geolocation to getCurrentWeather and getForecastWeather functions
     );
 },
     (error) => this.setState({ error: error }),
@@ -74,18 +96,20 @@ URL is http://openweathermap.org/img/w/10d.png */
 
 
 //Function for opening/closing modal for expanded view
-onToggleOpen = (e) => {
+onToggleOpenWeather = (e) => {
   this.setState((prevState) =>
   ({
-   isShowing: !prevState.isShowing
+   isShowingWeather: !prevState.isShowingWeather
  })
 )
 }
 
+
+
   render() {
 
     const { weather, error, isLoading, weatherID, weatherDescription, timeOfDay } = this.state;
-
+  
       if (error) {
       return <p>{error.message}</p>;
     }
@@ -96,8 +120,8 @@ onToggleOpen = (e) => {
 
     return (
    
-      <div className="weather-app-container weather" onClick={this.onToggleOpen}>
-
+      <div className="weather-app-container weather">
+      <div className="weather-container-small" onClick={this.onToggleOpenWeather}>
       <div className="weather-wrapper">
       <div className="weather-stat">
       <img className="weather-icon" src={weatherIcon(weatherID, timeOfDay)} alt={weatherDescription}/>
@@ -107,15 +131,16 @@ onToggleOpen = (e) => {
       <div className="weather-location-label"> 
         <p>{weather.name}</p>
         </div> 
+        </div>
       <div>
       
-      {this.state.isShowing &&
+      {this.state.isShowingWeather &&
               <WeatherExpanded
-              onToggleOpen={this.onToggleOpen}
               weather={this.state.weather}
               weatherID={this.state.weatherID}
               timeOfDay={this.state.timeOfDay}
               weatherDescription={this.state.weatherDescription}
+              weatherForecast={this.state.weatherForecast}
           />
             }
             
