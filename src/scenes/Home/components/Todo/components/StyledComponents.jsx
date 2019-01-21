@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ToggleActivator = styled.div`
+export const Activator = styled.div`
     margin-left: 10px;
     margin-right: 5px;
 
@@ -23,7 +23,7 @@ export const ToggleActivator = styled.div`
      }
 `;
 
-export const ToggleContent = styled.ul`
+export const Content = styled.ul`
 
     ${ (props) => {
          if(props.side === 'left'){
