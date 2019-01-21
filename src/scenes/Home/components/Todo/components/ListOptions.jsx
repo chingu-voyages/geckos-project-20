@@ -61,14 +61,13 @@ class ListOptions extends Component {
                         <i className="fa fa-chevron-down"></i>
                     </Activator>
 
-                    {/* Add ignore prop in ToggleContent if you want it
-                        to not close when clicking on items, or to close 
-                        only if clicked outside the toggle or on the activator
+                    {/* Add ignore prop in ToggleContent Element if you want it
+                        to not close when clicking on them
                     */}
                     <Content   id="activeList" width="220px" side='bottom'>
                             {this.options}
                             <Divider/>
-                            <Element ignore>
+                            <Element ignore >
                                 <form autoComplete="off" onSubmit={this.newListHandler}>
                                 <input 
                                     placeholder=" + New List"
