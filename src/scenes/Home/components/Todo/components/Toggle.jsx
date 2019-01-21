@@ -31,17 +31,22 @@ class Toggle extends Component {
         this.clickHandler();
       }
 
-    iterratorFunction = (child, cchildren) => {
-
-        console.log('Props: ',child.props);
+      returnFirstLevelWithModifiedChildren = (child, cchildren, applyOnThis) => {
+        // console.log('Props: ',child.props);
         // console.log('dete ' ,child);
-        return React.cloneElement(child,{
+        return applyOnThis ? 
+         React.cloneElement(child,{
+            onClick: this.clickHandler,
+            ...cchildren
+        }) 
+        :
+        React.cloneElement(child,{
             ...cchildren
         })
     }
 
-    iterratorFunction2 = (child) => {
-        console.log('Props2: ',child.props);
+    applyClickToChild = (child) => {
+        // console.log('Props2: ',child.props);
         // console.log('dete ' ,child);
        if(child.props.ignore){
            return React.cloneElement(child, {
@@ -55,25 +60,30 @@ class Toggle extends Component {
        }
     }
 
-    recursiveCloneChildren(children) {
-        return React.Children.map(children, child => {
-
+    secondLevelCloneChildren(children) {
+        return React.Children.map(children, (child,index) => {
           if(!React.isValidElement(child)) {
-              console.count('It Got here');
               return child;
-
           }
-
-          var childProps = {...child.props};
-          childProps.children = React.Children.map(child.props.children, this.iterratorFunction2);
-          return this.iterratorFunction(child, childProps);
+          
+          // This if serves to apply the onClick to the ToggleActivator only, and not it's child
+          // If the child also has the function, then it will close then open super fast and it
+          // would feel like it wasn't even clicked
+          if (index === 0){
+            return this.returnFirstLevelWithModifiedChildren(child, childProps, true);
+          } else {
+            var childProps = {...child.props};
+            childProps.children = React.Children.map(child.props.children, this.applyClickToChild);
+            return this.returnFirstLevelWithModifiedChildren(child, childProps, false);
+          }
         })
       }
 
     render() {
       
         // let children = React.Children.map(this.props.children, this.iterratorFunction2);
-        let children = this.recursiveCloneChildren(this.props.children);
+        let children = this.secondLevelCloneChildren(this.props.children);
+
         const {isOpen} = this.state;
         return (
             <ToggleWrapper ref={node => this.node = node }>

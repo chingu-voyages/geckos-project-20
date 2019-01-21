@@ -43,6 +43,7 @@ export const ToggleContent = styled.ul`
 `;
 
 export const Element = styled.li`
+    cursor: pointer;
     line-height: 30px;
     color: #dadada;
     margin:0;
