@@ -23,9 +23,10 @@ const listOptions = (props) => {
                 .filter((listTodo) => !listTodo.done).length;
         }
 
-        return <Element key={index} onMouseDown={() => {
-            props.changeList(listOption);
-        }}> {listOption} {todoCount} </Element>
+        return <Element 
+        key={index}
+        listOption={listOption}
+        changeList={props.changeList}> {listOption} {todoCount} </Element>
     })
 }
 
@@ -67,7 +68,7 @@ class ListOptions extends Component {
                     <Content   id="activeList" width="220px" side='bottom'>
                             {this.options}
                             <Divider/>
-                            <Element ignore >
+                            <Element ignore>
                                 <form autoComplete="off" onSubmit={this.newListHandler}>
                                 <input 
                                     placeholder=" + New List"

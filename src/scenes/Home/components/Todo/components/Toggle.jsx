@@ -50,12 +50,19 @@ class Toggle extends Component {
         // console.log('dete ' ,child);
        if(child.props.ignore){
            return React.cloneElement(child, {
-               ...child.props
+               ...child.props,
+               onClick: ()=>{
+                    child.props.changeList && child.props.changeList(child.props.listOption);
+                    
+               }
            })
        } else {
            return React.cloneElement(child, {
             ...child.prop,
-               onClick: this.clickHandler
+               onClick: () => {
+                    child.props.changeList && child.props.changeList(child.props.listOption);
+                    this.clickHandler();
+               }
            })
        }
     }
