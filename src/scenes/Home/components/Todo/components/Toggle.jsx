@@ -24,12 +24,19 @@ class Toggle extends Component {
     }
   
     handleOutsideClick = (e) => {
-        // ignore clicks on the component itself
-        if (this.node.contains(e.target)) {
-          return;
+        if(!this.node === null){
+            // ignore clicks on the component itself
+            if (this.node.current.contains(e.target)) {
+                return;
+            }
+            // only executes if the ref node is not null and it's not itself
+
+            // if it is null then it means that the task got deleted and we don't
+            // have to call this.clickHandler at all since it changes state of the tas
+            // and if the task is deleted then we don't have a state to change at all :)
+            this.clickHandler();
         }
-        this.clickHandler();
-      }
+    }
 
       returnFirstLevelWithModifiedChildren = (child, cchildren, applyOnThis) => {
         // console.log('Props: ',child.props);
@@ -53,6 +60,8 @@ class Toggle extends Component {
                ...child.props,
                onClick: ()=>{
                     child.props.changeList && child.props.changeList(child.props.listOption);
+                    child.props.changeEditMode && child.props.changeEditMode();
+                    child.props.deleteTask && child.props.deleteTask()
                     
                }
            })
@@ -61,6 +70,8 @@ class Toggle extends Component {
             ...child.prop,
                onClick: () => {
                     child.props.changeList && child.props.changeList(child.props.listOption);
+                    child.props.changeEditMode && child.props.changeEditMode();
+                    child.props.deleteTask && child.props.deleteTask();
                     this.clickHandler();
                }
            })
@@ -87,13 +98,18 @@ class Toggle extends Component {
       }
 
     render() {
-      
         // let children = React.Children.map(this.props.children, this.iterratorFunction2);
         let children = this.secondLevelCloneChildren(this.props.children);
 
         const {isOpen} = this.state;
         return (
-            <ToggleWrapper ref={node => this.node = node }>
+
+            // the ref syntax is a shorthand way to make a ref
+            // the long way would be to make a variable in the constructor > this.node=React.createRef()
+            // and in componentDidMount to focus it > this.node.current.focus()
+            // and you would also need to change bottom like so > ref={this.node}
+
+            <ToggleWrapper ref={node => this.node = node}>
                 { children[0] }
                 
                 { isOpen ? children[1] : null }
