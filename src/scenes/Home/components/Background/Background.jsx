@@ -35,7 +35,7 @@ class Background extends Component {
             return <p>Loading ...</p>;
         } else {
             return (
-                <div class="background">
+                <div class="background" >
                     <div className="background-image" style={backgroundStyle}></div>
                     <div className="background-overlay"></div>
                 </div>

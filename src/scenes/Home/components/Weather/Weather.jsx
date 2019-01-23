@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './styles.scss';
 import { weatherIcon } from './WeatherIcon';
-import WeatherExpanded from './WeatherExpanded';
+// import WeatherExpanded from './WeatherExpanded';
 import WeatherToday from './WeatherToday';
-
+import WeeklyForecast from './WeeklyForecast';
 
 class Weather extends Component {
 
@@ -11,6 +11,7 @@ class Weather extends Component {
 		super(props);
 
 		this.state = {
+			weeklyForecast: [],
 			weather: {},
 			isLoading: true,
 			lat: '',
@@ -29,21 +30,20 @@ class Weather extends Component {
 				});
 				console.log(this.state.lat, this.state.lon);
 				this.getCurrentWeather();
+				this.getWeeklyForecast();
 			},
 			error => console.error(error));
 	}
 
 	render() {
 
-		const { weather, isLoading, weatherID, weatherDescription, timeOfDay } = this.state;
-
+		const { isOpen, weather, isLoading, weatherID, weatherDescription, timeOfDay } = this.state;
 		return (
 			<div>
 				{
 				isLoading ? (
 				<p>Loading ... </p>
-				) : (
-				<WeatherToday
+				) : (<WeatherToday
 					toggleOpen={this.toggleOpen}
 					imgSrc={weatherIcon(weatherID, timeOfDay)}
 					imgAlt={weatherDescription}
@@ -51,33 +51,33 @@ class Weather extends Component {
 				/>)	
 				}
 
-				{this.state.isOpen &&
-					<WeatherExpanded
-						onToggleOpen={this.onToggleOpen}
-						weather={this.state.weather}
-						weatherID={weatherID}
-						timeOfDay={this.state.timeOfDay}
-						weatherDescription={weatherDescription}
-					/>
+				{ isOpen &&
+					<WeeklyForecast
+						getWeather={this.getCurrentWeather}
+
+				/>
 				}
 			</div>
 
 		);
 	}
 
-	async getCurrentWeather() {
+	getCurrentWeather = async (cityName) => {
 
 		// const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
+		const byCoordinates = `lat=${this.state.lat}&lon=${this.state.lon}`;
+		const byName = `q=${cityName}`
+
 		const API_KEY = '9c77935cf1f7d3fae12ebf15913a8b2d';
-		let url = `http://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lon}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
+		let currentWeatherUrl = `http://api.openweathermap.org/data/2.5/weather?${cityName?byName:byCoordinates}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
 
 		let date = new Date();
 		let timeOfDay = date.getHours();
 
-		const response = await fetch(url);
+		const response = await fetch(currentWeatherUrl);
 		const weatherData = await response.json();
 
-		console.log('DATA', weatherData);
+		// console.log('DATA', weatherData);
 		this.setState({
 			timeOfDay: timeOfDay,
 			weather: weatherData,
@@ -87,13 +87,34 @@ class Weather extends Component {
 		});
 	}
 
+	getWeeklyForecast = async (cityName) => {
+		const byCoordinates = `lat=${this.state.lat}&lon=${this.state.lon}`;
+		const byName = `q=${cityName}`;
+
+		const API_KEY = '9c77935cf1f7d3fae12ebf15913a8b2d';
+		let currentWeatherUrl = `http://api.openweathermap.org/data/2.5/forecast?${cityName?byName:byCoordinates}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
+
+		const response = await fetch(currentWeatherUrl);
+		const weatherData = await response.json();
+
+		console.log(weatherData);
+
+		this.setState({
+			weeklyForecast: weatherData.list
+		});
+
+		console.log('WF' , this.state.weeklyForecast);
+	}
+
+
 	toggleOpen = () => {
 		this.setState((prevState) => ({
 			isOpen: !prevState.isOpen
 		})
 		)
 	}
+
 }
 
-export default Weather
+export default Weather;
 

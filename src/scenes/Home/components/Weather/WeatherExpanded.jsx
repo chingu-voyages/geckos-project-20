@@ -10,6 +10,8 @@ const WeatherExpanded = (props) => {
             <div className="weather-app-wrapper"> 
                 
                 <div className="app weather-app">
+
+				{props.weatherToday}
                 <section className="weather-current">
                     <header className="weather-current-header">
                         <span className="weather-current-location" title="">
