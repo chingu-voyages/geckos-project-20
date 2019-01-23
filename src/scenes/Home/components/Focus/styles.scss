@@ -48,8 +48,15 @@
     width: 100%;
   }
 
-    &-icon-clear {
-      width: 18px;
-      height: 18px;
-    }
+  &-icon-clear {
+    width: 18px;
+    height: 18px;
+    font-weight: bold;
+  }
+
+  &-icon-plus {
+    width: 18px;
+    height: 18px;
+  }
+    
 }

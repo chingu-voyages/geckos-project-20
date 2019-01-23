@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-//import { MdCancel } from "react-icons/md";
-import { MdClear } from "react-icons/md";
+import { GoPlus } from "react-icons/go";
+import { GoX } from "react-icons/go";
 import { FaRegCheckSquare } from "react-icons/fa";
 import { FaRegSquare } from "react-icons/fa";
-//import { FaCircleNotch } from "react-icons/fa";
+//import { FaCircleNotch } from "react-icons/fa"; //Loading Icon
 import "./styles.scss";
 
 class Focus extends Component {
@@ -35,6 +35,7 @@ class Focus extends Component {
     this.setState(e => ({ input: value }));
   };
 
+
   toggleLine = e => {
     if (this.state.line === "none") {
       this.setState(() => ({
@@ -44,15 +45,14 @@ class Focus extends Component {
     } else {
       this.setState(() => ({ line: "none" }));
     }
-    if(this.state.isChecked === "false") {
-      this.setState(() => ({
-        isChecked: "true"
-      }));
-    } else {
-      this.setState(() => ({ isChecked: "false" }));
-    }
+    this.setState((prevState) =>
+    ({
+     isChecked: !prevState.isChecked
+   })
+  )
   };
 
+ 
  
   
 
@@ -76,15 +76,22 @@ class Focus extends Component {
 
     const isChecked = this.state.isChecked;
     let checkIcon;
+    let clearPlusIcon;
 
     if (isChecked) {
       checkIcon =  <FaRegCheckSquare  className="icon icon-checkbox focus-done"
                                       onClick={(e) => this.toggleLine(e)}
                                       />;
+      clearPlusIcon = <GoPlus className="icon focus-icon-plus" 
+                              onClick= {this.onCompleteClick} />
+
     } else {
       checkIcon = <FaRegSquare  className="icon icon-checkbox-empty focus-open"
                                 onClick={(e) => this.toggleLine(e)} //Write a different function to uncheck box or prev state...
                                 />;
+
+      clearPlusIcon = <GoX  className="focus-icon-clear" 
+                                onClick={this.onCompleteClick} />
     }
 
     return (
@@ -114,7 +121,9 @@ class Focus extends Component {
                     {/*<i class="icon icon-delete">✕</i>*/}
                   </span>
                   </span>
-                  <MdClear className="focus-icon-clear" onClick={this.onCompleteClick} />
+
+                  {clearPlusIcon}
+
                   </div>
                 </div>
           </React.Fragment>
@@ -129,7 +138,7 @@ class Focus extends Component {
           </React.Fragment>
         )}
 
-        {/* To be added... 
+        {/* TODO to add for "nice" message... 
         <div className="team-focus-wrapper"></div>
 
 <div className="focus-message-wrapper">
