@@ -16,7 +16,7 @@ class Weather extends Component {
 			lat: '',
 			lon: '',
 			timeOfDay: 1,
-			isShowing: false
+			isOpen: false
 		};
 	};
 
@@ -40,17 +40,18 @@ class Weather extends Component {
 		return (
 			<div>
 				{
-					isLoading ? <p>Loading ... </p>
-						:
-						<WeatherToday
-							toggleOpen={this.onToggleOpen}
-							imgSrc={weatherIcon(weatherID, timeOfDay)}
-							imgAlt={weatherDescription}
-							weather={weather}
-						/>
+				isLoading ? (
+				<p>Loading ... </p>
+				) : (
+				<WeatherToday
+					toggleOpen={this.toggleOpen}
+					imgSrc={weatherIcon(weatherID, timeOfDay)}
+					imgAlt={weatherDescription}
+					weather={weather}
+				/>)	
 				}
 
-				{this.state.isShowing &&
+				{this.state.isOpen &&
 					<WeatherExpanded
 						onToggleOpen={this.onToggleOpen}
 						weather={this.state.weather}
@@ -86,9 +87,9 @@ class Weather extends Component {
 		});
 	}
 
-	onToggleOpen = (e) => {
+	toggleOpen = () => {
 		this.setState((prevState) => ({
-			isShowing: !prevState.isShowing
+			isOpen: !prevState.isOpen
 		})
 		)
 	}

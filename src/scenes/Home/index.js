@@ -13,22 +13,22 @@ class Home extends Component {
     return (
      
       <div className="main-view">
-      <Background />
+      {/* <Background /> */}
         <div className="app">
           <div className="top-row">
           <div className="top-left">
-            <Search />
+            {/* <Search /> */}
             </div>
           <div className="top-right">
             <Weather />
             </div>
           </div>
-            <Clock />
+            {/* <Clock /> */}
              {/* TODO put all positioning classes in this file */}
              <div className="center-below">
-            <Focus />
+            {/* <Focus /> */}
             </div>
-            <Quote />
+            {/* <Quote /> */}
            
         </div>
       </div>
