@@ -3,7 +3,7 @@ import { GoPlus } from "react-icons/go";
 import { GoX } from "react-icons/go";
 import { FaRegCheckSquare } from "react-icons/fa";
 import { FaRegSquare } from "react-icons/fa";
-//import { FaCircleNotch } from "react-icons/fa"; //Loading Icon
+import { FaCircleNotch } from "react-icons/fa"; //Loading Icon
 import "./styles.scss";
 
 class Focus extends Component {
@@ -108,6 +108,13 @@ class Focus extends Component {
                     </h3>
                   {clearPlusIcon}
                   </div>
+                  {this.state.isChecked && 
+                    <div className="focus-message">
+                      <FaCircleNotch className="focus-icon-spin"/>
+                      Way to go!
+              </div>
+        
+        }
                 </div>
           </React.Fragment>
         ) : (
@@ -120,14 +127,6 @@ class Focus extends Component {
             </div>
           </React.Fragment>
         )}
-
-        {/* TODO to add for "nice" message... 
-        <div className="team-focus-wrapper"></div>
-        <div className="focus-message-wrapper">
-	      <div className="message focus-message">
-	      </div>
-        </div>
-        */}
       </div>
       
     );
