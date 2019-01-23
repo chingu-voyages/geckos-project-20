@@ -37,7 +37,7 @@ class Weather extends Component {
 
 	render() {
 
-		const { isOpen, weather, isLoading, weatherID, weatherDescription, timeOfDay } = this.state;
+		const { weeklyForecast, isOpen, weather, isLoading, weatherID, weatherDescription, timeOfDay } = this.state;
 		return (
 			<div>
 				{
@@ -51,10 +51,13 @@ class Weather extends Component {
 				/>)	
 				}
 
-				{ isOpen &&
+				{/* { isOpen && */}
 					<WeeklyForecast
-						getWeather={this.getCurrentWeather}
-
+					getWeather={this.getCurrentWeather}
+					weatherDescription={weatherDescription}
+					currentWeatherImgSrc={weatherIcon(weatherID, timeOfDay)}
+					currentWeather={weather}
+					weeklyForecast={weeklyForecast}
 				/>
 				}
 			</div>
@@ -77,7 +80,7 @@ class Weather extends Component {
 		const response = await fetch(currentWeatherUrl);
 		const weatherData = await response.json();
 
-		// console.log('DATA', weatherData);
+		console.log('Current Weather', weatherData);
 		this.setState({
 			timeOfDay: timeOfDay,
 			weather: weatherData,
@@ -97,7 +100,7 @@ class Weather extends Component {
 		const response = await fetch(currentWeatherUrl);
 		const weatherData = await response.json();
 
-		console.log(weatherData);
+		console.log('Weekly Forecast :', weatherData);
 
 		this.setState({
 			weeklyForecast: weatherData.list

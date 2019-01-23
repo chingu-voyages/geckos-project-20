@@ -1,11 +1,23 @@
 import React from 'react';
-import styled from 'styled-components';
+import { Wrapper, CurrentWeather, WeeklyWeather, Day } from './StyledComponents';
 
 const WeeklyForecast = (props) => {
+
+    const kids = () => {
+       return [1,2,3,4,5].map((day, index) => {
+           return <Day> {index} </Day>
+       })
+    }
    return (
-        <div>
-            WeeklyForecast
-        </div>
+        <Wrapper>
+           <CurrentWeather>
+
+           </CurrentWeather>
+
+           <WeeklyWeather>
+                {kids()}
+           </WeeklyWeather>
+        </Wrapper>
    )
 }   
 
