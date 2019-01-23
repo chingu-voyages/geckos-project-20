@@ -18,7 +18,6 @@ class Focus extends Component {
     this.onChange = this.onChange.bind(this);
     this.toggleLine = this.toggleLine.bind(this);
     this.onCompleteClick = this.onCompleteClick.bind(this);
-    //this.toggleCheck = this.toggleCheck.bind(this);
   }
 
   componentDidMount() {
@@ -52,14 +51,12 @@ class Focus extends Component {
   )
   };
 
- 
- 
-  
-
   onCompleteClick = () => {
     localStorage.removeItem("focus");
     this.setState(() => ({
-      focus: ""
+      focus: "",
+      line: "none",
+      isChecked: false,
     }));
   };
 
@@ -83,20 +80,19 @@ class Focus extends Component {
                                       onClick={(e) => this.toggleLine(e)}
                                       />;
       clearPlusIcon = <GoPlus className="icon focus-icon-plus" 
-                              onClick= {this.onCompleteClick} />
+                              onClick= {this.onCompleteClick} />;
 
     } else {
       checkIcon = <FaRegSquare  className="icon icon-checkbox-empty focus-open"
-                                onClick={(e) => this.toggleLine(e)} //Write a different function to uncheck box or prev state...
+                                onClick={(e) => this.toggleLine(e)}
                                 />;
 
       clearPlusIcon = <GoX  className="focus-icon-clear" 
-                                onClick={this.onCompleteClick} />
+                                onClick={this.onCompleteClick} />;
     }
 
     return (
 
-    <div >
       <div className="focus-wrapper focuses">
 
         {this.state.focus ? (
@@ -104,26 +100,13 @@ class Focus extends Component {
             <div className="focus-complete">
               <h4 className="focus-title">TODAY</h4>
                 <div className="focus-row">
-		              <span className="control checkbox">
-
                   {checkIcon} 
-            
-                    </span>
-                  <h3 className="focus-todays-focus" 
-                        data-test="focus-active"
+                  <h3 className="focus-todays-focus"
                         style={{ textDecoration: this.state.line }}
                         >
                   {this.state.focus}
                     </h3>
-
-	                <span className="control delete">
-                  <span className="icon-wrapper dash-icon">
-                    {/*<i class="icon icon-delete">✕</i>*/}
-                  </span>
-                  </span>
-
                   {clearPlusIcon}
-
                   </div>
                 </div>
           </React.Fragment>
@@ -140,14 +123,11 @@ class Focus extends Component {
 
         {/* TODO to add for "nice" message... 
         <div className="team-focus-wrapper"></div>
-
-<div className="focus-message-wrapper">
-	<div className="message focus-message">
-
-	</div>
-</div>
+        <div className="focus-message-wrapper">
+	      <div className="message focus-message">
+	      </div>
+        </div>
         */}
-      </div>
       </div>
       
     );
