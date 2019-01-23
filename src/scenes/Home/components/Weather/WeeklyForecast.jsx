@@ -1,5 +1,5 @@
 import React from 'react';
-import { Wrapper, CurrentWeather, WeeklyWeather, Day } from './StyledComponents';
+import { Wrapper, CurrentWeather, WeeklyWeather, Day, NameSearch } from './StyledComponents';
 
 const WeeklyForecast = (props) => {
 
@@ -11,7 +11,17 @@ const WeeklyForecast = (props) => {
    return (
         <Wrapper>
            <CurrentWeather>
-
+                <NameSearch>
+                    <div>Name</div>
+                    <div>Weather Description</div>
+                </NameSearch>
+                <div className="temperature">
+                    <div className="temperature-data">
+                        <img src="" alt="Cloud"/>
+                    </div>
+                    <div>37 &#0176; </div>
+                    <div>26 &#0176; </div>
+                </div>
            </CurrentWeather>
 
            <WeeklyWeather>

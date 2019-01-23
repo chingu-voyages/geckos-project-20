@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
     right: 15px;
     border-radius: 5px;
     box-sizing: border-box;
-    padding: 12px;
+    padding: 18px;
     /* This is the little arrow top right corner */
     &::after{ 
         content: "";
@@ -34,8 +34,47 @@ export const Wrapper = styled.div`
 export const CurrentWeather = styled.div`
     border-bottom: 1px solid pink;
     display: grid;
+    align-items: end;
+    grid-template-rows: 50px 1fr;
+    text-align: left;
 
+    & > * {
+        border: 1px solid red;
+    }
+
+    & > .temperature{
+        max-height: 65px;
+        & > *{
+            height: 100%;
+            padding: 0 2px;
+            display: inline-block;
+            margin-right: 5px;
+            border: 1px solid greenyellow;
+        }
+
+        img{
+
+        }
+
+        #max-temp{
+
+        }
+
+        #min-temp{
+
+        }
+    }
 `;
+
+export const NameSearch = styled.div`
+   
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    & > * {
+        border: 1px solid lightskyblue;
+    }
+`;
+
 export const WeeklyWeather = styled.div`
     display: grid;
     grid-template-columns: repeat(5, 1fr); 
