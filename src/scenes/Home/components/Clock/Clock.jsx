@@ -19,12 +19,18 @@ class Introduction extends React.Component {
 } 
 
 class UserGreeting extends React.Component {
+
+  showMore = () => {
+    console.log('open dropdown here');
+  }
+
   render() {
     return (
       <div className="center">
       <div className="app-container clock">
         <div className="clock-time">{this.props.date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
         <div className="clock-greeting">{this.props.greeting}, {this.props.name}.</div>
+        <span className="clock-greeting-more" onClick={this.showMore}>icon</span>
       </div>
     </div>
     );
@@ -45,6 +51,11 @@ class GreetingControl extends Component {
   }
 
   componentDidMount() {
+    const name = JSON.parse(localStorage.getItem( "name" ));
+    if (name) {
+      this.setState( { name, setName: true } );
+    }
+  
     this.timer = setInterval(
       () => {
         this.getDate();
@@ -94,6 +105,9 @@ class GreetingControl extends Component {
         setName: true,
         name: name
       });
+
+      localStorage.setItem('name', JSON.stringify(name));
+      localStorage.setItem('setName', true);
     }
   }
 

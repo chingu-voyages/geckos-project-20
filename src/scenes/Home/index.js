@@ -9,7 +9,9 @@ import Focus from './components/Focus/index';
 import './styles.scss';
 
 class Home extends Component {
+
   render() {
+
     return (
      
       <div className="main-view">
@@ -23,13 +25,16 @@ class Home extends Component {
             <Weather />
             </div>
           </div>
-            <Clock />
-             {/* TODO put all positioning classes in this file */}
+
+        </div>
+        <div className="center">
+          <Clock />
+          </div>
+        <div className="bottom">
              <div className="center-below">
             <Focus />
             </div>
             <Quote />
-           
         </div>
       </div>
     );

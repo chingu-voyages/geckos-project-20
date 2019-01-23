@@ -40,7 +40,6 @@ class Quote extends Component {
             return <p>Loading ...</p>;
         } else {
             return (
-                <div className="bottom">
                     <div className="app-quote">
                         <div className="app-quote-body">
                             <div className="app-quote-body__text">
@@ -66,7 +65,6 @@ class Quote extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
             );
         }
     }
