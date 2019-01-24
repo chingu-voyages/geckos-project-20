@@ -30,10 +30,10 @@ class Home extends Component {
         <div className="center">
           <Clock />
           </div>
-        <div className="bottom">
              <div className="center-below">
             <Focus />
             </div>
+            <div className="bottom">
             <Quote />
         </div>
       </div>
