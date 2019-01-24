@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Toggle from './Toggle';
-import { ToggleActivator, ToggleContent, Divider, Element, Todo} from './StyledComponents'
+import { Activator, Content, Divider, Element, Todo} from './StyledComponents'
 import '../todo.styles.scss'
 
 class TodoItem extends Component {
@@ -14,7 +14,7 @@ class TodoItem extends Component {
     }
 
     render() {
-        const listOptions = this.listOptions();
+        const listOptions = this.listOptions(this.props);
         return (
             <Todo draggable="true" key={this.state.id}>
                 <span className="todoFeature__todoList__todoItem__checkbox">
@@ -41,19 +41,19 @@ class TodoItem extends Component {
                 }
                 </span>
 
-                {/* <Toggle>
-                    <ToggleActivator>
+                <Toggle>
+                    <Activator>
                         <i className="fa fa-ellipsis-h"></i>
-                    </ToggleActivator>
-                    <ToggleContent id="activeList" side="left">
-                        <Element onClick={this.changeEditMode}> Edit</Element>
+                    </Activator>
+                    <Content id="activeList" side="left">
+                        <Element changeEditMode={this.changeEditMode}> Edit</Element>
                         <Divider/>
                         <Element ignore>Move to ...</Element>
                         {listOptions}
                         <Divider/>
-                        <Element ignore onClick={this.deleteTask}>Delete</Element>
-                    </ToggleContent> 
-                </Toggle> */}
+                        <Element ignore deleteTask={this.deleteTask}>Delete</Element>
+                    </Content> 
+                </Toggle>
             </Todo>
         );
     }
@@ -68,11 +68,13 @@ class TodoItem extends Component {
         }))
     }
 
-    listOptions = () => {
-        return this.props.lists.filter((listOption) => {
+    listOptions = (props) => {
+        return props.lists.filter((listOption) => {
             return listOption !== this.state.list
         }).map((listOption, index) => {
-            return <Element key={index} onClick={() => this.changeList(listOption)}> {listOption} </Element>
+            return <Element key={index}
+            changeList={this.changeList}
+            listOption={listOption}> {listOption} </Element>
         })
     }
     
@@ -111,7 +113,7 @@ class TodoItem extends Component {
 
     checkTask = () => {     
 
-        console.log('Menjam ga state',this.refs.isDone.checked);
+        // console.log('Menjam ga state',this.refs.isDone.checked);
 
         this.setState({done: this.refs.isDone.checked});
 

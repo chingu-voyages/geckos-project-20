@@ -76,7 +76,7 @@ class Todo extends Component {
                 let listExists = [...this.state.lists].includes(newList);
                 
                 if(!listExists){
-                    console.log('This is a new list', newList);
+                    // console.log('This is a new list', newList);
                     this.setState( prevState => ({
                         lists: [...prevState.lists, newList]
                     }))
@@ -110,10 +110,10 @@ class Todo extends Component {
                 return element.id === object.id;
             })
 
-            console.log('Star Object e ', prevStateAllTodos[index])
+            // console.log('Star Object e ', prevStateAllTodos[index])
             prevStateAllTodos[index] = object;
-            console.log('index za menjanje e ', index)
-            console.log('Nov object e ', prevStateAllTodos[index]);
+            // console.log('index za menjanje e ', index)
+            // console.log('Nov object e ', prevStateAllTodos[index]);
 
             this.setState({
                 allTodos: prevStateAllTodos,
