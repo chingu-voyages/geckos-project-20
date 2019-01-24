@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Wrapper, CurrentWeather, WeeklyWeather, Day, NameSearch } from './StyledComponents';
+import 'font-awesome/css/font-awesome.css';
+
 
 const days = (props) => {
    return [1,2,3,4,5].map((day, index) => {
@@ -53,7 +55,7 @@ class WeeklyForecast extends Component {
                             ) : (
                                 <div className="text" onDoubleClick={this.toggleEditMode}>
                                     <div>
-                                        <span>Text</span> <i class="fa fa-pencil-alt"></i>
+                                        <span>Text</span> <i onClick={this.toggleEditMode} className="fa fa-pencil"></i>
                                     </div>
                                     <div>Weather Description</div>
                                 </div>

@@ -71,12 +71,36 @@ export const CurrentWeather = styled.div`
 `;
 
 export const NameSearch = styled.div`
-    
+
+    width: fit-content;    
     height: 100%;
     display: grid;
     grid-template-rows: 1fr;
     & > * {
         border: 1px solid lightskyblue;
+    }
+
+    .text{
+        span{
+            cursor: pointer;
+        }
+        i{  
+            cursor: pointer;
+            display:none;
+            font-size:12px;
+            color: lightgray;
+            float: right;
+
+            &:hover{
+                color: white;
+            }
+        }
+    }
+
+    &:hover{
+        i {
+            display: inline;
+        }
     }
 `;
 
