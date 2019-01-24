@@ -23,19 +23,21 @@ class TodoItem extends Component {
                 <span    >
 
                 { this.state.editMode ? 
-                    <input type="text" 
+                (<input type="text" 
                     className={ this.state.done ? 'todoFeature__todoList__todoItem__input--editMode done' : 'todoFeature__todoList__todoItem__input--editMode'}
-                        ref={(input) => input ? input.focus() : void 0 } 
-                        defaultValue={this.state.task} 
-                        onKeyUp={(event) => {
-                            if (event.key === 'Enter') {
-                                this.inputHandler(event);
-                            }
-                        }} 
-                        onBlur={this.inputHandler} /> : <span
-                        onDoubleClick={this.changeEditMode}
-                        className={ this.state.done ? 'todoFeature__todoList__todoItem__input done' : 'todoFeature__todoList__todoItem__input'}> 
-                         {this.state.task} </span>
+                    ref={(input) => input ? input.focus() : void 0 } 
+                    defaultValue={this.state.task} 
+                    onKeyUp={(event) => {
+                        if (event.key === 'Enter') {
+                            this.inputHandler(event);
+                        }
+                    }} 
+                    onBlur={this.inputHandler} />
+                 ):(<span
+                    onDoubleClick={this.changeEditMode}
+                    className={ this.state.done ? 'todoFeature__todoList__todoItem__input done' : 'todoFeature__todoList__todoItem__input'}> 
+                    {this.state.task} </span>
+                    )
                 }
                 </span>
 
