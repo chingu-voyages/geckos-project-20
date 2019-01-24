@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
     font-family: -apple-system, BlinkMacSystemFont, "Neue Haas Grotesk Text Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
     height: 215px;
     width: 420px;
-    background-color: rgba(0,0,0, 0.9);
+    background-color: rgba(0,0,0, 0.7);
     position: fixed;
     display: grid;
     grid-template-rows: 1fr 50px;

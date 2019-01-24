@@ -28,7 +28,6 @@ const WeeklyForecast = (props) => {
                     <div id="min-temp">26&#0176; </div>
                 </div>
            </CurrentWeather>
-
            <WeeklyWeather>
                 {days()}
            </WeeklyWeather>
