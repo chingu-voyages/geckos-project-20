@@ -72,9 +72,9 @@ export const CurrentWeather = styled.div`
 
 export const NameSearch = styled.div`
     
-    max-height: 60px;
+    height: 100%;
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr;
     & > * {
         border: 1px solid lightskyblue;
     }

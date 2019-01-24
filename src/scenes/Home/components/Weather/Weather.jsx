@@ -66,49 +66,57 @@ class Weather extends Component {
 
 	getCurrentWeather = async (cityName) => {
 
-		console.log('I happened to get new weather');
-		// const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
-		const byCoordinates = `lat=${this.state.lat}&lon=${this.state.lon}`;
-		const byName = `q=${cityName}`
+		try{
+			console.log('I happened to get new weather');
+			// const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
+			const byCoordinates = `lat=${this.state.lat}&lon=${this.state.lon}`;
+			const byName = `q=${cityName}`
 
-		const API_KEY = '9c77935cf1f7d3fae12ebf15913a8b2d';
-		let currentWeatherUrl = `http://api.openweathermap.org/data/2.5/weather?${cityName?byName:byCoordinates}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
+			const API_KEY = '9c77935cf1f7d3fae12ebf15913a8b2d';
+			let currentWeatherUrl = `http://api.openweathermap.org/data/2.5/weather?${cityName?byName:byCoordinates}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
 
-		let date = new Date();
-		let timeOfDay = date.getHours();
+			let date = new Date();
+			let timeOfDay = date.getHours();
 
-		const response = await fetch(currentWeatherUrl);
-		const weatherData = await response.json();
+			const response = await fetch(currentWeatherUrl);
+			const weatherData = await response.json();
 
-		console.log('Current Weather', weatherData);
-		this.setState({
-			timeOfDay: timeOfDay,
-			weather: weatherData,
-			weatherID: weatherData.weather[0].id,
-			weatherDescription: weatherData.weather[0].description,
-			isLoading: false
-		});
+			console.log('Current Weather', weatherData);
+			this.setState({
+				timeOfDay: timeOfDay,
+				weather: weatherData,
+				weatherID: weatherData.weather[0].id,
+				weatherDescription: weatherData.weather[0].description,
+				isLoading: false
+			});
 
-		this.getWeeklyForecast();
+			this.getWeeklyForecast();
+		} catch (e){
+			console.error('Error from currwentWeather: ', e);
+		}
 	}
 
 	getWeeklyForecast = async (cityName) => {
-		const byCoordinates = `lat=${this.state.lat}&lon=${this.state.lon}`;
-		const byName = `q=${cityName}`;
+		try{
+			const byCoordinates = `lat=${this.state.lat}&lon=${this.state.lon}`;
+			const byName = `q=${cityName}`;
 
-		const API_KEY = '9c77935cf1f7d3fae12ebf15913a8b2d';
-		let currentWeatherUrl = `http://api.openweathermap.org/data/2.5/forecast?${cityName?byName:byCoordinates}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
+			const API_KEY = '9c77935cf1f7d3fae12ebf15913a8b2d';
+			let currentWeatherUrl = `http://api.openweathermap.org/data/2.5/forecast?${cityName?byName:byCoordinates}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
 
-		const response = await fetch(currentWeatherUrl);
-		const weatherData = await response.json();
+			const response = await fetch(currentWeatherUrl);
+			const weatherData = await response.json();
 
-		console.log('Weekly Forecast :', weatherData);
+			console.log('Weekly Forecast :', weatherData);
 
-		this.setState({
-			weeklyForecast: weatherData.list
-		});
+			this.setState({
+				weeklyForecast: weatherData.list
+			});
 
-		console.log('WF' , this.state.weeklyForecast);
+			console.log('WF' , this.state.weeklyForecast);
+		} catch (e){
+			console.error('Error from weeklyForecast: ', e);
+		}
 	}
 
 

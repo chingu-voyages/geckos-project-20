@@ -27,8 +27,11 @@ class WeeklyForecast extends Component {
         }))
     }
     getNewWeather = (cityName) => {
-        this.props.getWeather(cityName);
-        this.toggleEditMode();
+
+        if (cityName !== ''){
+            this.props.getWeather(cityName);
+            this.toggleEditMode();
+        }
     }
 
     render(){
@@ -36,24 +39,27 @@ class WeeklyForecast extends Component {
              <Wrapper>
                 <CurrentWeather>
                      <NameSearch>
-                         <div>
+                         
                              
                             { this.state.newCityEdit ? (
                                 <input 
                                 ref={(input) => input && input.focus()} 
-                                defaultValue={this.state.task} 
                                 onKeyUp={(event) => {
                                     if (event.key === 'Enter') {
-                                        this.getNewWeather(ref.value);
+                                        this.getNewWeather(event.target.value);
                                     }
                                 }} 
                                 type="text"/>
                             ) : (
-                                <div onDoubleClick={this.toggleEditMode}>Text</div>
+                                <div className="text" onDoubleClick={this.toggleEditMode}>
+                                    <div>
+                                        <span>Text</span> <i class="fa fa-pencil-alt"></i>
+                                    </div>
+                                    <div>Weather Description</div>
+                                </div>
                             )
                             }
-                         </div>
-                         <div>Weather Description</div>
+                        
                      </NameSearch>
                      <div className="temperature">
                          <div>
