@@ -33,14 +33,14 @@ export const Wrapper = styled.div`
 `;
 
 export const CurrentWeather = styled.div`
-    border-bottom: 1px solid pink;
+    /* border-bottom: 1px solid pink; */
     display: grid;
     align-items: end;
     grid-template-rows: 50px 1fr;
     text-align: left;
 
     & > * {
-        border: 1px solid red;
+        /* border: 1px solid red; */
     }
 
     & > .temperature{
@@ -50,7 +50,7 @@ export const CurrentWeather = styled.div`
             padding: 0 2px;
             display: inline-block;
             margin-right: 5px;
-            border: 1px solid greenyellow;
+            /* border: 1px solid greenyellow; */
         }
 
         img{
@@ -72,34 +72,74 @@ export const CurrentWeather = styled.div`
 
 export const NameSearch = styled.div`
 
-    width: fit-content;    
+    
     height: 100%;
     display: grid;
     grid-template-rows: 1fr;
     & > * {
-        border: 1px solid lightskyblue;
+        /* border: 1px solid lightskyblue; */
     }
 
     .text{
+        width: fit-content;    
         span{
             cursor: pointer;
         }
         i{  
             cursor: pointer;
             display:none;
-            font-size:12px;
+            font-size:13px;
             color: lightgray;
             float: right;
 
             &:hover{
-                color: white;
+                color: whitesmoke;
+            }
+        }
+
+        &:hover{
+            i {
+                display: inline;
             }
         }
     }
 
-    &:hover{
-        i {
+    .new-city{
+        input{
+            font-size: 19px;
+            color: lightgray;
+            border: none;
+            border-bottom: 2px solid gray;
+            outline: none;
+            height: 33px;
+            width: 93%;
+            background-color: transparent;
+
+            &:focus{
+                border-bottom: 2px solid lightgray;
+            }
+        }
+        span{
+            position: relative;
+
+            .fa-crosshairs{
+                position: absolute;
+                top: 0;
+                right: 30px;
+            }
+        }
+
+        i{
+            color: lightgray;
             display: inline;
+            font-size: 18px;
+            font-weight: 100;
+            margin-left: 10px;
+            text-align: center;
+
+            &:hover{
+                color: whitesmoke;
+            }
         }
     }
 `;
@@ -112,7 +152,7 @@ export const WeeklyWeather = styled.div`
 export const Day = styled.div`
     display: grid;
     border-radius: 5px;
-    border: 1px solid whitesmoke;
+    /* border: 1px solid whitesmoke; */
     grid-template-rows: max-content 1fr;
     grid-template-columns:repeat(3, minmax(20px, 1fr));
     padding: 0 1px;

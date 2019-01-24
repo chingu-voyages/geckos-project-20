@@ -44,14 +44,25 @@ class WeeklyForecast extends Component {
                          
                              
                             { this.state.newCityEdit ? (
-                                <input 
-                                ref={(input) => input && input.focus()} 
-                                onKeyUp={(event) => {
-                                    if (event.key === 'Enter') {
-                                        this.getNewWeather(event.target.value);
-                                    }
-                                }} 
-                                type="text"/>
+                               <div className="new-city">
+                                    <input 
+                                    ref={(input) => {
+                                        if(input) {
+                                            this.input=input;
+                                            input.focus();
+                                        }
+                                    }} 
+                                    onKeyUp={(event) => {
+                                        if (event.key === 'Enter') {
+                                            this.getNewWeather(event.target.value);
+                                        }
+                                    }} 
+                                    type="text"/>
+                                    <span>
+                                        <i onClick={() => this.getNewWeather(this.input.value)} className="fa fa-crosshairs"></i>
+                                        <i className="fa fa-times"></i>
+                                    </span>
+                               </div>
                             ) : (
                                 <div className="text" onDoubleClick={this.toggleEditMode}>
                                     <div>
