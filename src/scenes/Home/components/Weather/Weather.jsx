@@ -30,7 +30,6 @@ class Weather extends Component {
 				});
 				console.log(this.state.lat, this.state.lon);
 				this.getCurrentWeather();
-				this.getWeeklyForecast();
 			},
 			error => console.error(error));
 	}
@@ -88,6 +87,8 @@ class Weather extends Component {
 			weatherDescription: weatherData.weather[0].description,
 			isLoading: false
 		});
+
+		this.getWeeklyForecast();
 	}
 
 	getWeeklyForecast = async (cityName) => {
