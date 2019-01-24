@@ -3,9 +3,14 @@ import { Wrapper, CurrentWeather, WeeklyWeather, Day, NameSearch } from './Style
 
 const WeeklyForecast = (props) => {
 
-    const kids = () => {
+    const days = () => {
        return [1,2,3,4,5].map((day, index) => {
-           return <Day> {index} </Day>
+           return <Day> 
+                <div className="day">Name</div>
+                <div> <img src={props.currentWeatherImgSrc} alt="Cloud"/></div>
+                <div id="max-temp">37&#0176; </div>
+                <div id="min-temp">26&#0176; </div>   
+            </Day>
        })
     }
    return (
@@ -16,16 +21,16 @@ const WeeklyForecast = (props) => {
                     <div>Weather Description</div>
                 </NameSearch>
                 <div className="temperature">
-                    <div className="temperature-data">
-                        <img src="" alt="Cloud"/>
+                    <div>
+                        <img src={props.currentWeatherImgSrc} alt="Cloud"/>
                     </div>
-                    <div>37 &#0176; </div>
-                    <div>26 &#0176; </div>
+                    <div id="max-temp">37&#0176; </div>
+                    <div id="min-temp">26&#0176; </div>
                 </div>
            </CurrentWeather>
 
            <WeeklyWeather>
-                {kids()}
+                {days()}
            </WeeklyWeather>
         </Wrapper>
    )

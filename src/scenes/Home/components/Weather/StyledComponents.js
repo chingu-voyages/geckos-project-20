@@ -4,6 +4,7 @@ export const template = styled.div`
 `;
 
 export const Wrapper = styled.div`
+    font-family: -apple-system, BlinkMacSystemFont, "Neue Haas Grotesk Text Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
     height: 215px;
     width: 420px;
     background-color: rgba(0,0,0, 0.9);
@@ -45,7 +46,7 @@ export const CurrentWeather = styled.div`
     & > .temperature{
         max-height: 65px;
         & > *{
-            height: 100%;
+            /* height: 100%; */
             padding: 0 2px;
             display: inline-block;
             margin-right: 5px;
@@ -57,11 +58,14 @@ export const CurrentWeather = styled.div`
         }
 
         #max-temp{
-
+            font-size: 60px;
+            font-weight: 500;
         }
 
         #min-temp{
-
+            font-size: 38px;
+            font-weight: 400;
+            color: rgb(255, 255 ,255, 0.6 );
         }
     }
 `;
@@ -81,13 +85,35 @@ export const WeeklyWeather = styled.div`
 `;
 
 export const Day = styled.div`
-    display: inline-block;
+    display: grid;
     border-radius: 5px;
     border: 1px solid whitesmoke;
-    line-height: 50px;
-    text-align:center;
+    grid-template-rows: max-content 1fr;
+    grid-template-columns:repeat(3, minmax(20px, 1fr));
+    padding: 0 1px;
+    align-items: center;
+    grid-row-gap: 4px;
+    font-size: 10px;
+
+    img{
+            height: 25px;
+            width: 25px;
+        }
+    .day{
+        grid-column: 1 / -1;
+        background-color: red;
+        text-align:center;
+        padding: 2px 0;
+    }   
+    
+    #min-temp{
+        text-align: left;
+        padding-left: 5px;
+        color: rgb(255, 255 ,255, 0.6 );
+    }
+    
 
     &:hover{
-        background-color: rgba(255, 255, 255, 0.6);
+        background-color: rgba(255, 255, 255, 0.1);
     }
 `;
