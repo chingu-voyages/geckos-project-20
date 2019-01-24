@@ -21,7 +21,12 @@ class Introduction extends React.Component {
 class UserGreeting extends React.Component {
 
   showMore = () => {
-    console.log('open dropdown here');
+    const showMore = document.querySelector('.clock-greeting-more');
+    showMore.classList.toggle('active');
+  }
+
+  editName = () => {
+    console.log('edit name');
   }
 
   render() {
@@ -29,8 +34,16 @@ class UserGreeting extends React.Component {
       <div className="center">
       <div className="app-container clock">
         <div className="clock-time">{this.props.date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
-        <div className="clock-greeting">{this.props.greeting}, {this.props.name}.</div>
-        <span className="clock-greeting-more" onClick={this.showMore}>icon</span>
+        <span className="clock-greeting">{this.props.greeting}, {this.props.name}.</span>
+        <span className="clock-greeting-more" onClick={this.showMore}>Edit
+          <div className="dropdown">
+            <ul className="dropdown-list">
+              <li className="displayname-edit">
+                <span onClick={this.editName}>Edit your name</span>
+              </li>
+            </ul>
+          </div>
+        </span>
       </div>
     </div>
     );
