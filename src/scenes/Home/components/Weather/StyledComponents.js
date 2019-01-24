@@ -149,36 +149,42 @@ export const WeeklyWeather = styled.div`
     grid-template-columns: repeat(5, 1fr); 
 `;
 
-export const Day = styled.div`
+export const DayWrapper = styled.div`
     display: grid;
-    border-radius: 5px;
+    border-radius: 3px;
     /* border: 1px solid whitesmoke; */
-    grid-template-rows: max-content 1fr;
+    grid-template-rows: fit-content 1fr;
     grid-template-columns:repeat(3, minmax(20px, 1fr));
-    padding: 0 1px;
+    padding: 8px 4px 4px 4px;
     align-items: center;
-    grid-row-gap: 4px;
     font-size: 10px;
 
     img{
-            height: 25px;
-            width: 25px;
+            margin-left: 8px;
+            height: 20px;
+            width: 20px;
         }
     .day{
+        color: gray;
         grid-column: 1 / -1;
-        background-color: red;
         text-align:center;
-        padding: 2px 0;
+        box-sizing: content-box;
+
     }   
+    #max-tem{
+        text-align: left;
+        padding-left: 6px;
+    }
     
     #min-temp{
         text-align: left;
-        padding-left: 5px;
+        padding-left: 3px;
         color: rgb(255, 255 ,255, 0.6 );
     }
     
 
     &:hover{
+        cursor: pointer;
         background-color: rgba(255, 255, 255, 0.1);
     }
 `;

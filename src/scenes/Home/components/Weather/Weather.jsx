@@ -50,7 +50,7 @@ class Weather extends Component {
 				/>)	
 				}
 
-				{/* { isOpen && */
+				{ isOpen && 
 					<WeeklyForecast
 					getWeather={this.getCurrentWeather}
 					weatherDescription={weatherDescription}
@@ -91,6 +91,7 @@ class Weather extends Component {
 			});
 
 			this.getWeeklyForecast();
+			console.log('This has executed')
 		} catch (e){
 			console.error('Error from currwentWeather: ', e);
 		}
