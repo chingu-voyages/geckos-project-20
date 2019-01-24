@@ -5,7 +5,7 @@ const WeeklyForecast = (props) => {
 
     const days = () => {
        return [1,2,3,4,5].map((day, index) => {
-           return <Day> 
+           return <Day key={index}> 
                 <div className="day">Name</div>
                 <div> <img src={props.currentWeatherImgSrc} alt="Cloud"/></div>
                 <div id="max-temp">37&#0176; </div>
@@ -17,7 +17,10 @@ const WeeklyForecast = (props) => {
         <Wrapper>
            <CurrentWeather>
                 <NameSearch>
-                    <div>Name</div>
+                    <div>
+                        <div>Text</div>
+                        <input type="text"/>
+                    </div>
                     <div>Weather Description</div>
                 </NameSearch>
                 <div className="temperature">

@@ -51,7 +51,7 @@ class Weather extends Component {
 				/>)	
 				}
 
-				{/* { isOpen && */}
+				{/* { isOpen && */
 					<WeeklyForecast
 					getWeather={this.getCurrentWeather}
 					weatherDescription={weatherDescription}

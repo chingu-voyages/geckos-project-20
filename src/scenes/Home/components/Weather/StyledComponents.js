@@ -71,7 +71,8 @@ export const CurrentWeather = styled.div`
 `;
 
 export const NameSearch = styled.div`
-   
+    
+    max-height: 60px;
     display: grid;
     grid-template-rows: 1fr 1fr;
     & > * {
