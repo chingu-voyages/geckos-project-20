@@ -3,7 +3,10 @@ import { DayWrapper } from "./StyledComponents";
 
 export const Day = (props) => {
     return(
-        <DayWrapper onClick={() => { props.updateCurrent(props.dayId) }}>
+        <DayWrapper onClick={() => { 
+                props.updateCurrentDay(props.dayId);
+                console.log('DayArray: ', props.dayArray);
+            }}>
             <div className="day">{props.day.toUpperCase()}</div>
             <div> <img src={props.iconSrc} alt={props.iconAlt}/></div>
             <div id="max-temp">{props.maxTemp}&#0176; </div>
