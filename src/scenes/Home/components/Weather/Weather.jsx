@@ -66,6 +66,7 @@ class Weather extends Component {
 
 	getCurrentWeather = async (cityName) => {
 
+		console.log('I happened to get new weather');
 		// const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 		const byCoordinates = `lat=${this.state.lat}&lon=${this.state.lon}`;
 		const byName = `q=${cityName}`
