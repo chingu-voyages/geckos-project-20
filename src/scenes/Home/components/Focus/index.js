@@ -120,7 +120,7 @@ class Focus extends Component {
         ) : (
           <React.Fragment>
             <div>
-            <h3>What is your main focus for today?</h3>
+            <h3 className="focus-prompt-title">What is your main focus for today?</h3>
             <form onSubmit={e => this.onSubmit(e)}>
               <input className="focus-prompt" type="text" onChange={e => this.onChange(e)} />
             </form>

@@ -6,7 +6,7 @@
   }
 
   &-prompt {
-    width: 13.7em;
+    width: 15em;
     margin: 0 auto;
     padding-top: 15px;
     display: block;
@@ -14,11 +14,16 @@
     border: 0;
     border-bottom: 2px solid #fff;
     color: #fff;
-    font-weight: 500;
+    font-weight: 300;
     outline: 0;
     text-align: center;
     transition: border-color .2s ease;
-    font-size: 20px;
+    font-size: 28px;
+  }
+
+  &-prompt-title {
+    font-size: 34px;
+    font-weight: 400;
   }
 
   &-row {
@@ -39,14 +44,19 @@
   }
 
   &-todays-focus {
-    font-size: 20px;
-    font-size: 120%;
+    font-size: 26px;
+    font-weight: 500;
+    //font-size: 170%;
     line-height: 120%;
-    margin: 0 20px;
+    margin: 7px 20px;
   }
 
   &-complete {
     width: 100%;
+  }
+
+  &-title {
+    font-size: 20px;
   }
 
   &-icon-clear {
@@ -61,7 +71,9 @@
   }
 
   &-message {
-    margin-top: 10px;
+    margin-top: 5px;
+    font-size: 16px;
+    font-weight: bold;
     animation: messageShow 3s;
     animation: messageHide 3s ease-in;
     visibility: hidden;
