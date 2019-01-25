@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Background from './components/Background/Background';
-import Quote from './components/Quote';
+import Quote from './components/Quote/Quote';
 import Clock from './components/Clock/Clock';
 import './styles.scss';
 import Weather from './components/Weather/Weather';
 import Search from './components/Search/Search';
-import Focus from './components/Focus/index';
+import Focus from './components/Focus/Focus';
 import './styles.scss';
 
 class Home extends Component {
