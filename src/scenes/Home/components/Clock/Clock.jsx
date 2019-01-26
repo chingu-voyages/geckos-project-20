@@ -30,10 +30,8 @@ class UserGreeting extends React.Component {
       <div className="center">
       <div className="app-container clock">
         <div className="clock-time">{this.props.date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
-        <span className="clock-greeting">{this.props.greeting}, 
-
-        {!this.props.editName ? this.props.name : <input type="text" value={this.props.name} />} .</span>
-        
+        <span className="clock-greeting">{this.props.greeting},
+        {!this.props.editName ? <span class="clock-greeting__name">{this.props.name}</span> : <span spellcheck="false" contenteditable="true" class="clock-greeting__name--editable">{this.props.name}</span>} .</span>
         <span className="clock-greeting-more" onClick={this.showMore}>Edit
           <div className="dropdown">
             <ul className="dropdown-list">

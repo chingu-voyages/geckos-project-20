@@ -61,6 +61,36 @@
     text-align: center;
     line-height: 1;
 
+    &__name {
+      margin-left: 16px;
+
+      &--editable {
+        margin-left: 16px;
+        max-width: 3em;
+        font-size: inherit;
+        font-weight: inherit;
+        background-color: transparent;
+        color: #fff;
+        border: none;
+        cursor: auto;
+        min-width: 1.5em;
+        border-bottom: 2px solid #fff;
+        border-right: 1px solid transparent;
+
+        &:focus {
+          outline: none;
+          animation: PulseAttention 1.5s cubic-bezier(0.215, 0.61, 0.355, 1)
+            forwards infinite;
+        }
+
+        @keyframes PulseAttention {
+          50% {
+            border-color: #fff;
+          }
+        }
+      }
+    }
+
     &-more {
       &.active {
         .dropdown {
