@@ -4,7 +4,6 @@
   left: 0;
   right: 0;
   bottom: 0;
-  //z-index: 3;
 }
 
 .app-container {
@@ -20,22 +19,22 @@
   display: flex;
 }
 
-  .top-left {
-    position: relative;
-    flex: 1 0 auto;
-    padding-right: 38px;
-    padding-top: 20px;
-  }
+.top-left {
+  position: relative;
+  flex: 1 0 auto;
+  padding-right: 38px;
+  padding-top: 20px;
+}
 
-  .top-right {
-    position: relative;
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: row-reverse;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    text-align: right;
-  }
+.top-right {
+  position: relative;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  text-align: right;
+}
 
 .center {
   position: absolute;
@@ -45,6 +44,7 @@
   width: 100%;
   text-align: center;
   transform: translate(-50%, -50%);
+  z-index: 2;
 }
 
 .center-below {
@@ -56,6 +56,7 @@
   height: 75px;
   transform: translate(-50%, -50%);
   text-align: center;
+  z-index: 2;
 }
 
 .bottom {
@@ -64,6 +65,7 @@
   bottom: 1rem;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 2;
 }
 
 .bottom-right {
@@ -78,51 +80,54 @@
   z-index: 2;
 }
 
-@media screen and (max-height:700px)  {
-  body  {
-    font-size:95%
+@media screen and (max-height: 700px) {
+  body {
+    font-size: 95%;
   }
 }
 
-@media screen and (max-height:650px)  {
-  body  {
-    font-size:90%
+@media screen and (max-height: 650px) {
+  body {
+    font-size: 90%;
   }
-  #focuses .delete  { //needed??
-    margin-top:9px
+  #focuses .delete {
+    //needed??
+    margin-top: 9px;
   }
 }
-  
-@media screen and (max-height:600px)  {
-  .center,.center-below,body  {
-    font-size:90%
+
+@media screen and (max-height: 600px) {
+  .center,
+  .center-below,
+  body {
+    font-size: 90%;
   }
   .center-below {
-    top:75%
+    top: 75%;
   }
-  #focuses .delete  {
-    margin-top:8px
+  #focuses .delete {
+    margin-top: 8px;
   }
 }
 
-
-@media screen and (max-height:550px)  {
-  .center,.center-below {
-    font-size:80%
+@media screen and (max-height: 550px) {
+  .center,
+  .center-below {
+    font-size: 80%;
   }
   .center-below {
-    top:70%
+    top: 70%;
   }
 }
 
-@media screen and (max-height:400px)  {
+@media screen and (max-height: 400px) {
   .center {
-    top:30%
+    top: 30%;
   }
-  .center .clock  {
-    display:none!important
+  .center .clock {
+    display: none !important;
   }
   .center-below {
-    top:50%
+    top: 50%;
   }
 }
