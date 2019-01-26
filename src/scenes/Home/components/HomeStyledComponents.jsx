@@ -12,29 +12,28 @@ export const Activator = styled.div`
         padding: 6px 4px 4px 6px;
         font-size: 12px;
         color: rgb(128, 128, 128);
-     }
+    }
 
-     &:hover{
-       cursor: pointer;
-         i {
-             color: rgb(202, 202, 202);
-             background-color: rgb(104, 104, 104);
-         }
-     }
+    &:hover {
+        cursor: pointer;
+        i {
+            color: rgb(202, 202, 202);
+            background-color: rgb(104, 104, 104);
+        }
+    }
 `;
 
 export const Content = styled.ul`
-
-    ${ (props) => {
-         if(props.side === 'left'){
-             return 'right:35px;  top: 5px;'
-         } else if (props.side === 'bottom'){
-             return 'top: 40px; left: 5px;'
-         }
+    ${props => {
+        if (props.side === 'left') {
+            return 'right:35px;  top: 5px;';
+        } else if (props.side === 'bottom') {
+            return 'top: 40px; left: 5px;';
+        }
     }}
     position: absolute;
     padding: 2px 0;
-    width: ${ props => props.width ? props.width : 'max-content'};
+    width: ${props => (props.width ? props.width : 'max-content')};
     border-radius: 5px;
     list-style-type: none;
     margin: 0;
@@ -46,22 +45,22 @@ export const Element = styled.li`
     cursor: pointer;
     line-height: 30px;
     color: #dadada;
-    margin:0;
-    padding:0 8px;
+    margin: 0;
+    padding: 0 8px;
     height: 30px;
-    box-sizing:border-box;
-    &:hover{
+    box-sizing: border-box;
+    &:hover {
         background-color: #5e5e5e;
     }
 
-    form{
-        padding:0;
+    form {
+        padding: 0;
         background-color: transparent;
     }
 
-    input{
+    input {
         width: 100%;
-        height : 28px;
+        height: 28px;
         color: #dadada;
         outline: none;
         border: none;
@@ -70,9 +69,9 @@ export const Element = styled.li`
         padding-left: 5px;
         ::placeholder {
             color: #bababa;
-            opacity: 1; 
+            opacity: 1;
         }
-    }   
+    }
 `;
 
 export const Divider = styled.hr`
@@ -83,4 +82,4 @@ export const Divider = styled.hr`
 export const ToggleWrapper = styled.div`
     z-index: 200;
     position: relative;
-`
+`;
