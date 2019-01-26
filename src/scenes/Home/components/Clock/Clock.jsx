@@ -25,21 +25,20 @@ class UserGreeting extends React.Component {
     showMore.classList.toggle('active');
   }
 
-  editName = () => {
-    console.log('edit name');
-  }
-
   render() {
     return (
       <div className="center">
       <div className="app-container clock">
         <div className="clock-time">{this.props.date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
-        <span className="clock-greeting">{this.props.greeting}, {this.props.name}.</span>
+        <span className="clock-greeting">{this.props.greeting}, 
+
+        {!this.props.editName ? this.props.name : <input type="text" value={this.props.name} />} .</span>
+        
         <span className="clock-greeting-more" onClick={this.showMore}>Edit
           <div className="dropdown">
             <ul className="dropdown-list">
               <li className="displayname-edit">
-                <span onClick={this.editName}>Edit your name</span>
+                <span onClick={this.props.changeName}>Edit your name</span>
               </li>
             </ul>
           </div>
@@ -59,7 +58,8 @@ class GreetingControl extends Component {
       question: `Hello, what is your name?`,
       date: new Date(),
       greeting: "",
-      name: null
+      name: null,
+      editName: false
     };
   }
 
@@ -124,12 +124,19 @@ class GreetingControl extends Component {
     }
   }
 
+  changeName = (e) => {
+    console.log('hey');
+    this.setState({
+      editName: true
+    });
+  }
+
   render() {
     const setName = this.state.setName;
     let greetingContent;
 
     if(setName) {
-      greetingContent = <UserGreeting date={this.state.date} greeting={this.state.greeting} name={this.state.name} />;
+      greetingContent = <UserGreeting date={this.state.date} greeting={this.state.greeting} name={this.state.name} changeName={this.changeName} editName={this.state.editName} />;
     } else {
       greetingContent = <Introduction question={this.state.question} handleChange={this.handleChange} handleKeyUp={this.handleKeyUp} />;
     }
