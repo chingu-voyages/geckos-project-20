@@ -11,8 +11,7 @@ class WeeklyForecast extends Component {
     constructor(props){
         super(props);
         this.state = {
-            daysArray: [],
-            currentDay: []
+            currentDay: 5
         }
 
     }
@@ -20,70 +19,40 @@ class WeeklyForecast extends Component {
     updateCurrentDay = (dayId) => {
         console.log('DayId: ',dayId);
         this.setState({
-            currentDay: this.state.daysArray[dayId]
+            currentDay: dayId
         })
+        console.log('currentDat = ', this.state.currentDay);
+        console.log('currentDat = ', this.state.currentDay);
+
+        setTimeout(() => { console.log('currentDatProlonged = ', this.state.currentDay);}, 0)
     }
 
-    createDaysArray = (weatherData) => {
-
-        console.log('WeatherData List: ', weatherData)
-
-        let endResult = [];
-        let oneDay = [];
-        let currentDay = new Date();
-
-       for(let period of weatherData){
-            let periodDate = new Date(period.dt_txt);
-            if (this.sameDay(periodDate, currentDay)){
-                oneDay.push(period);
-            } else {
-                endResult.push(oneDay);
-                oneDay = [];
-                oneDay.push(period);
-                currentDay.setDate(currentDay.getDate() + 1);
-            }
-        }
-        
-        endResult.push(oneDay);
-        return endResult;
-    }
-
-    sameDay = (date1, date2) => {
-        return (date1.getFullYear() === date2.getFullYear() &&
-        date1.getMonth() === date2.getMonth() &&
-        date1.getDate() === date2.getDate());
-    }
+    
 
     async componentDidMount(){
-        console.log('CurrentWeatherFrom props: ', this.props.currentWeather );
-        console.log('Days Array', this.createDaysArray(this.props.weeklyForecast));
       try {
-       this.setState({
-           daysArray: this.createDaysArray(this.props.weeklyForecast), 
-       }) 
-        console.log('ER',this.state.daysArray);
+       
       } catch (e){
-          console.warn('Converting dateArray error: ', e);
       }
     }
-    days = () => {
-        return this.state.daysArray.map((day, index) => {
+    getDays = () => {
+        return this.props.weeklyForecast.map((day, index) => {
             if(index === 5) return;
-            
+                console.log('Each day: ', day.length, 'at ', index);
             return <Day key={day.length + index}
-                        dayArray={this.state.currentDay}
                         updateCurrentDay={this.updateCurrentDay}
+                        dayData={day}
                         day={"Name"}
                         iconSrc={this.props.currentWeatherImgSrc}
                         iconAlt="Cloud"
-                        maxTemp={37}
+                        maxTemp={day.length>1 ? day[0].main.temp : 1337}
                         minTemp={26}
                         dayId={index}
             /> 
         })
      }
     render(){
-
+        const days = this.getDays();
        
         return (
              <Wrapper>
@@ -92,7 +61,7 @@ class WeeklyForecast extends Component {
                 currentWeather={this.props.currentWeatherImgSrc}
                 />
                 <WeeklyWeather>
-                     {this.days}
+                     {days}
                 </WeeklyWeather>
              </Wrapper>
         )
