@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { ToggleWrapper } from './StyledComponents';
-import '../todo.styles.scss';
+import { ToggleWrapper } from './HomeStyledComponents';
+// import '../todo.styles.scss';
 
 class Toggle extends Component {
     constructor(props) {

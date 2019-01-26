@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Toggle from './Toggle';
-import { Activator, Content, Divider, Element, Todo} from './StyledComponents'
+import Toggle from '../../Toggle';
+import { Todo } from './TodoStyledComponents'
+import { Activator, Content, Divider, Element } from '../../HomeStyledComponents'
 import '../todo.styles.scss'
 
 class TodoItem extends Component {
