@@ -31,7 +31,7 @@ class UserGreeting extends React.Component {
       <div className="app-container clock">
         <div className="clock-time">{this.props.date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
         <span className="clock-greeting">{this.props.greeting},
-        {!this.props.editName ? <span class="clock-greeting__name">{this.props.name}</span> : <span spellcheck="false" contenteditable="true" class="clock-greeting__name--editable">{this.props.name}</span>} .</span>
+        {!this.props.editName ? <span className="clock-greeting__name">{this.props.name}</span> : <span contentEditable="true" className="clock-greeting__name--editable" onChange={this.props.changeName}>{this.props.name}</span>} .</span>
         <span className="clock-greeting-more" onClick={this.showMore}>Edit
           <div className="dropdown">
             <ul className="dropdown-list">
@@ -57,7 +57,8 @@ class GreetingControl extends Component {
       date: new Date(),
       greeting: "",
       name: null,
-      editName: false
+      editName: false,
+      newName: null
     };
   }
 
@@ -123,9 +124,12 @@ class GreetingControl extends Component {
   }
 
   changeName = (e) => {
-    console.log('hey');
+    let name = this.state.name;
+    let newName = e.target.value;
     this.setState({
-      editName: true
+      editName: true,
+      name: name,
+      newName: newName
     });
   }
 
@@ -134,7 +138,7 @@ class GreetingControl extends Component {
     let greetingContent;
 
     if(setName) {
-      greetingContent = <UserGreeting date={this.state.date} greeting={this.state.greeting} name={this.state.name} changeName={this.changeName} editName={this.state.editName} />;
+      greetingContent = <UserGreeting date={this.state.date} greeting={this.state.greeting} name={this.state.name} newName={this.state.newName} changeName={this.changeName} editName={this.state.editName} />;
     } else {
       greetingContent = <Introduction question={this.state.question} handleChange={this.handleChange} handleKeyUp={this.handleKeyUp} />;
     }

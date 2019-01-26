@@ -79,15 +79,14 @@
 
         &:focus {
           outline: none;
-          animation: PulseAttention 1.5s cubic-bezier(0.215, 0.61, 0.355, 1)
-            forwards infinite;
+          // animation: PulseAttention 0.8s linear infinite;
         }
 
-        @keyframes PulseAttention {
-          50% {
-            border-color: #fff;
-          }
-        }
+        // @keyframes PulseAttention {
+        //   50% {
+        //     border-color: #fff;
+        //   }
+        // }
       }
     }
 
