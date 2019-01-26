@@ -27,8 +27,10 @@ export const Content = styled.ul`
     ${props => {
         if (props.side === 'left') {
             return 'right:35px;  top: 5px;';
-        } else if (props.side === 'bottom') {
+        } else if (props.side === 'below') {
             return 'top: 40px; left: 5px;';
+        } else if (props.side === 'above') {
+            return 'bottom: 40px; right: 0px;';
         }
     }}
     position: absolute;

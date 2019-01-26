@@ -73,7 +73,7 @@ class ListOptions extends Component {
                     {/* Add ignore prop in ToggleContent Element if you want it
                         to not close when clicking on them
                     */}
-                    <Content id="activeList" width="220px" side="bottom">
+                    <Content id="activeList" width="220px" side="below">
                         {this.options}
                         <Divider />
                         <Element ignore>
