@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './styles.scss';
 import { weatherIcon } from './WeatherIcon';
+import WeatherExpanded from './WeatherExpanded';
 
 
 class Weather extends Component {
@@ -15,6 +16,8 @@ class Weather extends Component {
       lat: '',
       lon: '',
       timeOfDay: 1,
+      isShowingWeather: false,
+      weatherForecast: {},
     };
   };
 
@@ -23,12 +26,12 @@ class Weather extends Component {
 
     //Example API call: http://api.openweathermap.org/data/2.5/weather?lat=51&lon=-1&units=metric&type=accurate&mode=json&APPID=YOUR_API_KEY
     const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
-    let url = `http://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lon}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
+    let currentURL = `http://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lon}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
     let date = new Date();
     let timeOfDay = date.getHours();
-    console.log(url);
+    console.log(currentURL);
     console.log(timeOfDay);
-    return fetch(url)
+    return fetch(currentURL)
     .then(response => response.json())
     .then((data) =>
       this.setState({ 
@@ -46,7 +49,27 @@ class Weather extends Component {
       })
       );
   }
-  
+
+  getForecastWeather () {
+    //Forecast API call...
+    //http://api.openweathermap.org/data/2.5/forecast?lat=51&lon=-1&units=metric&type=accurate&mode=json&APPID=${API_KEY}
+    const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
+    let forecastURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${this.state.lat}&lon=${this.state.lon}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
+    console.log(forecastURL);
+    return fetch(forecastURL)
+    .then(response => response.json())
+    .then((data) =>
+      this.setState({ 
+        weatherForecast: data,
+      })
+      )
+    .catch(error => 
+      this.setState({ 
+        error, 
+        isLoading: false 
+      })
+      );
+  }
 
 componentDidMount() {
 
@@ -57,7 +80,8 @@ componentDidMount() {
       (prevState) => ({
         lat: position.coords.latitude, 
         lon: position.coords.longitude
-        }), () => { this.getCurrentWeather(); } //Passes geolocation to getCurrentWeather function
+        }), () => { this.getCurrentWeather();
+                    this.getForecastWeather(); } //Passes geolocation to getCurrentWeather and getForecastWeather functions
     );
 },
     (error) => this.setState({ error: error }),
@@ -71,11 +95,21 @@ Icon eg. For code 501 - moderate rain icon = "10d"
 URL is http://openweathermap.org/img/w/10d.png */
 
 
+//Function for opening/closing modal for expanded view
+onToggleOpenWeather = (e) => {
+  this.setState((prevState) =>
+  ({
+   isShowingWeather: !prevState.isShowingWeather
+ })
+)
+}
+
+
 
   render() {
 
     const { weather, error, isLoading, weatherID, weatherDescription, timeOfDay } = this.state;
-
+  
       if (error) {
       return <p>{error.message}</p>;
     }
@@ -86,16 +120,31 @@ URL is http://openweathermap.org/img/w/10d.png */
 
     return (
    
-      <div className="app-container weather">
+      <div className="weather-app-container weather">
+      <div className="weather-container-small" onClick={this.onToggleOpenWeather}>
       <div className="weather-wrapper">
       <div className="weather-stat">
       <img className="weather-icon" src={weatherIcon(weatherID, timeOfDay)} alt={weatherDescription}/>
         <p>{Math.round(weather.main.temp)}&deg;</p>
       </div>
+      </div>
       <div className="weather-location-label"> 
         <p>{weather.name}</p>
+        </div> 
         </div>
-        </div>  
+      <div>
+      
+      {this.state.isShowingWeather &&
+              <WeatherExpanded
+              weather={this.state.weather}
+              weatherID={this.state.weatherID}
+              timeOfDay={this.state.timeOfDay}
+              weatherDescription={this.state.weatherDescription}
+              weatherForecast={this.state.weatherForecast}
+          />
+            }
+            
+        </div>
       </div>
    
     );

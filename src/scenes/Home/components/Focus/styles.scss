@@ -1,0 +1,134 @@
+.focus {
+
+  &-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  &-prompt {
+    width: 15em;
+    margin: 0 auto;
+    padding-top: 15px;
+    display: block;
+    background: 0;
+    border: 0;
+    border-bottom: 2px solid #fff;
+    color: #fff;
+    font-weight: 500;
+    outline: 0;
+    text-align: center;
+    transition: border-color .2s ease;
+    font-size: 28px;
+  }
+
+  &-prompt-title {
+    font-size: 34px;
+    font-weight: 400;
+  }
+
+  &-row {
+    cursor: pointer;
+  }
+
+  &-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+  }
+
+  &-focuses {
+    max-width: 100%;
+    margin: 3px 0;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &-todays-focus {
+    font-size: 26px;
+    font-weight: 500;
+    //font-size: 170%;
+    line-height: 120%;
+    margin: 7px 20px;
+  }
+
+  &-complete {
+    width: 100%;
+  }
+
+  &-title {
+    font-size: 20px;
+  }
+
+  &-icon-clear {
+    width: 18px;
+    height: 18px;
+    font-weight: bold;
+  }
+
+  &-icon-plus {
+    width: 18px;
+    height: 18px;
+  }
+
+  &-message {
+    margin-top: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    animation: messageShow 3s;
+    animation: messageHide 3s ease-in;
+    visibility: hidden;
+  }
+
+  &-icon-spin {
+      display: inline;
+      margin-right: 6px;
+      margin-top: 5px;
+      -webkit-animation: iconSpin 2s infinite linear;
+              animation: iconSpin 2s infinite linear;
+    }
+        
+}
+
+@keyframes messageShow {
+  from {transform: translateY(5px,0);opacity: 0;}
+  to {transform: translateY(0);opacity: 1;}
+}
+
+@keyframes messageHide {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@-webkit-keyframes iconSpin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
+}
+
+@keyframes iconSpin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
+}
+  
+
