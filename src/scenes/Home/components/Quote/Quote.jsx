@@ -43,7 +43,7 @@ class Quote extends Component {
                     <div className="app-quote">
                         <div className="app-quote-body">
                             <div className="app-quote-body__text">
-                                {quote.quote}
+                                "{quote.quote}"
                             </div>
                             <div className="app-quote-body__source">
                                 <div className="app-quote-body__source-content">

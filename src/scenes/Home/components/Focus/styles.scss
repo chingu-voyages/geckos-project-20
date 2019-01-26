@@ -14,7 +14,7 @@
     border: 0;
     border-bottom: 2px solid #fff;
     color: #fff;
-    font-weight: 300;
+    font-weight: 500;
     outline: 0;
     text-align: center;
     transition: border-color .2s ease;
@@ -27,11 +27,14 @@
   }
 
   &-row {
+    cursor: pointer;
+  }
+
+  &-content {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: baseline;
-    cursor: pointer;
   }
 
   &-focuses {
@@ -127,6 +130,5 @@
             transform: rotate(359deg);
   }
 }
-
-
+  
 

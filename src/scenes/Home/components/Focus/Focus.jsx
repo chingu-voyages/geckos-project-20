@@ -13,11 +13,13 @@ class Focus extends Component {
       focus: "",
       input: "",
       line: "none",
-      isChecked: false
+      isChecked: false,
+      isHovered: false
     };
     this.onChange = this.onChange.bind(this);
     this.toggleLine = this.toggleLine.bind(this);
     this.onCompleteClick = this.onCompleteClick.bind(this);
+    this.handleMouseHover = this.handleMouseHover.bind(this);
   }
 
   componentDidMount() {
@@ -35,7 +37,7 @@ class Focus extends Component {
   };
 
 
-  toggleLine = e => {
+ toggleLine = e => {
     if (this.state.line === "none") {
       this.setState(() => ({
         line: "line-through",
@@ -50,6 +52,7 @@ class Focus extends Component {
    })
   )
   };
+  
 
   onCompleteClick = () => {
     localStorage.removeItem("focus");
@@ -59,7 +62,7 @@ class Focus extends Component {
       isChecked: false,
     }));
   };
-
+  
   onSubmit = e => {
     e.preventDefault();
     localStorage.setItem("focus", this.state.input);
@@ -69,26 +72,47 @@ class Focus extends Component {
     }));
   };
 
+  handleMouseHover() {
+    this.setState(this.toggleHoverState);
+  }
+
+  toggleHoverState(state) {
+    return {
+      isHovered: !state.isHovered,
+    };
+  }
+
   render() {
 
     const isChecked = this.state.isChecked;
     let checkIcon;
     let clearPlusIcon;
+    
+    let control;
+    if (this.state.isHovered) {
+      control = {opacity: '1'}
+    } else {
+      control = {opacity: '0'}
+    }
 
     if (isChecked) {
-      checkIcon =  <FaRegCheckSquare  className="icon icon-checkbox focus-done"
+      checkIcon =  <FaRegCheckSquare  className="control focus-icon-checkbox"
                                       onClick={(e) => this.toggleLine(e)}
+                                      style={control}
                                       />;
-      clearPlusIcon = <GoPlus className="icon focus-icon-plus" 
-                              onClick= {this.onCompleteClick} />;
+      clearPlusIcon = <GoPlus className="control focus-icon-plus" 
+                              onClick= {this.onCompleteClick}
+                              style={control} />;
 
     } else {
-      checkIcon = <FaRegSquare  className="icon icon-checkbox-empty focus-open"
+      checkIcon = <FaRegSquare  className="control focus-icon-checkbox-empty"
                                 onClick={(e) => this.toggleLine(e)}
+                                style={control}
                                 />;
 
-      clearPlusIcon = <GoX  className="focus-icon-clear" 
-                                onClick={this.onCompleteClick} />;
+      clearPlusIcon = <GoX  className="control focus-icon-clear" 
+                            onClick={this.onCompleteClick}
+                            style={control} />;
     }
 
     return (
@@ -99,8 +123,14 @@ class Focus extends Component {
           <React.Fragment>
             <div className="focus-complete">
               <h4 className="focus-title">TODAY</h4>
-                <div className="focus-row">
-                  {checkIcon} 
+
+                <div  className="focus-row"
+                      onMouseEnter={this.handleMouseHover}
+                      onMouseLeave={this.handleMouseHover}>
+                    
+                      <div>
+                <div className="focus-content">
+                {checkIcon} 
                   <h3 className="focus-todays-focus"
                         style={{ textDecoration: this.state.line }}
                         >
@@ -108,13 +138,16 @@ class Focus extends Component {
                     </h3>
                   {clearPlusIcon}
                   </div>
-                  {this.state.isChecked && 
+
+                  {isChecked && 
                     <div className="focus-message">
                       <FaCircleNotch className="focus-icon-spin"/>
                       Way to go!
-              </div>
-        
-        }
+                      </div>   
+                  }
+                  </div>
+                    
+                  </div>
                 </div>
           </React.Fragment>
         ) : (
