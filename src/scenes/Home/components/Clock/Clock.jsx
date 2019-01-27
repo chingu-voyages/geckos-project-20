@@ -19,6 +19,11 @@ class Introduction extends React.Component {
 } 
 
 class UserGreeting extends React.Component {
+
+  showMore = () => {
+    console.log('open dropdown here');
+  }
+
   render() {
     return (
       <div className="center">
@@ -45,6 +50,11 @@ class GreetingControl extends Component {
   }
 
   componentDidMount() {
+    const name = JSON.parse(localStorage.getItem( "name" ));
+    if (name) {
+      this.setState( { name, setName: true } );
+    }
+  
     this.timer = setInterval(
       () => {
         this.getDate();
@@ -94,6 +104,9 @@ class GreetingControl extends Component {
         setName: true,
         name: name
       });
+
+      localStorage.setItem('name', JSON.stringify(name));
+      localStorage.setItem('setName', true);
     }
   }
 

@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 
-export const template = styled.div`
-`;
+export const template = styled.div``;
 
 export const Wrapper = styled.div`
-    font-family: -apple-system, BlinkMacSystemFont, "Neue Haas Grotesk Text Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    z-index: 2255 !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Neue Haas Grotesk Text Pro',
+        'Helvetica Neue', Helvetica, Arial, sans-serif;
     height: 215px;
     width: 420px;
-    background-color: rgba(0,0,0, 0.7);
+    background-color: rgba(0, 0, 0, 0.7);
     position: fixed;
     display: grid;
     grid-template-rows: 1fr 50px;
@@ -18,17 +19,17 @@ export const Wrapper = styled.div`
     box-sizing: border-box;
     padding: 18px;
     /* This is the little arrow top right corner */
-    &::after{ 
-        content: "";
+    &::after {
+        content: '';
         z-index: 200;
         position: absolute;
         right: 20px;
         top: -8px;
-        width: 0; 
-        height: 0; 
+        width: 0;
+        height: 0;
         border-left: 8px solid transparent;
         border-right: 8px solid transparent;
-        border-bottom: 8px solid rgba(0,0,0, 0.9);
+        border-bottom: 8px solid rgba(0, 0, 0, 0.9);
     }
 `;
 
@@ -43,9 +44,9 @@ export const CurrentWeather = styled.div`
         /* border: 1px solid red; */
     }
 
-    & > .temperature{
+    & > .temperature {
         max-height: 65px;
-        & > *{
+        & > * {
             /* height: 100%; */
             padding: 0 2px;
             display: inline-block;
@@ -53,26 +54,23 @@ export const CurrentWeather = styled.div`
             /* border: 1px solid greenyellow; */
         }
 
-        img{
-
+        img {
         }
 
-        #max-temp{
+        #max-temp {
             font-size: 60px;
             font-weight: 500;
         }
 
-        #min-temp{
+        #min-temp {
             font-size: 38px;
             font-weight: 400;
-            color: rgb(255, 255 ,255, 0.6 );
+            color: rgb(255, 255, 255, 0.6);
         }
     }
 `;
 
 export const NameSearch = styled.div`
-
-    
     height: 100%;
     display: grid;
     grid-template-rows: 1fr;
@@ -80,32 +78,32 @@ export const NameSearch = styled.div`
         /* border: 1px solid lightskyblue; */
     }
 
-    .text{
-        width: fit-content;    
-        span{
+    .text {
+        width: fit-content;
+        span {
             cursor: pointer;
         }
-        i{  
+        i {
             cursor: pointer;
-            display:none;
-            font-size:13px;
+            display: none;
+            font-size: 13px;
             color: lightgray;
             float: right;
 
-            &:hover{
+            &:hover {
                 color: whitesmoke;
             }
         }
 
-        &:hover{
+        &:hover {
             i {
                 display: inline;
             }
         }
     }
 
-    .new-city{
-        input{
+    .new-city {
+        input {
             font-size: 19px;
             color: lightgray;
             border: none;
@@ -115,21 +113,21 @@ export const NameSearch = styled.div`
             width: 93%;
             background-color: transparent;
 
-            &:focus{
+            &:focus {
                 border-bottom: 2px solid lightgray;
             }
         }
-        span{
+        span {
             position: relative;
 
-            .fa-crosshairs{
+            .fa-crosshairs {
                 position: absolute;
                 top: 0;
                 right: 30px;
             }
         }
 
-        i{
+        i {
             color: lightgray;
             display: inline;
             font-size: 18px;
@@ -137,7 +135,7 @@ export const NameSearch = styled.div`
             margin-left: 10px;
             text-align: center;
 
-            &:hover{
+            &:hover {
                 color: whitesmoke;
             }
         }
@@ -146,7 +144,7 @@ export const NameSearch = styled.div`
 
 export const WeeklyWeather = styled.div`
     display: grid;
-    grid-template-columns: repeat(5, 1fr); 
+    grid-template-columns: repeat(5, 1fr);
 `;
 
 export const DayWrapper = styled.div`
@@ -154,36 +152,34 @@ export const DayWrapper = styled.div`
     border-radius: 3px;
     /* border: 1px solid whitesmoke; */
     grid-template-rows: fit-content 1fr;
-    grid-template-columns:repeat(3, minmax(20px, 1fr));
+    grid-template-columns: repeat(3, minmax(20px, 1fr));
     padding: 8px 4px 4px 4px;
     align-items: center;
     font-size: 10px;
 
-    img{
-            margin-left: 8px;
-            height: 20px;
-            width: 20px;
-        }
-    .day{
+    img {
+        margin-left: 8px;
+        height: 20px;
+        width: 20px;
+    }
+    .day {
         color: gray;
         grid-column: 1 / -1;
-        text-align:center;
+        text-align: center;
         box-sizing: content-box;
-
-    }   
-    #max-tem{
+    }
+    #max-tem {
         text-align: left;
         padding-left: 6px;
     }
-    
-    #min-temp{
+
+    #min-temp {
         text-align: left;
         padding-left: 3px;
-        color: rgb(255, 255 ,255, 0.6 );
+        color: rgb(255, 255, 255, 0.6);
     }
-    
 
-    &:hover{
+    &:hover {
         cursor: pointer;
         background-color: rgba(255, 255, 255, 0.1);
     }

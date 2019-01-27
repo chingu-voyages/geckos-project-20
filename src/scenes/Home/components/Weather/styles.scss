@@ -1,7 +1,10 @@
 .weather {
     margin: 14px 0 10px 10px;
     padding-right: 20px;
-    cursor: pointer;
+
+    &-container-small {
+      cursor: pointer;
+    }
 
     &-wrapper {
         display: flex;
@@ -43,36 +46,40 @@
       display: block;
     }
 
+    &-expanded-transition {
+      animation-name: modalFade;
+      animation-duration: .3s;
+    }
+
     &-nipple-top-right {
       position: relative;
-      top: 7px;
-      left: 17px;
+      top: 5px;
+      left: 20px;
       width: 0; 
       height: 0; 
       border-left: 10px solid transparent; 
       border-right: 10px solid transparent; 
-      border-bottom: 12px solid #282828; 
+      border-bottom: 10px solid rgba(15,15,15,.925); 
     }
 
     &-app-wrapper {
       margin-top: 5px;
-      transition: all .15s ease;
       position: relative;
       display: block;
-      right: 325px;
+      right: 340px;
     }
 
     &-app {
-      background: #282828;
+      background: rgba(15,15,15,.925);
       color: #fff;
-      height: 215px;
-      width: 380px;
+      height: 225px;
+      width: 410px;
       padding-bottom: calc(var(--app-padding) - 3px);
       right: 7px;
       box-sizing: border-box;
-      border-radius: 3px;
+      border-radius: 4px;
       overflow-x: hidden;
-      overflow-y: auto;
+      overflow-y: hidden;
       text-align: left;
       text-shadow: none;
       padding: 19px;
@@ -92,7 +99,7 @@
       flex: 1 0 auto;
     }
 
-    &--current-conditions {
+    &-current-conditions {
       margin: 0 0 12px;
       display: block;
       line-height: 125%;
@@ -107,25 +114,24 @@
       white-space: nowrap;
     }
 
-    &--current-temp-row {
+    &-current-temp-row {
       margin-bottom: 8px;
       display: flex;
-      cursor: pointer;
   }
 
-    &--icon-expanded-main {
-      width: 70px;
-      height: 70px;
+    &-icon-current-main {
+      width: 65px;
+      height: 65px;
       margin-right: 10px;
       font-size: 58px;
     }
 
-    &--current-temp {
+    &-current-temp {
       font-size: 60px;
     }
 
     &-row {
-      border-top: 1px solid rgba(255,255,255,.15);
+      border-top: 1px solid rgba(255,255,255,.15);;
     }
 
     &-forecast {
@@ -135,47 +141,58 @@
     }
 
     &-forecast-daily {
-      padding-top: 8px!important;
+      padding-top: 6px;
       clear: both;
-      opacity: 0;
-      transition: opacity .2s ease;
+      //transition: opacity .2s ease;
     }
 
     &-forecast-item {
       flex: 1 1 11.111%;
       text-align: center;
+      cursor: pointer;
+      padding: 4px 2px;
+    }
+
+    &-forecast-item:hover {
+      background: #282828;
     }
 
     &-forecast-day {
       margin: 0 1.5px;
       border-radius: 2px;
-      cursor: pointer;
     }
 
     &-forecast-label {
-      margin: 6px 0 3px;
+      margin: 4px 0 3px;
+      opacity: .6;
+      text-transform: uppercase;
+      font-weight: 500;
     }
 
     &-forecast-icon {
-      margin-bottom: 3px;
-      display: block;
-      font-size: 20px;
-      line-height: 90%!important;
+      margin-right: 2px;
       opacity: .85;
-      vertical-align: -20%;
+      vertical-align: -55%;
+      width: 22px;
+      height: 22px;
     }
 
     &-forecast-high {
       padding-right: 0;
       opacity: .85;
+      font-weight: 500;
     }
 
     &-forecast-low {
       padding-left: 4px;
       opacity: .4;
+      font-weight: 500;
     }
 
-
-
-
   }
+
+  @keyframes modalFade {
+    from {transform: translateY(-50%);opacity: 0;}
+    to {transform: translateY(0);opacity: 1;}
+  }
+  
