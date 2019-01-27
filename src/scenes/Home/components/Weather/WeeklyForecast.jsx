@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Wrapper, CurrentWeather, WeeklyWeather, NameSearch } from './StyledComponents';
+import { Wrapper, WeeklyWeather } from './StyledComponents';
 import Day from './Day';
 import Preview from './Preview';
 import 'font-awesome/css/font-awesome.css';
@@ -11,20 +11,18 @@ class WeeklyForecast extends Component {
     constructor(props){
         super(props);
         this.state = {
-            currentDay: 5
+            currentDay: this.props.currentDay
         }
 
     }
+   
+
 
     updateCurrentDay = (dayId) => {
         console.log('DayId: ',dayId);
         this.setState({
             currentDay: dayId
-        })
-        console.log('currentDat = ', this.state.currentDay);
-        console.log('currentDat = ', this.state.currentDay);
-
-        setTimeout(() => { console.log('currentDatProlonged = ', this.state.currentDay);}, 0)
+        }, console.log('currentDatProlonged = ', this.state.currentDay))
     }
 
     
@@ -42,23 +40,22 @@ class WeeklyForecast extends Component {
             return <Day key={day.length + index}
                         updateCurrentDay={this.updateCurrentDay}
                         dayData={day}
-                        day={"Name"}
-                        iconSrc={this.props.currentWeatherImgSrc}
                         iconAlt="Cloud"
-                        maxTemp={day.length>1 ? day[0].main.temp : 1337}
-                        minTemp={26}
+                        place={this.props.place}
                         dayId={index}
             /> 
         })
      }
     render(){
         const days = this.getDays();
-       
+        console.log('weather', )
         return (
              <Wrapper>
                 <Preview 
+                place={this.props.place}
                 getWeather={this.props.getWeather}
-                currentWeather={this.props.currentWeatherImgSrc}
+                currentDay={this.state.currentDay}
+                currentWeatherImgSrc={this.props.currentWeatherImgSrc}
                 />
                 <WeeklyWeather>
                      {days}

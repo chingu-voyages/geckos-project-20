@@ -66,6 +66,8 @@ class Weather extends Component {
 	render() {
 
 		const { weeklyForecast, isOpen, weather, isLoading, weatherID, weatherDescription, timeOfDay } = this.state;
+		const daysArray = this.createDaysArray(weeklyForecast);
+		
 		return (
 			<div>
 				{
@@ -81,11 +83,13 @@ class Weather extends Component {
 
 				{ isOpen && 
 					<WeeklyForecast
+					place={weather.name}
 					getWeather={this.getCurrentWeather}
 					weatherDescription={weatherDescription}
 					currentWeatherImgSrc={weatherIcon(weatherID, timeOfDay)}
 					currentWeather={weather}
-					weeklyForecast={this.createDaysArray(weeklyForecast)}
+					currentDay={[this.state.weeklyForecast[0]]}
+					weeklyForecast={daysArray}
 				/>
 				}
 			</div>
@@ -119,7 +123,7 @@ class Weather extends Component {
 				isLoading: false
 			});
 
-			this.getWeeklyForecast();
+			this.getWeeklyForecast(cityName);
 			console.log('This has executed')
 		} catch (e){
 			console.error('Error from currwentWeather: ', e);
