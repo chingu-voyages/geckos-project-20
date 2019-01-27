@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { FaEllipsisH } from 'react-icons/fa';
 import "./styles.scss";
 
-const Introduction = ({ question, handleChange, handleKeyUp }) =>
+const Introduction = ({ question, handleChange, saveName }) =>
   (
     <div className="introduction">
       <div className="introduction-content">
@@ -15,7 +15,7 @@ const Introduction = ({ question, handleChange, handleKeyUp }) =>
             type="text"
             autoComplete="off"
             onChange={handleChange}
-            onKeyUp={handleKeyUp}
+            onKeyUp={saveName}
           />
         </div>
       </div>
@@ -43,7 +43,7 @@ class UserGreeting extends React.Component {
             {!this.props.editName ? (
               <span className="clock-greeting__name">{this.props.name}</span>
             ) : (
-                <input className="clock-greeting__name--editable" value={this.props.name} onChange={this.props.onChange} onKeyUp={this.props.onKeyUp} type="text" />
+                <input className="clock-greeting__name--editable" value={this.props.name} onChange={this.props.handleChange} onKeyUp={this.props.saveName} type="text" />
               )}.
           </span>
           <span className="clock-greeting-more" onClick={this.showMore}>
@@ -122,7 +122,7 @@ class GreetingControl extends Component {
     });
   };
 
-  handleKeyUp = e => {
+  saveName = e => {
     let name = this.state.name;
     if (name && e.keyCode === 13) {
       this.setState({
@@ -154,8 +154,8 @@ class GreetingControl extends Component {
           name={this.state.name}
           changeName={this.changeName}
           editName={this.state.editName}
-          onChange={this.handleChange}
-          onKeyUp={this.handleKeyUp}
+          handleChange={this.handleChange}
+          saveName={this.saveName}
         />
       );
     } else {
@@ -163,7 +163,7 @@ class GreetingControl extends Component {
         <Introduction
           question={this.state.question}
           handleChange={this.handleChange}
-          handleKeyUp={this.handleKeyUp}
+          saveName={this.saveName}
         />
       );
     }
