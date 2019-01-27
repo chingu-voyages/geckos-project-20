@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { FaEllipsisH } from 'react-icons/fa';
 import "./styles.scss";
 
 class Introduction extends React.Component {
@@ -45,12 +46,12 @@ class UserGreeting extends React.Component {
             {!this.props.editName ? (
               <span>{this.props.name}</span>
             ) : (
-              <input value={this.props.name} onChange={this.props.onChange} onKeyUp={this.props.onKeyUp} type="text"/>
-            )}{" "}
+                <input value={this.props.name} onChange={this.props.onChange} onKeyUp={this.props.onKeyUp} type="text" />
+              )}{" "}
             .
           </span>
           <span className="clock-greeting-more" onClick={this.showMore}>
-            Edit
+            <FaEllipsisH />
             <div className="dropdown">
               <ul className="dropdown-list">
                 <li className="displayname-edit">
