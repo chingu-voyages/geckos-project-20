@@ -1,9 +1,21 @@
+@font-face {
+  font-family: 'MomentumFont';
+  src: url('/src/resources/fonts/NHaasGroteskTXPro-55Rg') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 .app {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  background: url('https://upload.wikimedia.org/wikipedia/commons/d/d1/Mount_Everest_as_seen_from_Drukair2_PLW_edit.jpg') center;
+  background-size: cover;
+
+  font-family: 'MomentumFont', Arial, Helvetica, sans-serif;
 }
 
 .app-container {
@@ -68,10 +80,15 @@
   z-index: 2;
 }
 
+#todo{
+  font-size: 25px;
+}
+
 .bottom-right {
-  z-index: 3;
-  bottom: 0;
-  right: 0;
+  position: absolute;
+  z-index: 10;
+  bottom: 25px;
+  right: 25px;
 }
 
 .bottom-left {
