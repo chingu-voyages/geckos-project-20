@@ -2,28 +2,25 @@ import React, { Component } from "react";
 import { FaEllipsisH } from 'react-icons/fa';
 import "./styles.scss";
 
-class Introduction extends React.Component {
-  render() {
-    return (
-      <div className="introduction">
-        <div className="introduction-content">
-          <div className="introduction-content__question">
-            {this.props.question}
-          </div>
-          <div className="introduction-content__input">
-            <input
-              id="introduction-input"
-              type="text"
-              autoComplete="off"
-              onChange={this.props.handleChange}
-              onKeyUp={this.props.handleKeyUp}
-            />
-          </div>
+const Introduction = ({ question, handleChange, handleKeyUp }) =>
+  (
+    <div className="introduction">
+      <div className="introduction-content">
+        <div className="introduction-content__question">
+          {question}
+        </div>
+        <div className="introduction-content__input">
+          <input
+            id="introduction-input"
+            type="text"
+            autoComplete="off"
+            onChange={handleChange}
+            onKeyUp={handleKeyUp}
+          />
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
 
 class UserGreeting extends React.Component {
   showMore = () => {
@@ -42,13 +39,12 @@ class UserGreeting extends React.Component {
             })}
           </div>
           <span className="clock-greeting">
-            {this.props.greeting},
+            {this.props.greeting},{" "}
             {!this.props.editName ? (
-              <span>{this.props.name}</span>
+              <span className="clock-greeting__name">{this.props.name}</span>
             ) : (
-                <input value={this.props.name} onChange={this.props.onChange} onKeyUp={this.props.onKeyUp} type="text" />
-              )}{" "}
-            .
+                <input className="clock-greeting__name--editable" value={this.props.name} onChange={this.props.onChange} onKeyUp={this.props.onKeyUp} type="text" />
+              )}.
           </span>
           <span className="clock-greeting-more" onClick={this.showMore}>
             <FaEllipsisH />
