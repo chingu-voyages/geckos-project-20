@@ -19,7 +19,7 @@ class Home extends Component {
         <div className="app">
           <div className="top-row">
           <div className="top-left">
-            <Search />
+            {/* <Search /> */}
             </div>
           <div className="top-right">
             <Weather />
