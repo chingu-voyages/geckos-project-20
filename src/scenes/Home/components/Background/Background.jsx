@@ -22,7 +22,7 @@ class Background extends Component {
     }
 
     render() {
-        const { background, error, isLoading } = this.state;
+        const { error, isLoading } = this.state;
         const backgroundStyle = {
             backgroundImage: 'url(' + this.state.background + ')',
           };

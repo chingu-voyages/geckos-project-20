@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Background from './components/Background/Background';
-import Quote from './components/Quote';
+import Quote from './components/Quote/Quote';
 import Clock from './components/Clock/Clock';
 import './styles.scss';
 import Weather from './components/Weather/Weather';
 import Search from './components/Search/Search';
-import Focus from './components/Focus/index';
+import Focus from './components/Focus/Focus';
 import './styles.scss';
 
 class Home extends Component {
@@ -15,11 +15,11 @@ class Home extends Component {
     return (
      
       <div className="main-view">
-      <Background />
+      {/* <Background /> */}
         <div className="app">
           <div className="top-row">
           <div className="top-left">
-            <Search />
+            {/* <Search /> */}
             </div>
           <div className="top-right">
             <Weather />
@@ -30,10 +30,10 @@ class Home extends Component {
         <div className="center">
           <Clock />
           </div>
-        <div className="bottom">
              <div className="center-below">
-            <Focus />
+            {/* <Focus /> */}
             </div>
+            <div className="bottom">
             <Quote />
         </div>
       </div>
