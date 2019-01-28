@@ -30,11 +30,10 @@ export const Content = styled.ul`
         } else if (props.side === 'below') {
             return 'top: 40px; left: 5px;';
         } else if (props.side === 'above') {
-            return 'bottom: 40px; right: 0px;';
+            return 'bottom: 35px; right: -15px;';
         }
     }}
     position: absolute;
-    padding: 2px 0;
     width: ${props => (props.width ? props.width : 'max-content')};
     border-radius: 5px;
     list-style-type: none;

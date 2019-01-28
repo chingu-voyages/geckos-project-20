@@ -49,7 +49,7 @@ class Preview extends Component {
                 }}
                 onKeyUp={event => {
                   if (event.key === "Enter") {
-                    event.target.value != "" &&
+                    event.target.value !== "" &&
                       this.props.getWeather(event.target.value);
                   }
                 }}

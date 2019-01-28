@@ -8,13 +8,13 @@ export const Wrapper = styled.div`
         'Helvetica Neue', Helvetica, Arial, sans-serif;
     height: 215px;
     width: 420px;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(15,15,15,.925);
     position: fixed;
     display: grid;
     grid-template-rows: 1fr 50px;
     grid-row-gap: 10px;
     top: 70px;
-    right: 15px;
+    right: 10px;
     border-radius: 5px;
     box-sizing: border-box;
     padding: 18px;
@@ -29,12 +29,11 @@ export const Wrapper = styled.div`
         height: 0;
         border-left: 8px solid transparent;
         border-right: 8px solid transparent;
-        border-bottom: 8px solid rgba(0, 0, 0, 0.9);
+        border-bottom: 8px solid rgba(15,15,15,.925);
     }
 `;
 
 export const CurrentWeather = styled.div`
-    /* border-bottom: 1px solid pink; */
     display: grid;
     align-items: end;
     grid-template-rows: 50px 1fr;
@@ -47,11 +46,9 @@ export const CurrentWeather = styled.div`
     & > .temperature {
         max-height: 65px;
         & > * {
-            /* height: 100%; */
             padding: 0 2px;
             display: inline-block;
             margin-right: 5px;
-            /* border: 1px solid greenyellow; */
         }
 
         img {

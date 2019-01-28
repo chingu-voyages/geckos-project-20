@@ -11,8 +11,8 @@ import Toggle from './components/Toggle';
 import {
     Activator,
     Content,
-    Divider,
-    Element,
+   // Divider,
+   // Element,
 } from './components/HomeStyledComponents';
 
 class Home extends Component {
