@@ -1,18 +1,17 @@
 .todoFeature {
     z-index: 10;
-    background-color: black;
     position: relative;
     padding: 2px 5px 2px 15px;
     width: 320px;
     border-radius: 4px;
     max-width: 320px;
-    background-color: rgba($color: #151515, $alpha: 0.87);
+    background-color: rgba(15,15,15,.925);
 }
 .todoFeature::after {
     content: '';
     position: absolute;
     bottom: -10px;
-    right: 15px;
+    right: 30px;
     width: 0;
     height: 0;
     border-left: 10px solid transparent;

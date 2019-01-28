@@ -11,7 +11,7 @@ class WeeklyForecast extends Component {
     constructor(props){
         super(props);
         this.state = {
-            currentDay: this.props.currentDay
+            currentDay: this.props.currentDay //possible React anti-pattern
         }
 
     }
@@ -40,7 +40,7 @@ class WeeklyForecast extends Component {
             return <Day key={day.length + index}
                         updateCurrentDay={this.updateCurrentDay}
                         dayData={day}
-                        iconAlt="Cloud"
+                        //iconAlt="Cloud"
                         place={this.props.place}
                         dayId={index}
             /> 
@@ -48,7 +48,6 @@ class WeeklyForecast extends Component {
      }
     render(){
         const days = this.getDays();
-        console.log('weather', )
         return (
              <Wrapper>
                 <Preview 

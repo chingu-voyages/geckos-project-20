@@ -13,12 +13,6 @@ import MistIcon from './../../../../images/weather-icons/50d.svg';
 
 // Meteoicons from https://icomoon.io and matched to weather description from https://openweathermap.org/weather-conditions 
 
-/*
-Comment from PR...Try making this not with if else , but you will have an object that will 
-hold the range and name as a key value, and you will have to just loop over 
-that object to get the value needed
-*/
-
 let weatherIdIconCodes = {
     day: {
         "0-232": ThunderStormIcon,

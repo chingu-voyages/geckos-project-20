@@ -101,13 +101,12 @@ class Weather extends Component {
 
 		try{
 			console.log('I happened to get new weather');
-			// const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
+			const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 			const byCoordinates = `lat=${this.state.lat}&lon=${this.state.lon}`;
 			const byName = `q=${cityName}`
 
-			const API_KEY = '9c77935cf1f7d3fae12ebf15913a8b2d';
-			let currentWeatherUrl = `http://api.openweathermap.org/data/2.5/weather?${cityName?byName:byCoordinates}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
-
+			let currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?${cityName?byName:byCoordinates}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
+      console.log(currentWeatherUrl);
 			let date = new Date();
 			let timeOfDay = date.getHours();
 
@@ -126,7 +125,7 @@ class Weather extends Component {
 			this.getWeeklyForecast(cityName);
 			console.log('This has executed')
 		} catch (e){
-			console.error('Error from currwentWeather: ', e);
+			console.error('Error from currentWeather: ', e);
 		}
 	}
 
@@ -135,9 +134,9 @@ class Weather extends Component {
 			const byCoordinates = `lat=${this.state.lat}&lon=${this.state.lon}`;
 			const byName = `q=${cityName}`;
 
-			const API_KEY = '9c77935cf1f7d3fae12ebf15913a8b2d';
-			let currentWeatherUrl = `http://api.openweathermap.org/data/2.5/forecast?${cityName?byName:byCoordinates}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
-
+			const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
+			let currentWeatherUrl = `https://api.openweathermap.org/data/2.5/forecast?${cityName?byName:byCoordinates}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
+console.log(currentWeatherUrl);
 			const response = await fetch(currentWeatherUrl);
 			const weatherData = await response.json();
 

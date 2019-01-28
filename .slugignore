@@ -1,5 +1,0 @@
-# .slugignore file for ignoring conflicting yarn/npm package files for Heroku deployment
-# See https://kb.heroku.com/why-is-my-node-js-build-failing-because-of-conflicting-lock-files
-# and https://devcenter.heroku.com/articles/slug-compiler#ignoring-files-with-slugignore
-
-yarn.lock

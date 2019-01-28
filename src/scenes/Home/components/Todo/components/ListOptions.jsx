@@ -94,9 +94,9 @@ class ListOptions extends Component {
                     </Content>
                 </Toggle>
 
-                <span className="todoFeature__lists__options">
+            {/*}    <span className="todoFeature__lists__options">
                     <i className="fa fa-ellipsis-h" />
-                </span>
+                </span> */}
             </div>
         );
     }
