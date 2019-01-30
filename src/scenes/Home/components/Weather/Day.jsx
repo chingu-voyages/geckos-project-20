@@ -15,13 +15,18 @@ const getAverageMin = dayArray =>
         dayArray.length
       ).toFixed(0)
     );
+
+    
     /*
 //Get day of the week from UNIX time stamp, map over the array to create Date object, convert to seconds then display 3 letter date string
-let dates = [props.weatherForecast.list[0].dt, props.weatherForecast.list[8].dt, props.weatherForecast.list[16].dt, props.weatherForecast.list[24].dt, props.weatherForecast.list[32].dt];
+let dates = [this.props.dayArray[0].dt, this.props.dayArray[0].dt, this.props.dayArray[0].dt, this.props.dayArray[0].dt, this.props.dayArray[0].dt];
 	
 let datesString = dates.map(function(e) {
     return new Date(e*1000).toString().split(' ')[0];
   });
+
+  //{datesString[0]}
+    //console.log(props.dayArray[0].dt);
   */
 
 export const Day = (props) => {
@@ -32,14 +37,15 @@ export const Day = (props) => {
                 props.updateCurrentDay(props.dayData);
                 console.log('DayArray: ', props.dayData);
             }}>
-            <div className="day">{"Petok"}</div>
+            <div className="day">{"Fri"}</div>
             <div> 
+                {/*}
                 <img src={weatherIcon(props.dayData[0].weather[0].id, new Date().getHours())} alt={props.dayData[0].weather[0].main}/>
-                
+        */}
              </div>
             <div id="max-temp">{averageMax}&#0176; </div>
             <div id="min-temp">{averageMin}&#0176; </div>
-            <div style={{display:'none'}}>{props.place }</div>   
+            <div style={{display:'none'}}>{props.place}</div>   
         </DayWrapper>
     )
 }
