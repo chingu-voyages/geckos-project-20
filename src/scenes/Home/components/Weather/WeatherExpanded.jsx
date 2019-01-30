@@ -2,6 +2,7 @@ import React from 'react';
 import './styles.scss';
 import { weatherIcon } from './WeatherIcon';
 import { weatherForecastIcon } from './WeatherIcon';
+//import WeatherDay from './WeatherDay';
 
 const WeatherExpanded = (props) => {
 
@@ -27,13 +28,11 @@ const WeatherExpanded = (props) => {
 	let fifthWeatherForecastDescription = props.weatherForecast.list[32].weather[0].description;
 
 	//Get day of the week from UNIX time stamp, map over the array to create Date object, convert to seconds then display 3 letter date string
-	
 	let dates = [props.weatherForecast.list[0].dt, props.weatherForecast.list[8].dt, props.weatherForecast.list[16].dt, props.weatherForecast.list[24].dt, props.weatherForecast.list[32].dt];
 	
 	let datesString = dates.map(function(e) {
 		return new Date(e*1000).toString().split(' ')[0];
-	  });
-
+      });
 
     return (
         <div className="weather-expanded-transition">
@@ -47,7 +46,7 @@ const WeatherExpanded = (props) => {
                             <span className="weather-location-name">{props.weather.name}</span>
                             <span className="weather-current-conditions">{props.weatherDescription}</span>
                             </span>
-                            {/* TODO settings icon and options to be added later
+                            {/* TODO settings icon and options to be added
 							<p>...</p>*/}
                     </header>
                         <div className="weather-current-temp-wrapper"> 
@@ -58,7 +57,8 @@ const WeatherExpanded = (props) => {
                         </div>
                 </section>
 
-                <section className="weather-row weather-forecast weather-forecast-daily">
+                <section className="weather-row weather-forecast">
+
 			<div className="weather-forecast-item weather-forecast-day">
 				<div className="weather-forecast-label">{datesString[0]}</div>
 				<img className="weather-forecast-icon" src={weatherForecastIcon(props.weatherForecast.list[0].weather[0].id, props.timeOfDay)} alt={firstWeatherForecastDescription}/>
@@ -89,6 +89,7 @@ const WeatherExpanded = (props) => {
 				<span className="weather-forecast-high">{Math.round(fifthDayMaxTemp)}&deg;</span>
 				<span className="weather-forecast-low">{Math.round(fifthDayMinTemp)}&deg;</span>
 			</div>
+
 		</section>
 
         </div>

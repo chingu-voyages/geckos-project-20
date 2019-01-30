@@ -17,7 +17,6 @@ body{
   bottom: 0;
   background: url('https://upload.wikimedia.org/wikipedia/commons/d/d1/Mount_Everest_as_seen_from_Drukair2_PLW_edit.jpg') center;
   background-size: cover;
-
   font-family: 'MomentumFont', Arial, Helvetica, sans-serif;
 }
 
@@ -49,6 +48,7 @@ body{
   flex-wrap: wrap;
   justify-content: flex-start;
   text-align: right;
+  z-index: 2;
 }
 
 .center {
@@ -59,7 +59,7 @@ body{
   width: 100%;
   text-align: center;
   transform: translate(-50%, -50%);
-  z-index: 2;
+  z-index: 1;
 }
 
 .center-below {
@@ -71,7 +71,7 @@ body{
   height: 75px;
   transform: translate(-50%, -50%);
   text-align: center;
-  z-index: 2;
+  z-index: 1;
 }
 
 .bottom {
