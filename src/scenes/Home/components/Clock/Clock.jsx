@@ -25,6 +25,7 @@ const Introduction = ({ question, handleChange, saveName }) =>
 class UserGreeting extends React.Component {
   showMore = () => {
     const showMore = document.querySelector(".clock-greeting-more");
+    const overlay = document.querySelector(".app-overlay");
     showMore.classList.toggle("active");
   };
 
