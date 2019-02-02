@@ -7,9 +7,9 @@ class Todo extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            lists: ['test1', 'test2', 'main', 'today', 'done'],
+            lists: ['main', 'today', 'done'],
             activeList: 'today',
-            lastId: 7,
+            lastId: 2,
             allTodos: [],
             filteredTodos: [],
             todoChanged: true,
