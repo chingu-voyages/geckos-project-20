@@ -1,4 +1,4 @@
-# PowerPanel 🏙️
+# PowerPanel &nbsp; ![](/dashboard.png)
 
 ## Table of Contents
 
@@ -21,7 +21,8 @@ Project live link: [PowerPanel](https://power-panel.herokuapp.com/)
 
 We decided to make a clone of [Momentum dashboard](https://momentumdash.com/) as it looks when viewed as a Chrome or Firefox browser extension but creating the app using React.js. 
 
-![](/Screenshot_310119_PowerPanel.png)
+![PowerPanel Screenshot](/Screenshot_310119_PowerPanel.png)
+NB: ☝️ Note the random quote that was generated on the day of the screenshot 😄
 
 The user stories to be completed were:
 
@@ -101,3 +102,5 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 
 Live project link: PowerPanel [https://power-panel.herokuapp.com/](https://power-panel.herokuapp.com/)
+
+Project icon made by [Freepik](https://www.freepik.com/) from [Flaticon](https://www.flaticon.com/) and licensed by [Creative Commons BY 3.0](http://creativecommons.org/licenses/by/3.0/)

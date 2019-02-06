@@ -15,7 +15,7 @@
       min-width: 40%;
       max-width: 90%;
       margin: 0 auto;
-      padding-top: 15px;
+      padding-top: 13px;
       display: inline-block !important;
       border-bottom: 3px solid #fff;
       line-height: normal;
@@ -134,3 +134,22 @@
     }
   }
 }
+
+//Media queries for responsive design
+@media screen and (max-width: 500px), (max-height: 550px) {
+  .clock-greeting-more {
+    margin-left: 2px;
+
+  }
+  .clock .dropdown li {
+    padding: 6px;
+  }
+  .clock-greeting__name--editable {
+    margin-left: 0px;
+}
+.clock .dropdown {
+  top: 25px;
+  left: -10px;
+}
+}
+
