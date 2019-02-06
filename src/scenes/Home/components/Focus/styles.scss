@@ -6,13 +6,16 @@
   }
 
   &-prompt {
-    width: 15em;
+    min-width: 50%;
+    max-width: 90%; 
+    line-height: normal;
+    overflow: hidden;
     margin: 0 auto;
     padding-top: 15px;
-    display: block;
+    display: in-line block;
     background: 0;
     border: 0;
-    border-bottom: 2px solid #fff;
+    border-bottom: 3px solid #fff;
     color: #fff;
     font-weight: 500;
     outline: 0;
@@ -144,3 +147,16 @@
 }
   
 
+//Mobiles
+@media screen and (max-width: 375px), (max-height: 550px) {
+  .focus-prompt {
+    padding: 2px;
+  }
+  .focus-prompt-title {
+    font-size: 26px;
+  }
+  .focus-prompt {
+    max-width: 70%;
+    padding-top: 5px;
+  }
+}
