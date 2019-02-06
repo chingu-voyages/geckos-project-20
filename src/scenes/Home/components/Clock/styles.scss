@@ -135,8 +135,8 @@
   }
 }
 
-//Mobiles
-@media screen and (max-width: 375px), (max-height: 550px) {
+//Media queries for responsive design
+@media screen and (max-width: 500px), (max-height: 550px) {
   .clock-greeting-more {
     margin-left: 2px;
 
@@ -152,3 +152,4 @@
   left: -10px;
 }
 }
+

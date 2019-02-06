@@ -99,23 +99,26 @@ body{
 }
 
 
-//Media queries for responsive 
-@media screen and (max-width: 900px), (max-height: 650px) {
+//Media queries for responsive design
+@media screen and (max-width: 900px), (min-height: 650px) {
   .center,
   .center-below,
   body {
     font-size: 95%;
   }
+  .center-below {
+    top: 90%;
+  }
 }
 
-@media screen and (max-width: 760px), (max-height: 650px) {
+@media screen and (max-width: 760px), (min-height: 650px) {
   .center,
   .center-below,
   body {
     font-size: 90%;
   }
   .center-below {
-    top: 75%;
+    top: 90%;
   }
 }
 
@@ -125,7 +128,7 @@ body{
     font-size: 80%;
   }
   .center-below {
-    top: 70%;
+    top: 87%;
   }
 }
 
