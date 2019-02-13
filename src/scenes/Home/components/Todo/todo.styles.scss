@@ -5,7 +5,7 @@
     width: 320px;
     border-radius: 4px;
     max-width: 320px;
-    background-color: rgba(15,15,15,.925);
+    //background-color: rgba(15,15,15,.925); //Bug with styled component repeat darkens colour
 }
 .todoFeature::after {
     content: '';

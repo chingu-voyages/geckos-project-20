@@ -39,7 +39,7 @@ export const Content = styled.ul`
     list-style-type: none;
     margin: 0;
     z-index: 50;
-    background-color: black;
+    background-color: rgba(15,15,15,.925);
 `;
 
 export const Element = styled.li`
