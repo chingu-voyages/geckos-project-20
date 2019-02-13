@@ -70,7 +70,7 @@ class Weather extends Component {
 
 		//Example API call: http://api.openweathermap.org/data/2.5/weather?lat=51&lon=-1&units=metric&type=accurate&mode=json&APPID=YOUR_API_KEY
 		const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
-		let currentURL = `http://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lon}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
+		let currentURL = `https://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lon}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
 		let date = new Date();
 		let timeOfDay = date.getHours();
 		console.log(currentURL);
@@ -98,7 +98,7 @@ class Weather extends Component {
 		//Forecast API call...
 		//http://api.openweathermap.org/data/2.5/forecast?lat=51&lon=-1&units=metric&type=accurate&mode=json&APPID=${API_KEY}
 		const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
-		let forecastURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${this.state.lat}&lon=${this.state.lon}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
+		let forecastURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${this.state.lat}&lon=${this.state.lon}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
 		console.log(forecastURL);
 		return fetch(forecastURL)
 		.then(response => response.json())
