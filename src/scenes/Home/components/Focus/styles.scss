@@ -6,16 +6,15 @@
   }
 
   &-prompt {
-    min-width: 50%;
-    max-width: 90%; 
-    line-height: normal;
+    width: 80%; 
+    line-height: 1.25;
     overflow: hidden;
     margin: 0 auto;
-    padding-top: 15px;
+    padding-top: 10px;
     display: in-line block;
     background: 0;
     border: 0;
-    border-bottom: 3px solid #fff;
+    border-bottom: 2px solid #fff;
     color: #fff;
     font-weight: 500;
     outline: 0;
@@ -52,7 +51,6 @@
   &-todays-focus {
     font-size: 26px;
     font-weight: 500;
-    //font-size: 170%;
     line-height: 120%;
     margin: 7px 20px;
   }
@@ -66,26 +64,27 @@
   }
 
   &-icon-checkbox {
-    height: 15px;
-    width: 15px;
+    height: 18px;
+    width: 18px;
     padding-bottom: 2px;
   }
 
   &-icon-checkbox-empty {
-    height: 15px;
-    width: 15px;
+    height: 18px;
+    width: 18px;
     padding-bottom: 2px;
   }
 
   &-icon-clear {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     font-weight: bold;
   }
 
   &-icon-plus {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
+    padding-bottom: 2px;
   }
 
   &-message {
@@ -149,15 +148,15 @@
 
 //Media queries for responsive design
 //Mobiles
-@media screen and (max-width: 375px), (max-height: 550px) {
+@media screen and (max-width: 580px) {
   .focus-prompt {
     padding: 2px;
   }
   .focus-prompt-title {
-    font-size: 26px;
+    font-size: 24px;
   }
   .focus-prompt {
-    max-width: 70%;
+    max-width: 65%;
     padding-top: 5px;
   }
 }

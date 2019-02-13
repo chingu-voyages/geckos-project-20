@@ -19,7 +19,8 @@ class Focus extends Component {
     this.onChange = this.onChange.bind(this);
     this.toggleLine = this.toggleLine.bind(this);
     this.onCompleteClick = this.onCompleteClick.bind(this);
-    this.handleMouseHover = this.handleMouseHover.bind(this);
+    this.handleMouseEnter = this.handleMouseEnter.bind(this);
+    this.handleMouseLeave = this.handleMouseLeave.bind(this);
   }
 
   componentDidMount() {
@@ -72,15 +73,17 @@ class Focus extends Component {
     }));
   };
 
-  handleMouseHover() {
-    this.setState(this.toggleHoverState);
-  }
+  handleMouseLeave() {
+    this.setState({ 
+			isHovered: false 
+		  });
+  };
 
-  toggleHoverState(state) {
-    return {
-      isHovered: !state.isHovered,
-    };
-  }
+  handleMouseEnter() {
+    this.setState({ 
+			isHovered: true
+		  });
+  };
 
   render() {
 
@@ -125,8 +128,8 @@ class Focus extends Component {
               <h4 className="focus-title">TODAY</h4>
 
                 <div  className="focus-row"
-                      onMouseEnter={this.handleMouseHover}
-                      onMouseLeave={this.handleMouseHover}>
+                      onMouseEnter={this.handleMouseEnter}
+                      onMouseLeave={this.handleMouseLeave}>
                     
                       <div>
                 <div className="focus-content">

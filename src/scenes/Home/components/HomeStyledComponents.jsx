@@ -30,7 +30,7 @@ export const Content = styled.ul`
         } else if (props.side === 'below') {
             return 'top: 40px; left: 5px;';
         } else if (props.side === 'above') {
-            return 'bottom: 35px; right: -15px;';
+            return 'bottom: 35px; right: -17px;';
         }
     }}
     position: absolute;
@@ -39,6 +39,7 @@ export const Content = styled.ul`
     list-style-type: none;
     margin: 0;
     z-index: 50;
+    background-color: rgba(15,15,15,.925);
 `;
 
 export const Element = styled.li`
