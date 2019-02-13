@@ -7,10 +7,10 @@
 
   &-prompt {
     width: 80%; 
-    line-height: normal;
+    line-height: 1.25;
     overflow: hidden;
     margin: 0 auto;
-    padding-top: 15px;
+    padding-top: 10px;
     display: in-line block;
     background: 0;
     border: 0;
@@ -64,26 +64,27 @@
   }
 
   &-icon-checkbox {
-    height: 15px;
-    width: 15px;
+    height: 18px;
+    width: 18px;
     padding-bottom: 2px;
   }
 
   &-icon-checkbox-empty {
-    height: 15px;
-    width: 15px;
+    height: 18px;
+    width: 18px;
     padding-bottom: 2px;
   }
 
   &-icon-clear {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     font-weight: bold;
   }
 
   &-icon-plus {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
+    padding-bottom: 2px;
   }
 
   &-message {
