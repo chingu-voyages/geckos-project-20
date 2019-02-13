@@ -22,6 +22,7 @@ Project live link: [PowerPanel](https://power-panel.herokuapp.com/)
 We decided to make a clone of [Momentum dashboard](https://momentumdash.com/) as it looks when viewed as a Chrome or Firefox browser extension but creating the app using React.js. 
 
 ![PowerPanel Screenshot](/Screenshot_310119_PowerPanel.png)
+
 NB: ☝️ Note the random quote that was generated on the day of the screenshot 😄
 
 The user stories to be completed were:
