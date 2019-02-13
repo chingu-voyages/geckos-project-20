@@ -63,10 +63,9 @@ body{
 .center-below {
   position: absolute;
   display: block;
-  top: 90%;
+  top: 77%;
   left: 50%;
   width: 100%;
-  height: 40%;
   transform: translate(-50%, -50%);
   text-align: center;
   z-index: 1;
@@ -75,7 +74,7 @@ body{
 .bottom {
   position: absolute;
   width: 50%;
-  bottom: 1rem;
+  bottom: 0.75rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
@@ -106,9 +105,6 @@ body{
   body {
     font-size: 95%;
   }
-  .center-below {
-    top: 90%;
-  }
 }
 
 @media screen and (max-width: 760px), (max-height: 650px) {
@@ -118,7 +114,7 @@ body{
     font-size: 90%;
   }
   .center-below {
-    top: 90%;
+    top: 74%;
   }
 }
 
@@ -128,18 +124,18 @@ body{
     font-size: 80%;
   }
   .center-below {
-    top: 87%;
+    top: 71%;
   }
 }
 
 //Mobiles
-@media screen and (max-width: 375px), (max-height: 550px) {
+@media screen and (max-width: 375px), (max-height: 500px) {
   .center,
   .center-below {
-    font-size: 75%;
+    font-size: 70%;
   }
   .center-below {
-    top: 85%;
+    top: 68%;
   }
 }
 
