@@ -44,6 +44,8 @@
 
     .search-input {
       border-bottom: 2px solid #fff;
+      -webkit-appearance: none; //Stop iOS styling input field
+      border-radius: 0;
     }
   }
 }
