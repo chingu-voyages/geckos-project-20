@@ -18,6 +18,7 @@
     position: absolute;
     background: transparent;
     border: none;
+    -webkit-appearance: none; //Stop iOS styling input field
     z-index: 0;
     left: 10px;
     top: 0;

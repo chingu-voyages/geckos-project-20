@@ -14,6 +14,7 @@
     display: in-line block;
     background: 0;
     border: 0;
+    -webkit-appearance: none; //Stop iOS styling input field
     border-bottom: 2px solid #fff;
     color: #fff;
     font-weight: 500;

@@ -97,6 +97,16 @@ body{
   z-index: 2;
 }
 
+//Stop iOS styling input fields https://www.daretothink.co.uk/stop-ios-styling-your-input-fields-and-buttons/
+textarea,
+input.text,
+input[type="text"],
+input[type="button"],
+input[type="submit"],
+.input-checkbox {
+-webkit-appearance: none;
+border-radius: 0;
+}
 
 //Media queries for responsive design
 @media screen and (max-width: 900px) {
