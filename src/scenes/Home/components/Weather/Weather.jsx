@@ -34,9 +34,40 @@ class Weather extends Component {
 			error => console.error(error));
 	}
 
+	createDaysArray = (weatherData) => {
+        console.log('WeatherData List: ', weatherData)
+
+        let endResult = [];
+        let oneDay = [];
+        let currentDay = new Date();
+
+       for(let period of weatherData){
+            let periodDate = new Date(period.dt_txt);
+            if (this.sameDay(periodDate, currentDay)){
+                oneDay.push(period);
+            } else {
+                endResult.push(oneDay);
+                oneDay = [];
+                oneDay.push(period);
+                currentDay.setDate(currentDay.getDate() + 1);
+            }
+        }
+        
+        endResult.push(oneDay);
+        return endResult;
+    }
+
+    sameDay = (date1, date2) => {
+        return (date1.getFullYear() === date2.getFullYear() &&
+        date1.getMonth() === date2.getMonth() &&
+        date1.getDate() === date2.getDate());
+    }
+
 	render() {
 
 		const { weeklyForecast, isOpen, weather, isLoading, weatherID, weatherDescription, timeOfDay } = this.state;
+		const daysArray = this.createDaysArray(weeklyForecast);
+		
 		return (
 			<div>
 				{
@@ -52,11 +83,13 @@ class Weather extends Component {
 
 				{ isOpen && 
 					<WeeklyForecast
+					place={weather.name}
 					getWeather={this.getCurrentWeather}
 					weatherDescription={weatherDescription}
 					currentWeatherImgSrc={weatherIcon(weatherID, timeOfDay)}
 					currentWeather={weather}
-					weeklyForecast={weeklyForecast}
+					currentDay={[this.state.weeklyForecast[0]]}
+					weeklyForecast={daysArray}
 				/>
 				}
 			</div>
@@ -90,7 +123,7 @@ class Weather extends Component {
 				isLoading: false
 			});
 
-			this.getWeeklyForecast();
+			this.getWeeklyForecast(cityName);
 			console.log('This has executed')
 		} catch (e){
 			console.error('Error from currwentWeather: ', e);
