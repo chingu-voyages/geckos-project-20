@@ -1,10 +1,23 @@
+body{
+  background-color: rgb(87, 86, 86);
+}
+@font-face {
+  font-family: 'MomentumFont';
+  src: url('/src/resources/fonts/NHaasGroteskTXPro-55Rg') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 .app {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 3;
+  //background: url('https://upload.wikimedia.org/wikipedia/commons/d/d1/Mount_Everest_as_seen_from_Drukair2_PLW_edit.jpg') center;
+  background-size: cover;
+  font-family: 'MomentumFont', Arial, Helvetica, sans-serif;
 }
 
 .app-container {
@@ -18,23 +31,24 @@
   right: 0;
   z-index: 2;
   display: flex;
+}
 
-  .top-left {
-    position: relative;
-    flex: 1 0 auto;
-    padding-right: 38px;
-    padding-top: 20px;
-  }
+.top-left {
+  position: relative;
+  flex: 1 0 auto;
+  padding-right: 38px;
+  padding-top: 20px;
+}
 
-  .top-right {
-    position: relative;
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: row-reverse;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    text-align: right;
-  }
+.top-right {
+  position: relative;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  text-align: right;
+  z-index: 2;
 }
 
 .center {
@@ -45,33 +59,95 @@
   width: 100%;
   text-align: center;
   transform: translate(-50%, -50%);
+  z-index: 1;
 }
 
 .center-below {
   position: absolute;
   display: block;
+  top: 77%;
   left: 50%;
-  top: 70.5%;
-  transform: none;
+  width: 100%;
+  height: 75px;
+  transform: translate(-50%, -50%);
   text-align: center;
+  z-index: 1;
 }
 
 .bottom {
   position: absolute;
   width: 50%;
-  bottom: 2rem;
+  bottom: 1rem;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 2;
+}
+
+#todo{
+  font-size: 18px;
 }
 
 .bottom-right {
-  z-index: 3;
-  bottom: 0;
-  right: 0;
+  position: absolute;
+  z-index: 10;
+  bottom: 25px;
+  right: 25px;
 }
 
 .bottom-left {
   bottom: 0;
   left: 0;
   z-index: 2;
+}
+
+@media screen and (max-height: 700px) {
+  body {
+    font-size: 95%;
+  }
+}
+
+@media screen and (max-height: 650px) {
+  body {
+    font-size: 90%;
+  }
+  #focuses .delete {
+    //needed??
+    margin-top: 9px;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .center,
+  .center-below,
+  body {
+    font-size: 90%;
+  }
+  .center-below {
+    top: 75%;
+  }
+  #focuses .delete {
+    margin-top: 8px;
+  }
+}
+
+@media screen and (max-height: 550px) {
+  .center,
+  .center-below {
+    font-size: 80%;
+  }
+  .center-below {
+    top: 70%;
+  }
+}
+
+@media screen and (max-height: 400px) {
+  .center {
+    top: 30%;
+  }
+  .center .clock {
+    display: none !important;
+  }
+  .center-below {
+    top: 50%;
+  }
 }

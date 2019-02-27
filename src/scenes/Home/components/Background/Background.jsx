@@ -22,7 +22,7 @@ class Background extends Component {
     }
 
     render() {
-        const { background, error, isLoading } = this.state;
+        const { error, isLoading } = this.state;
         const backgroundStyle = {
             backgroundImage: 'url(' + this.state.background + ')',
           };
@@ -35,7 +35,7 @@ class Background extends Component {
             return <p>Loading ...</p>;
         } else {
             return (
-                <div class="background">
+                <div className="background">
                     <div className="background-image" style={backgroundStyle}></div>
                     <div className="background-overlay"></div>
                 </div>

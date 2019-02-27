@@ -3,19 +3,19 @@ const DEFAULT_QUERY = 'london';
 
 var coords = { lat: "", lon: "" };
 
-navigator.geolocation.getCurrentPosition(
-    (position) => {
-        console.log("got position");
-        console.log(position);
+// navigator.geolocation.getCurrentPosition(
+//     (position) => {
+//         console.log("got position");
+//         console.log(position);
 
 
-        coords.lon = position.coords.latitude;
-        coords.lon = position.coords.longitude;
-        console.log(coords);
-    },
-    (error) => alert(error.message),
-    { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-);
+//         coords.lon = position.coords.latitude;
+//         coords.lon = position.coords.longitude;
+//         console.log(coords);
+//     },
+//     (error) => alert(error.message),
+//     { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+// );
 
 /*
 function success(position) {

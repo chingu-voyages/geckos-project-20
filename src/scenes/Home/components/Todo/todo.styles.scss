@@ -1,0 +1,131 @@
+.todoFeature {
+    z-index: 10;
+    position: relative;
+    padding: 2px 5px 2px 15px;
+    width: 320px;
+    border-radius: 4px;
+    max-width: 320px;
+    background-color: rgba(15,15,15,.925);
+}
+.todoFeature::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: 30px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid rgba($color: #151515, $alpha: 0.87);
+}
+.todoFeature__lists {
+    display: grid;
+    grid-template-columns: max-content auto max-content;
+    height: 45px;
+    min-height: 45px;
+    line-height: 45px;
+}
+
+.todoFeature__lists__activeList {
+    font-size: 20px;
+    max-width: 100px;
+}
+
+.todoFeature__todoList {
+    min-height: 148px;
+    position: relative;
+    overflow: scroll;
+    overflow-x: hidden;
+
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgb(128, 128, 128);
+        border-radius: 15px;
+    }
+}
+.todoFeature__todoList__todoItem {
+    height: 18px;
+    display: grid;
+    grid-template-columns: max-content auto max-content;
+    z-index: 5;
+
+    &:hover {
+        i {
+            visibility: visible;
+        }
+    }
+
+    .done {
+        color: #bababa;
+        text-decoration: line-through;
+    }
+}
+.todoFeature__todoList__todoItem__checkbox {
+    margin-right: 7px;
+}
+.todoFeature__todoList__todoItem__input {
+    // this is a span tag, not an input actually
+    max-width: 250px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block; // we need display block for the item to has width
+}
+.todoFeature__todoList__todoItem__input--editMode {
+    // edit mode is a input field in our case
+    width: 100%;
+    overflow: hidden;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    color: white;
+}
+.todoFeature__todoList__todoItem__options {
+    visibility: hidden;
+    margin-left: 7px;
+    i {
+        color: rgb(128, 128, 128);
+        width: 15px;
+        height: 15px;
+        z-index: 6;
+    }
+
+    i::after {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        right: 12px;
+        z-index: 100;
+        height: 20px;
+        width: 20px;
+        line-height: 15px;
+        box-sizing: border-box;
+        cursor: pointer;
+        border-radius: 50%;
+        background-color: rgba(224, 224, 224, 0.001);
+    }
+
+    i:hover {
+        color: rgb(221, 221, 221);
+
+        &::after {
+            background-color: rgba($color: white, $alpha: 0.3);
+        }
+    }
+}
+
+.todoFeature__input {
+    width: 99%;
+    background: transparent;
+    color: rgb(128, 128, 128);
+    font-size: 18px;
+    outline: none;
+    border: none;
+    height: 40px;
+    min-height: 40px;
+}
