@@ -4,11 +4,12 @@ import { Introduction, UserGreeting } from './components';
 
 function GreetingControl() {
     const [showSetName, setShowSetName] = useState(false);
-    const [question, setQuestion] = useState(`Hello, what is your name?`);
-    const [date, setDate] = useState(new Date());
     const [greeting, setGreeting] = useState('');
     const [name, setName] = useState(null);
     const [showEditName, setShowEditName] = useState(false);
+
+    const question = 'Hello, what is your name?';
+    const date = new Date();
 
     const saveName = e => {
         let name = this.state.name;
