@@ -1,47 +1,41 @@
-import React, { Component } from "react";
-import './styles.scss';
-import { getBackground } from "../../../../services/api";
+import React, { useState, useEffect } from 'react';
+import './background.styles.scss';
+import { getBackground } from '../../../../services/api';
 
-class Background extends Component {
-    constructor(props) {
-        super(props);
+function Background() {
+    const [backgroundImage, setBackgroundImage] = useState({});
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [error, setError] = useState(null);
 
-        this.state = {
-            background: {},
-            isLoading: true
-        };
-    }
-
-  async componentDidMount() {
-    try {
-      const image = await getBackground();
-      this.setState({ background: image.url, isLoading: false });
-    } catch (error) {
-      this.setState({ error: error });
-    }
-    }
-
-    render() {
-        const { error, isLoading } = this.state;
-        const backgroundStyle = {
-            backgroundImage: 'url(' + this.state.background + ')',
-          };
-
-        if (error) {
-            return <p>{error.message}</p>;
-        }
-
-        if (isLoading) {
-            return <p>Loading ...</p>;
-        } else {
-            return (
-                <div className="background">
-                    <div className="background-image" style={backgroundStyle}></div>
-                    <div className="background-overlay"></div>
-                </div>
-            );
+    async function fetchImage() {
+        try {
+            const backgroundImage = await getBackground();
+            setBackgroundImage(backgroundImage.url);
+        } catch (error) {
+            setError(error);
         }
     }
+
+    useEffect(() => {
+        fetchImage();
+        setIsLoaded(true);
+    }, []);
+
+    const backgroundStyle = {
+        backgroundImage: 'url(' + backgroundImage + ')',
+        color: 'red',
+    };
+
+    return error ? (
+        <div>{error.message}</div>
+    ) : isLoaded ? (
+        <div className="background">
+            <div className="background-image" style={backgroundStyle} />
+            <div className="background-overlay" />
+        </div>
+    ) : (
+        <p>Loading ...</p>
+    );
 }
 
 export default Background;

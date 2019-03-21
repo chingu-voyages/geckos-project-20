@@ -26,11 +26,7 @@ class Todo extends Component {
                     allTodos={this.state.allTodos}
                     needsToUpdate={this.state.todoChanged}
                 />
-                <TodoList
-                    filteredTodos={this.state.filteredTodos}
-                    update={this.updateTask}
-                    lists={this.state.lists}
-                />
+                <TodoList filteredTodos={this.state.filteredTodos} update={this.updateTask} lists={this.state.lists} />
 
                 <form autoComplete="off" onSubmit={this.newTodoHandler}>
                     <input
@@ -53,15 +49,11 @@ class Todo extends Component {
     filterTodos = option => {
         if (option === 'done') {
             this.setState(prevState => ({
-                filteredTodos: [...prevState.allTodos].filter(
-                    todo => todo.done
-                ),
+                filteredTodos: [...prevState.allTodos].filter(todo => todo.done),
             }));
         } else {
             this.setState(prevState => ({
-                filteredTodos: [...prevState.allTodos].filter(
-                    todo => todo.list === prevState.activeList
-                ),
+                filteredTodos: [...prevState.allTodos].filter(todo => todo.list === prevState.activeList),
             }));
         }
     };

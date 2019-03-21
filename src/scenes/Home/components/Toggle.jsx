@@ -15,11 +15,7 @@ class Toggle extends Component {
             // attach/remove event handler
             document.addEventListener('click', this.handleOutsideClick, false);
         } else {
-            document.removeEventListener(
-                'click',
-                this.handleOutsideClick,
-                false
-            );
+            document.removeEventListener('click', this.handleOutsideClick, false);
         }
 
         this.setState(prevState => ({
@@ -58,8 +54,7 @@ class Toggle extends Component {
             return React.cloneElement(child, {
                 ...child.props,
                 onClick: () => {
-                    child.props.changeList &&
-                        child.props.changeList(child.props.listOption);
+                    child.props.changeList && child.props.changeList(child.props.listOption);
                     child.props.changeEditMode && child.props.changeEditMode();
                     child.props.deleteTask && child.props.deleteTask();
                 },
@@ -68,8 +63,7 @@ class Toggle extends Component {
             return React.cloneElement(child, {
                 ...child.prop,
                 onClick: () => {
-                    child.props.changeList &&
-                        child.props.changeList(child.props.listOption);
+                    child.props.changeList && child.props.changeList(child.props.listOption);
                     child.props.changeEditMode && child.props.changeEditMode();
                     child.props.deleteTask && child.props.deleteTask();
                     this.clickHandler();
@@ -88,22 +82,11 @@ class Toggle extends Component {
             // If the child also has the function, then it will close then open super fast and it
             // would feel like it wasn't even clicked
             if (index === 0) {
-                return this.returnFirstLevelWithModifiedChildren(
-                    child,
-                    childProps,
-                    true
-                );
+                return this.returnFirstLevelWithModifiedChildren(child, childProps, true);
             } else {
                 var childProps = { ...child.props };
-                childProps.children = React.Children.map(
-                    child.props.children,
-                    this.applyClickToChild
-                );
-                return this.returnFirstLevelWithModifiedChildren(
-                    child,
-                    childProps,
-                    false
-                );
+                childProps.children = React.Children.map(child.props.children, this.applyClickToChild);
+                return this.returnFirstLevelWithModifiedChildren(child, childProps, false);
             }
         });
     }
