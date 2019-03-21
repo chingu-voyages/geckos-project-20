@@ -4,7 +4,7 @@ import { GoX } from 'react-icons/go';
 import { FaRegCheckSquare } from 'react-icons/fa';
 import { FaRegSquare } from 'react-icons/fa';
 import { FaCircleNotch } from 'react-icons/fa'; //Loading Icon
-import './styles.scss';
+import './focus.styles.scss';
 
 function Focus() {
     const [focus, setFocus] = useState('');
@@ -62,9 +62,9 @@ function Focus() {
         control = { opacity: '0' };
     }
     checkIcon = isChecked ? (
-        <FaRegCheckSquare className="control focus-icon-checkbox" onClick={e => this.toggleLine(e)} style={control} />
+        <FaRegCheckSquare className="control focus-icon-checkbox" onClick={e => toggleLine(e)} style={control} />
     ) : (
-        <FaRegSquare className="control focus-icon-checkbox-empty" onClick={e => this.toggleLine(e)} style={control} />
+        <FaRegSquare className="control focus-icon-checkbox-empty" onClick={e => toggleLine(e)} style={control} />
     );
     clearPlusIcon = isChecked ? (
         <GoPlus className="control focus-icon-plus" onClick={onCompleteClick} style={control} />

@@ -1,51 +1,51 @@
 .search {
-  position: relative;
-  width: 230px;
-  transition: opacity 0.5s ease;
-
-  &-icon {
-    position: absolute;
-    z-index: 1;
-    left: 10px;
-    top: 8px;
-    line-height: 57px;
-    opacity: 0.7;
+    position: relative;
+    width: 230px;
     transition: opacity 0.5s ease;
-    cursor: pointer;
-  }
 
-  &-input {
-    position: absolute;
-    background: transparent;
-    border: none;
-    -webkit-appearance: none; //Stop iOS styling input field
-    z-index: 0;
-    left: 10px;
-    top: 0;
-    padding-left: 30px;
-    padding-bottom: 6px;
-    height: 30px;
-    width: 100%;
-    font-size: 18px;
-    line-height: 20px;
-    cursor: pointer;
-    color: #fff;
-
-    &:focus {
-      outline: 0;
-      cursor: text;
-    }
-  }
-
-  &.active {
-    .search-icon {
-      opacity: 1;
+    &-icon {
+        position: absolute;
+        z-index: 1;
+        left: 10px;
+        top: 8px;
+        line-height: 57px;
+        opacity: 0.7;
+        transition: opacity 0.5s ease;
+        cursor: pointer;
     }
 
-    .search-input {
-      border-bottom: 2px solid #fff;
-      -webkit-appearance: none; //Stop iOS styling input field
-      border-radius: 0;
+    &-input {
+        position: absolute;
+        background: transparent;
+        border: none;
+        -webkit-appearance: none; //Stop iOS styling input field
+        z-index: 0;
+        left: 10px;
+        top: 0;
+        padding-left: 30px;
+        padding-bottom: 6px;
+        height: 30px;
+        width: 100%;
+        font-size: 18px;
+        line-height: 20px;
+        cursor: pointer;
+        color: #fff;
+
+        &:focus {
+            outline: 0;
+            cursor: text;
+        }
     }
-  }
+
+    &.active {
+        .search-icon {
+            opacity: 1;
+        }
+
+        .search-input {
+            border-bottom: 2px solid #fff;
+            -webkit-appearance: none; //Stop iOS styling input field
+            border-radius: 0;
+        }
+    }
 }

@@ -4,14 +4,7 @@ import '../todo.styles.scss';
 
 const todoFilteredList = props => {
     return props.filteredTodos.map(todo => {
-        return (
-            <TodoItem
-                key={todo.id}
-                todo={todo}
-                update={props.update}
-                lists={props.lists}
-            />
-        );
+        return <TodoItem key={todo.id} todo={todo} update={props.update} lists={props.lists} />;
     });
 };
 
