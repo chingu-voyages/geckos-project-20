@@ -122,6 +122,7 @@
     ]
   },
   "devDependencies": {
+    "eslint-plugin-prettier": "^3.0.1",
     "webpack-dev-server": "^3.1.14"
   }
 }

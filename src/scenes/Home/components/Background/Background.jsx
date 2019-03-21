@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './styles.scss';
+import './background.styles.scss';
 import { getBackground } from '../../../../services/api';
 
 function Background() {
