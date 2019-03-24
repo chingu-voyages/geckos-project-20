@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './styles.scss';
+import './quote.styles.scss';
 import { getQuote } from '../../../../services/api';
 import iconHeartEmpty from './../../../../images/icon-heart-empty.svg';
 import iconHeart from './../../../../images/icon-heart.svg';
