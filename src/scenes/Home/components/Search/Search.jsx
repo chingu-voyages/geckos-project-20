@@ -1,69 +1,55 @@
-import React, { Component } from 'react';
-import './styles.scss';
+import React, { useState } from 'react';
+import './search.styles.scss';
 import { FaSearch } from 'react-icons/fa';
 
-class Search extends Component {
-    constructor() {
-        super();
+function Search() {
+    const [query, setQuery] = useState(null);
 
-        this.state = {
-            query: null,
-        };
-    }
+    const handleChange = e => setQuery(e.target.value);
 
-    handleChange = e => {
-        let search = e.target.value;
-        this.setState({
-            query: search,
-        });
-    };
-
-    handleFocus() {
+    const handleFocus = () => {
         const searchContainer = document.querySelector('.search');
         searchContainer.classList.add('active');
-    }
+    };
 
-    handleBlur() {
+    const handleBlur = () => {
         const searchContainer = document.querySelector('.search');
         searchContainer.classList.remove('active');
-    }
+    };
 
-    toggleClick() {
+    const toggleClick = () => {
         const searchContainer = document.querySelector('.search');
         const searchInput = document.querySelector('.search-input');
         searchContainer.classList.contains('active')
             ? searchContainer.classList.remove('active')
             : searchContainer.classList.add('active');
         searchInput.focus();
-    }
+    };
 
-    getResults = e => {
+    const getResults = e => {
         e.preventDefault();
-        const searched = this.state.query;
         const googleQuery = 'https://www.google.com/search?q=';
-        let googleSearch = `${googleQuery}${searched}`;
+        let googleSearch = `${googleQuery}${query}`;
         window.location.href = googleSearch;
     };
 
-    render() {
-        return (
-            <div className="top-row">
-                <div className="top-left">
-                    <div className="search">
-                        <form className="search-form" onSubmit={this.getResults}>
-                            <FaSearch className="search-icon" onClick={this.toggleClick} />
-                            <input
-                                className="search-input"
-                                autoComplete="off"
-                                onChange={this.handleChange}
-                                onFocus={this.handleFocus}
-                                onBlur={this.handleBlur}
-                            />
-                        </form>
-                    </div>
+    return (
+        <div className="top-row">
+            <div className="top-left">
+                <div className="search">
+                    <form className="search-form" onSubmit={getResults}>
+                        <FaSearch className="search-icon" onClick={toggleClick} />
+                        <input
+                            className="search-input"
+                            autoComplete="off"
+                            onChange={handleChange}
+                            onFocus={handleFocus}
+                            onBlur={handleBlur}
+                        />
+                    </form>
                 </div>
             </div>
-        );
-    }
+        </div>
+    );
 }
 export default Search;
