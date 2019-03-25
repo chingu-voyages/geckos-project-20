@@ -16,51 +16,6 @@ function Weather(props) {
     const [weatherDescription, setWeatherDescription] = useState(null);
     const [error, setError] = useState(null);
 
-    /*
-	componentDidMount() {
-		navigator.geolocation.getCurrentPosition(
-			position => {
-				this.setState({
-					lat: position.coords.latitude,
-					lon: position.coords.longitude
-				});
-				console.log( lat,  lon);
-				this.getCurrentWeather();
-			},
-			error => console.error(error));
-	}
-
-	
-	createDaysArray = (weatherData) => {
-        console.log('WeatherData List: ', weatherData)
-
-        let endResult = [];
-        let oneDay = [];
-        let currentDay = new Date();
-
-       for(let period of weatherData){
-            let periodDate = new Date(period.dt_txt);
-            if (this.sameDay(periodDate, currentDay)){
-                oneDay.push(period);
-            } else {
-                endResult.push(oneDay);
-                oneDay = [];
-                oneDay.push(period);
-                currentDay.setDate(currentDay.getDate() + 1);
-            }
-        }
-        
-        endResult.push(oneDay);
-        return endResult;
-    }
-
-    sameDay = (date1, date2) => {
-        return (date1.getFullYear() === date2.getFullYear() &&
-        date1.getMonth() === date2.getMonth() &&
-        date1.getDate() === date2.getDate());
-	}
-	*/
-
     const getCurrentWeather = () => {
         //Example API call: http://api.openweathermap.org/data/2.5/weather?lat=51&lon=-1&units=metric&type=accurate&mode=json&APPID=YOUR_API_KEY
         const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
@@ -171,6 +126,51 @@ function Weather(props) {
 }
 
 export default Weather;
+
+/*
+	componentDidMount() {
+		navigator.geolocation.getCurrentPosition(
+			position => {
+				this.setState({
+					lat: position.coords.latitude,
+					lon: position.coords.longitude
+				});
+				console.log( lat,  lon);
+				this.getCurrentWeather();
+			},
+			error => console.error(error));
+	}
+
+	
+	createDaysArray = (weatherData) => {
+        console.log('WeatherData List: ', weatherData)
+
+        let endResult = [];
+        let oneDay = [];
+        let currentDay = new Date();
+
+       for(let period of weatherData){
+            let periodDate = new Date(period.dt_txt);
+            if (this.sameDay(periodDate, currentDay)){
+                oneDay.push(period);
+            } else {
+                endResult.push(oneDay);
+                oneDay = [];
+                oneDay.push(period);
+                currentDay.setDate(currentDay.getDate() + 1);
+            }
+        }
+        
+        endResult.push(oneDay);
+        return endResult;
+    }
+
+    sameDay = (date1, date2) => {
+        return (date1.getFullYear() === date2.getFullYear() &&
+        date1.getMonth() === date2.getMonth() &&
+        date1.getDate() === date2.getDate());
+	}
+	*/
 
 /*
 
