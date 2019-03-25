@@ -1,22 +1,29 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import { ToggleWrapper } from './home.scmp';
 // import '../todo.styles.scss';
 
-function Toggle(props) {
-    const [isOpen, setIsOpen] = useState(false);
+class Toggle extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isOpen: false,
+        };
+    }
 
-    const clickHandler = () => {
-        if (!isOpen) {
+    clickHandler = () => {
+        if (!this.state.isOpen) {
             // attach/remove event handler
-            document.addEventListener('click', handleOutsideClick, false);
+            document.addEventListener('click', this.handleOutsideClick, false);
         } else {
-            document.removeEventListener('click', handleOutsideClick, false);
+            document.removeEventListener('click', this.handleOutsideClick, false);
         }
 
-        setIsOpen(!isOpen);
+        this.setState(prevState => ({
+            isOpen: !prevState.isOpen,
+        }));
     };
 
-    const handleOutsideClick = e => {
+    handleOutsideClick = e => {
         if (!this.node === null) {
             // ignore clicks on the component itself
             if (this.node.current.contains(e.target)) {
@@ -27,14 +34,14 @@ function Toggle(props) {
             // if it is null then it means that the task got deleted and we don't
             // have to call this.clickHandler at all since it changes state of the tas
             // and if the task is deleted then we don't have a state to change at all :)
-            clickHandler();
+            this.clickHandler();
         }
     };
 
-    const returnFirstLevelWithModifiedChildren = (child, cchildren, applyOnThis) => {
+    returnFirstLevelWithModifiedChildren = (child, cchildren, applyOnThis) => {
         return applyOnThis
             ? React.cloneElement(child, {
-                  onClick: clickHandler,
+                  onClick: this.clickHandler,
                   ...cchildren,
               })
             : React.cloneElement(child, {
@@ -42,7 +49,7 @@ function Toggle(props) {
               });
     };
 
-    const applyClickToChild = child => {
+    applyClickToChild = child => {
         if (child.props.ignore) {
             return React.cloneElement(child, {
                 ...child.props,
@@ -59,13 +66,13 @@ function Toggle(props) {
                     child.props.changeList && child.props.changeList(child.props.listOption);
                     child.props.changeEditMode && child.props.changeEditMode();
                     child.props.deleteTask && child.props.deleteTask();
-                    clickHandler();
+                    this.clickHandler();
                 },
             });
         }
     };
 
-    const secondLevelCloneChildren = children => {
+    secondLevelCloneChildren(children) {
         return React.Children.map(children, (child, index) => {
             if (!React.isValidElement(child)) {
                 return child;
@@ -75,30 +82,33 @@ function Toggle(props) {
             // If the child also has the function, then it will close then open super fast and it
             // would feel like it wasn't even clicked
             if (index === 0) {
-                return returnFirstLevelWithModifiedChildren(child, childProps, true);
+                return this.returnFirstLevelWithModifiedChildren(child, childProps, true);
             } else {
                 var childProps = { ...child.props };
-                childProps.children = React.Children.map(child.props.children, applyClickToChild);
-                return returnFirstLevelWithModifiedChildren(child, childProps, false);
+                childProps.children = React.Children.map(child.props.children, this.applyClickToChild);
+                return this.returnFirstLevelWithModifiedChildren(child, childProps, false);
             }
         });
-    };
+    }
 
-    // let children = React.Children.map(props.children, iterratorFunction2);
-    let children = secondLevelCloneChildren(props.children);
+    render() {
+        // let children = React.Children.map(this.props.children, this.iterratorFunction2);
+        let children = this.secondLevelCloneChildren(this.props.children);
 
-    return (
-        // the ref syntax is a shorthand way to make a ref
-        // the long way would be to make a variable in the constructor > this.node=React.createRef()
-        // and in componentDidMount to focus it > this.node.current.focus()
-        // and you would also need to change bottom like so > ref={this.node}
+        const { isOpen } = this.state;
+        return (
+            // the ref syntax is a shorthand way to make a ref
+            // the long way would be to make a variable in the constructor > this.node=React.createRef()
+            // and in componentDidMount to focus it > this.node.current.focus()
+            // and you would also need to change bottom like so > ref={this.node}
 
-        <ToggleWrapper ref={node => (this.node = node)}>
-            {children[0]}
+            <ToggleWrapper ref={node => (this.node = node)}>
+                {children[0]}
 
-            {isOpen ? children[1] : null}
-        </ToggleWrapper>
-    );
+                {isOpen ? children[1] : null}
+            </ToggleWrapper>
+        );
+    }
 }
 
 export default Toggle;

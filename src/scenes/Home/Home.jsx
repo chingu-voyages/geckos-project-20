@@ -31,14 +31,14 @@ function Home() {
                     {/* This is commented to be able to see chagnes for other components
                 this needs refactor to handle. this.node problem */}
 
-                    {/* <Toggle>
+                    <Toggle>
                         <Activator>
                             <div id="todo">Todo</div>
                         </Activator>
                         <Content side="above">
                             <Todo />
                         </Content>
-                    </Toggle> */}
+                    </Toggle>
                 </div>
             </div>
         </div>
