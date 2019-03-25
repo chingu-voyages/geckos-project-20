@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Toggle from '../../Toggle';
 import '../todo.styles.scss';
-import { Activator, Content, Divider, Element } from '../../HomeStyledComponents';
+import { Activator, Content, Divider, Element } from '../../home.scmp';
 
 // is this function being recrated when the component is rerendered
 

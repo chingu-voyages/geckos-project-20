@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ToggleWrapper } from './HomeStyledComponents';
+import { ToggleWrapper } from './home.scmp';
 // import '../todo.styles.scss';
 
 class Toggle extends Component {

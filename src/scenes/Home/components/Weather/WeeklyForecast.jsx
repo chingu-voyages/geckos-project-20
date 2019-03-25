@@ -1,61 +1,45 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Wrapper, WeeklyWeather } from './weather.scmp';
 import Day from './Day';
 import Preview from './Preview';
 import 'font-awesome/css/font-awesome.css';
 
-class WeeklyForecast extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            currentDay: this.props.currentDay, //possible React anti-pattern
-        };
-    }
+function WeeklyForecast(props) {
+    const [currentDay, setCurrentDay] = useState(props.currentDay);
 
-    updateCurrentDay = dayId => {
+    const updateCurrentDay = dayId => {
         console.log('DayId: ', dayId);
-        this.setState(
-            {
-                currentDay: dayId,
-            },
-            console.log('currentDatProlonged = ', this.state.currentDay),
-        );
+        setCurrentDay(dayId);
     };
 
-    async componentDidMount() {
-        try {
-        } catch (e) {}
-    }
-    getDays = () => {
-        return this.props.weeklyForecast.map((day, index) => {
+    const getDays = () => {
+        return props.weeklyForecast.map((day, index) => {
             if (index === 5) return;
             console.log('Each day: ', day.length, 'at ', index);
             return (
                 <Day
                     key={day.length + index}
-                    updateCurrentDay={this.updateCurrentDay}
+                    updateCurrentDay={updateCurrentDay}
                     dayData={day}
                     //iconAlt="Cloud"
-                    place={this.props.place}
+                    place={props.place}
                     dayId={index}
                 />
             );
         });
     };
-    render() {
-        const days = this.getDays();
-        return (
-            <Wrapper>
-                <Preview
-                    place={this.props.place}
-                    getWeather={this.props.getWeather}
-                    currentDay={this.state.currentDay}
-                    currentWeatherImgSrc={this.props.currentWeatherImgSrc}
-                />
-                <WeeklyWeather>{days}</WeeklyWeather>
-            </Wrapper>
-        );
-    }
+    const days = getDays();
+    return (
+        <Wrapper>
+            <Preview
+                place={props.place}
+                getWeather={props.getWeather}
+                currentDay={currentDay}
+                currentWeatherImgSrc={props.currentWeatherImgSrc}
+            />
+            <WeeklyWeather>{days}</WeeklyWeather>
+        </Wrapper>
+    );
 }
 
 export default WeeklyForecast;

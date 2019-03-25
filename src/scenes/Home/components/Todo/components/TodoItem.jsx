@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Toggle from '../../Toggle';
 import { Todo } from './TodoStyledComponents';
-import { Activator, Content, Divider, Element } from '../../HomeStyledComponents';
+import { Activator, Content, Divider, Element } from '../../home.scmp';
 import '../todo.styles.scss';
 
 class TodoItem extends Component {

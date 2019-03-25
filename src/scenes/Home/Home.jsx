@@ -8,7 +8,7 @@ import Search from './components/Search/Search';
 import Focus from './components/Focus/Focus';
 import Clock from './components/Clock/Clock';
 import Toggle from './components/Toggle';
-import { Activator, Content } from './components/HomeStyledComponents';
+import { Activator, Content } from './components/home.scmp';
 
 class Home extends Component {
     render() {

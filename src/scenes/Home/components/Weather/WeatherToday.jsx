@@ -1,6 +1,6 @@
 import React from 'react';
 import './weather.styles.scss';
-const WeatherToday = props => {
+function WeatherToday(props) {
     return (
         <div className="weather-app-container weather" onClick={props.toggleOpen}>
             <div className="weather-wrapper">
@@ -14,6 +14,6 @@ const WeatherToday = props => {
             </div>
         </div>
     );
-};
+}
 
 export default WeatherToday;
