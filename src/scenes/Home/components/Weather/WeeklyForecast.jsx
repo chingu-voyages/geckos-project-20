@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Wrapper, WeeklyWeather } from './StyledComponents';
+import { Wrapper, WeeklyWeather } from './weather.scmp';
 import Day from './Day';
 import Preview from './Preview';
 import 'font-awesome/css/font-awesome.css';

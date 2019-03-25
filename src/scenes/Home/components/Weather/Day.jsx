@@ -1,5 +1,5 @@
 import React from 'react';
-import { DayWrapper } from './StyledComponents';
+import { DayWrapper } from './weather.scmp';
 import { weatherIcon } from './WeatherIcon';
 
 const getAverageMax = dayArray =>
@@ -7,19 +7,9 @@ const getAverageMax = dayArray =>
 const getAverageMin = dayArray =>
     Math.round((dayArray.reduce((acc, day) => (acc += day.main.temp_min), 0) / dayArray.length).toFixed(0));
 
-/*
 //Get day of the week from UNIX time stamp, map over the array to create Date object, convert to seconds then display 3 letter date string
-let dates = [this.props.dayArray[0].dt, this.props.dayArray[0].dt, this.props.dayArray[0].dt, this.props.dayArray[0].dt, this.props.dayArray[0].dt];
-	
-let datesString = dates.map(function(e) {
-    return new Date(e*1000).toString().split(' ')[0];
-  });
 
-  //{datesString[0]}
-    //console.log(props.dayArray[0].dt);
-  */
-
-export const Day = props => {
+export function Day(props) {
     const averageMax = getAverageMax(props.dayData);
     const averageMin = getAverageMin(props.dayData);
     return (
@@ -40,6 +30,6 @@ export const Day = props => {
             <div style={{ display: 'none' }}>{props.place}</div>
         </DayWrapper>
     );
-};
+}
 
 export default Day;

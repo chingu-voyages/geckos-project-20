@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles.scss';
+import './weather.styles.scss';
 const WeatherToday = props => {
     return (
         <div className="weather-app-container weather" onClick={props.toggleOpen}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles.scss';
+import './weather.styles.scss';
 import { weatherIcon } from './WeatherIcon';
 import { weatherForecastIcon } from './WeatherIcon';
 //import WeatherDay from './WeatherDay';

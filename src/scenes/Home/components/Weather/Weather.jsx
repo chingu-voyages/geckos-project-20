@@ -1,24 +1,20 @@
-import React, { Component } from 'react';
-import './styles.scss';
+import React, { useState, useEffect } from 'react';
+import './weather.styles.scss';
 import { weatherIcon } from './WeatherIcon';
 import WeatherExpanded from './WeatherExpanded';
-// import WeatherToday from './WeatherToday';
-// import WeeklyForecast from './WeeklyForecast';
 
-class Weather extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            weeklyForecast: {},
-            weather: {},
-            isLoading: true,
-            lat: '',
-            lon: '',
-            timeOfDay: 1,
-            isShowingWeather: false,
-        };
-    }
+function Weather(props) {
+    const [weeklyForecast, setWeeklyForecast] = useState({});
+    const [weatherForecast, setWeatherForecast] = useState(null);
+    const [weather, setWeather] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
+    const [lat, setLat] = useState('');
+    const [lon, setLon] = useState('');
+    const [timeOfDay, setTimeOfDay] = useState(1);
+    const [isShowingWeather, setIsShowingWeather] = useState(false);
+    const [weatherID, setWeatherID] = useState(null);
+    const [weatherDescription, setWeatherDescription] = useState(null);
+    const [error, setError] = useState(null);
 
     /*
 	componentDidMount() {
@@ -28,7 +24,7 @@ class Weather extends Component {
 					lat: position.coords.latitude,
 					lon: position.coords.longitude
 				});
-				console.log(this.state.lat, this.state.lon);
+				console.log( lat,  lon);
 				this.getCurrentWeather();
 			},
 			error => console.error(error));
@@ -65,77 +61,64 @@ class Weather extends Component {
 	}
 	*/
 
-    getCurrentWeather() {
+    const getCurrentWeather = () => {
         //Example API call: http://api.openweathermap.org/data/2.5/weather?lat=51&lon=-1&units=metric&type=accurate&mode=json&APPID=YOUR_API_KEY
         const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
-        let currentURL = `https://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${
-            this.state.lon
-        }&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
+        let currentURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
         let date = new Date();
         let timeOfDay = date.getHours();
         console.log(currentURL);
         console.log(timeOfDay);
         return fetch(currentURL)
             .then(response => response.json())
-            .then(data =>
-                this.setState({
-                    timeOfDay: timeOfDay,
-                    weather: data,
-                    weatherID: data.weather[0].id,
-                    weatherDescription: data.weather[0].description,
-                    isLoading: false,
-                }),
-            )
-            .catch(error =>
-                this.setState({
-                    error,
-                    isLoading: false,
-                }),
-            );
-    }
+            .then(data => {
+                setTimeOfDay(timeOfDay);
+                setWeather(data);
+                setWeatherID(data.weather[0].id);
+                setWeatherDescription(data.weather[0].description);
+                setIsLoading(false);
+            })
+            .catch(error => setError(error));
+    };
 
-    getForecastWeather() {
+    const getForecastWeather = () => {
         //Forecast API call...
         //http://api.openweathermap.org/data/2.5/forecast?lat=51&lon=-1&units=metric&type=accurate&mode=json&APPID=${API_KEY}
         const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
-        let forecastURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${this.state.lat}&lon=${
-            this.state.lon
-        }&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
+        let forecastURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
         console.log(forecastURL);
         return fetch(forecastURL)
             .then(response => response.json())
-            .then(data =>
-                this.setState({
-                    weatherForecast: data,
-                }),
-            )
-            .catch(error =>
-                this.setState({
-                    error,
-                    isLoading: false,
-                }),
-            );
-    }
-
-    componentDidMount() {
-        // Get the current position of the user
+            .then(data => setWeatherForecast(data))
+            .catch(error => {
+                setIsLoading(false);
+                setError(error);
+            });
+    };
+    // Get the current position of the user
+    useEffect(() => {
         navigator.geolocation.getCurrentPosition(
             position => {
-                this.setState(
-                    prevState => ({
-                        lat: position.coords.latitude,
-                        lon: position.coords.longitude,
-                    }),
-                    () => {
-                        this.getCurrentWeather();
-                        this.getForecastWeather();
-                    }, //Passes geolocation to getCurrentWeather and getForecastWeather functions
-                );
+                // this.setState(
+                //     prevState => ({
+                //         lat: position.coords.latitude,
+                //         lon: position.coords.longitude,
+                //     }),
+                //     () => {
+                //         this.getCurrentWeather();
+                //         this.getForecastWeather();
+                //     }, //Passes geolocation to getCurrentWeather and getForecastWeather functions
+                // );
+
+                setLon(position.coords.longitude);
+                setLat(position.coords.latitude);
+                getCurrentWeather();
+                getForecastWeather();
             },
-            error => this.setState({ error: error }),
+            error => setError(error),
             { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
         );
-    }
+    }, []);
 
     /*
 	initial weather should display icon, temp and location and be clickable to expand...
@@ -143,54 +126,48 @@ class Weather extends Component {
 	URL is http://openweathermap.org/img/w/10d.png */
 
     //Function for opening/closing modal for expanded view
-    onToggleOpenWeather = e => {
-        this.setState(prevState => ({
-            isShowingWeather: !prevState.isShowingWeather,
-        }));
+    const onToggleOpenWeather = () => {
+        setIsShowingWeather(!isShowingWeather);
     };
 
-    render() {
-        const { weather, error, isLoading, weatherID, weatherDescription, timeOfDay } = this.state;
+    if (error) {
+        return <p>{error.message}</p>;
+    }
 
-        if (error) {
-            return <p>{error.message}</p>;
-        }
+    if (isLoading) {
+        return <p>Loading ...</p>;
+    }
 
-        if (isLoading) {
-            return <p>Loading ...</p>;
-        } else {
-            return (
-                <div className="weather-app-container weather">
-                    <div className="weather-container-small" onClick={this.onToggleOpenWeather}>
-                        <div className="weather-wrapper">
-                            <div className="weather-stat">
-                                <img
-                                    className="weather-icon"
-                                    src={weatherIcon(weatherID, timeOfDay)}
-                                    alt={weatherDescription}
-                                />
-                                <p>{Math.round(weather.main.temp)}&deg;</p>
-                            </div>
-                        </div>
-                        <div className="weather-location-label">
-                            <p>{weather.name}</p>
-                        </div>
-                    </div>
-                    <div>
-                        {this.state.isShowingWeather && (
-                            <WeatherExpanded
-                                weather={this.state.weather}
-                                weatherID={this.state.weatherID}
-                                timeOfDay={this.state.timeOfDay}
-                                weatherDescription={this.state.weatherDescription}
-                                weatherForecast={this.state.weatherForecast}
-                            />
-                        )}
+    return (
+        <div className="weather-app-container weather">
+            <div className="weather-container-small" onClick={onToggleOpenWeather}>
+                <div className="weather-wrapper">
+                    <div className="weather-stat">
+                        <img
+                            className="weather-icon"
+                            src={weatherIcon(weatherID, timeOfDay)}
+                            alt={weatherDescription}
+                        />
+                        <p>{Math.round(weather.main.temp)}&deg;</p>
                     </div>
                 </div>
-            );
-        }
-    }
+                <div className="weather-location-label">
+                    <p>{weather.name}</p>
+                </div>
+            </div>
+            <div>
+                {isShowingWeather && (
+                    <WeatherExpanded
+                        weather={weather}
+                        weatherID={weatherID}
+                        timeOfDay={timeOfDay}
+                        weatherDescription={weatherDescription}
+                        weatherForecast={weatherForecast}
+                    />
+                )}
+            </div>
+        </div>
+    );
 }
 
 export default Weather;
@@ -222,7 +199,7 @@ export default Weather;
 					weatherDescription={weatherDescription}
 					currentWeatherImgSrc={weatherIcon(weatherID, timeOfDay)}
 					currentWeather={weather}
-					currentDay={[this.state.weeklyForecast[0]]}
+					currentDay={[ weeklyForecast[0]]}
 					weeklyForecast={daysArray}
 				/>
 				}
@@ -236,7 +213,7 @@ export default Weather;
 		try{
 			console.log('I happened to get new weather');
 			const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
-			const byCoordinates = `lat=${this.state.lat}&lon=${this.state.lon}`;
+			const byCoordinates = `lat=${ lat}&lon=${ lon}`;
 			const byName = `q=${cityName}`
 
 			let currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?${cityName?byName:byCoordinates}&units=metric&type=accurate&mode=json&APPID=${API_KEY}`;
@@ -265,7 +242,7 @@ export default Weather;
 
 	getWeeklyForecast = async (cityName) => {
 		try{
-			const byCoordinates = `lat=${this.state.lat}&lon=${this.state.lon}`;
+			const byCoordinates = `lat=${ lat}&lon=${ lon}`;
 			const byName = `q=${cityName}`;
 
 			const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
@@ -280,7 +257,7 @@ export default Weather;
 				weeklyForecast: weatherData.list
 			});
 
-			console.log('WF' , this.state.weeklyForecast);
+			console.log('WF' ,  weeklyForecast);
 		} catch (e){
 			console.error('Error from weeklyForecast: ', e);
 		}
