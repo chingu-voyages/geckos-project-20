@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles.scss';
+import './home.styles.scss';
 
 import { Todo, Background, Weather, Quote, Search, Focus, Clock, Toggle } from './components';
 import { Activator, Content } from './components/home.scmp';
