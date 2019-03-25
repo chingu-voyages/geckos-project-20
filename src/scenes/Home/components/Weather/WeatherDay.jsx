@@ -2,13 +2,15 @@ import React from 'react';
 import './weather.styles.scss';
 import { weatherForecastIcon } from './WeatherIcon';
 
-<WeatherDay
+{
+    /* <WeatherDay
     weather={props.weather}
     weatherID={props.weatherID}
     timeOfDay={props.timeOfDay}
     weatherDescription={props.weatherDescription}
     weatherForecast={props.weatherForecast}
-/>;
+/>; */
+}
 
 const WeatherDay = props => {
     let firstDayMinTemp = props.weatherForecast.list[0].main.temp_min;
