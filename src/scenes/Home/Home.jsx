@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
 import './styles.scss';
-import Todo from './components/Todo/Todo';
-import Background from './components/Background/Background';
-import Weather from './components/Weather/Weather';
-import Quote from './components/Quote/Quote';
-import Search from './components/Search/Search';
-import Focus from './components/Focus/Focus';
-import Clock from './components/Clock/Clock';
-import Toggle from './components/Toggle';
+
+import { Todo, Background, Weather, Quote, Search, Focus, Clock, Toggle } from './components';
 import { Activator, Content } from './components/home.scmp';
 
 class Home extends Component {
