@@ -4,7 +4,7 @@ import Home from './scenes/Home/Home';
 class App extends Component {
     render() {
         return (
-            <Home />
+            <div>  Hello CALU </div>
         );
     }
 }
