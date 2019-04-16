@@ -4,11 +4,11 @@ export const template = styled.div``;
 
 export const Wrapper = styled.div`
     z-index: 2255 !important;
-    font-family: -apple-system, BlinkMacSystemFont, 'Neue Haas Grotesk Text Pro',
-        'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Neue Haas Grotesk Text Pro', 'Helvetica Neue', Helvetica, Arial,
+        sans-serif;
     height: 215px;
     width: 420px;
-    background-color: rgba(15,15,15,.925);
+    background-color: rgba(15, 15, 15, 0.925);
     position: fixed;
     display: grid;
     grid-template-rows: 1fr 50px;
@@ -29,7 +29,7 @@ export const Wrapper = styled.div`
         height: 0;
         border-left: 8px solid transparent;
         border-right: 8px solid transparent;
-        border-bottom: 8px solid rgba(15,15,15,.925);
+        border-bottom: 8px solid rgba(15, 15, 15, 0.925);
     }
 `;
 

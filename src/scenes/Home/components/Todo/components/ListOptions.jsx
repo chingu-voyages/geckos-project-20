@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 import Toggle from '../../Toggle';
 import '../todo.styles.scss';
-import {
-    Activator,
-    Content,
-    Divider,
-    Element,
-} from '../../HomeStyledComponents';
+import { Activator, Content, Divider, Element } from '../../HomeStyledComponents';
 
 // is this function being recrated when the component is rerendered
 
@@ -20,17 +15,12 @@ const listOptions = props => {
         if (listOption === 'done') {
             todoCount = [...props.allTodos].filter(todo => todo.done).length;
         } else {
-            todoCount = [...props.allTodos]
-                .filter(todo => todo.list === listOption)
-                .filter(listTodo => !listTodo.done).length;
+            todoCount = [...props.allTodos].filter(todo => todo.list === listOption).filter(listTodo => !listTodo.done)
+                .length;
         }
 
         return (
-            <Element
-                key={index}
-                listOption={listOption}
-                changeList={props.changeList}
-            >
+            <Element key={index} listOption={listOption} changeList={props.changeList}>
                 {listOption} {todoCount}
             </Element>
         );
@@ -61,9 +51,7 @@ class ListOptions extends Component {
     render() {
         return (
             <div className="todoFeature__lists">
-                <span className="todoFeature__lists__activeList">
-                    {this.props.activeList.capitalize()}
-                </span>
+                <span className="todoFeature__lists__activeList">{this.props.activeList.capitalize()}</span>
 
                 <Toggle>
                     <Activator>
@@ -77,10 +65,7 @@ class ListOptions extends Component {
                         {this.options}
                         <Divider />
                         <Element ignore>
-                            <form
-                                autoComplete="off"
-                                onSubmit={this.newListHandler}
-                            >
+                            <form autoComplete="off" onSubmit={this.newListHandler}>
                                 <input
                                     placeholder=" + New List"
                                     autoFocus={true}
@@ -94,7 +79,7 @@ class ListOptions extends Component {
                     </Content>
                 </Toggle>
 
-            {/*}    <span className="todoFeature__lists__options">
+                {/*}    <span className="todoFeature__lists__options">
                     <i className="fa fa-ellipsis-h" />
                 </span> */}
             </div>

@@ -10,50 +10,49 @@ import ThunderStormIcon from './../../../../images/weather-icons/11d.svg';
 import SnowIcon from './../../../../images/weather-icons/13d.svg';
 import MistIcon from './../../../../images/weather-icons/50d.svg';
 
-
-// Meteoicons from https://icomoon.io and matched to weather description from https://openweathermap.org/weather-conditions 
+// Meteoicons from https://icomoon.io and matched to weather description from https://openweathermap.org/weather-conditions
 
 let weatherIdIconCodes = {
     day: {
-        "0-232": ThunderStormIcon,
-        "300-399": ShowerIcon,
-        "500-599": RainIcon,
-        "600-622": SnowIcon,
-        "700-799": MistIcon,
-        "800": ClearDayIcon, 
-        "801": CloudsDayIcon,
-        "802": DrizzleIcon,
-        "803-804": OvercastIcon,
+        '0-232': ThunderStormIcon,
+        '300-399': ShowerIcon,
+        '500-599': RainIcon,
+        '600-622': SnowIcon,
+        '700-799': MistIcon,
+        '800': ClearDayIcon,
+        '801': CloudsDayIcon,
+        '802': DrizzleIcon,
+        '803-804': OvercastIcon,
     },
     night: {
-        "0-232": ThunderStormIcon,
-        "300-399": ShowerIcon,
-        "500-599": RainIcon,
-        "600-622": SnowIcon,
-        "700-799": MistIcon,
-        "800": ClearNightIcon, 
-        "801": CloudsNightIcon, 
-        "802": DrizzleIcon,
-        "803-804": OvercastIcon,
-    }
+        '0-232': ThunderStormIcon,
+        '300-399': ShowerIcon,
+        '500-599': RainIcon,
+        '600-622': SnowIcon,
+        '700-799': MistIcon,
+        '800': ClearNightIcon,
+        '801': CloudsNightIcon,
+        '802': DrizzleIcon,
+        '803-804': OvercastIcon,
+    },
 };
 
 //Expected to return a value at the end of function  array-callback-return 53
 
 export function weatherIcon(weatherID, timeOfDay) {
     let icon;
-    if (timeOfDay >= 6 && timeOfDay <= 18) {   
-        Object.keys(weatherIdIconCodes.day).some(function (k) {
+    if (timeOfDay >= 6 && timeOfDay <= 18) {
+        Object.keys(weatherIdIconCodes.day).some(function(k) {
             let part = k.split('-');
-            if(+weatherID >= part[0] && +weatherID <= (part[1] || part[0])) {
+            if (+weatherID >= part[0] && +weatherID <= (part[1] || part[0])) {
                 icon = weatherIdIconCodes.day[k];
                 return true;
             }
         });
     } else {
-        Object.keys(weatherIdIconCodes.night).some(function (k) {
+        Object.keys(weatherIdIconCodes.night).some(function(k) {
             let part = k.split('-');
-            if(+weatherID >= part[0] && +weatherID <= (part[1] || part[0])) {
+            if (+weatherID >= part[0] && +weatherID <= (part[1] || part[0])) {
                 icon = weatherIdIconCodes.night[k];
                 return true;
             }
@@ -62,24 +61,22 @@ export function weatherIcon(weatherID, timeOfDay) {
     return icon;
 }
 
-console.log(weatherIcon("800", 2));
-
+console.log(weatherIcon('800', 2));
 
 export function weatherForecastIcon(weatherForecastId, timeOfDay) {
-
     let icon;
-    if (timeOfDay >= 6 && timeOfDay <= 18) {   
-        Object.keys(weatherIdIconCodes.day).some(function (k) {
+    if (timeOfDay >= 6 && timeOfDay <= 18) {
+        Object.keys(weatherIdIconCodes.day).some(function(k) {
             let part = k.split('-');
-            if(+weatherForecastId >= part[0] && +weatherForecastId <= (part[1] || part[0])) {
+            if (+weatherForecastId >= part[0] && +weatherForecastId <= (part[1] || part[0])) {
                 icon = weatherIdIconCodes.day[k];
                 return true;
             }
         });
     } else {
-        Object.keys(weatherIdIconCodes.night).some(function (k) {
+        Object.keys(weatherIdIconCodes.night).some(function(k) {
             let part = k.split('-');
-            if(+weatherForecastId >= part[0] && +weatherForecastId <= (part[1] || part[0])) {
+            if (+weatherForecastId >= part[0] && +weatherForecastId <= (part[1] || part[0])) {
                 icon = weatherIdIconCodes.night[k];
                 return true;
             }
@@ -88,8 +85,7 @@ export function weatherForecastIcon(weatherForecastId, timeOfDay) {
     return icon;
 }
 
-console.log(weatherForecastIcon("800", 12));
-
+console.log(weatherForecastIcon('800', 12));
 
 /* PREVIOUS FUNCTIONS TO REMOVE IF NEW ONE BETTER...
 export function weatherIcon(weatherId, timeOfDay) {

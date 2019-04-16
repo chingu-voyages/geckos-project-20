@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 import Toggle from '../../Toggle';
 import { Todo } from './TodoStyledComponents';
-import {
-    Activator,
-    Content,
-    Divider,
-    Element,
-} from '../../HomeStyledComponents';
+import { Activator, Content, Divider, Element } from '../../HomeStyledComponents';
 import '../todo.styles.scss';
 
 class TodoItem extends Component {
@@ -69,10 +64,7 @@ class TodoItem extends Component {
                         <i className="fa fa-ellipsis-h" />
                     </Activator>
                     <Content id="activeList" side="left">
-                        <Element changeEditMode={this.changeEditMode}>
-                            {' '}
-                            Edit
-                        </Element>
+                        <Element changeEditMode={this.changeEditMode}> Edit</Element>
                         <Divider />
                         <Element ignore>Move to ...</Element>
                         {listOptions}
@@ -101,11 +93,7 @@ class TodoItem extends Component {
             })
             .map((listOption, index) => {
                 return (
-                    <Element
-                        key={index}
-                        changeList={this.changeList}
-                        listOption={listOption}
-                    >
+                    <Element key={index} changeList={this.changeList} listOption={listOption}>
                         {' '}
                         {listOption}{' '}
                     </Element>
@@ -129,15 +117,12 @@ class TodoItem extends Component {
                 done: this.state.done,
                 task: this.state.task,
             },
-            true
+            true,
         );
     };
 
     inputHandler = event => {
-        if (
-            event.target.value !== this.state.task &&
-            event.target.value !== ''
-        ) {
+        if (event.target.value !== this.state.task && event.target.value !== '') {
             this.props.update({
                 id: this.state.id,
                 list: this.state.list,
